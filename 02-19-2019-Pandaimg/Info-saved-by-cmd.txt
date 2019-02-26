@@ -1,0 +1,1 @@
+/usr/sbin/ocs-sr -q2 -c -j2 -z1p -i 4096 -sfsck -senc -p choose saveparts 02-19-2019-Pandaimg mmcblk0p2

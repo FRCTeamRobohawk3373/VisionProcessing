@@ -1,0 +1,12 @@
+KNAME        NAME           SIZE TYPE FSTYPE   MOUNTPOINT                                     MODEL
+loop0        loop0        215.8M loop squashfs /usr/lib/live/mount/rootfs/filesystem.squashfs 
+sda          sda           28.7G disk                                                         Ultra
+sda1         `-sda1        28.7G part vfat     /usr/lib/live/mount/medium                     
+sdb          sdb           28.7G disk                                                         Ultra
+sdb1         `-sdb1        28.7G part vfat     /home/partimag                                 
+mmcblk0      mmcblk0       29.1G disk                                                         
+mmcblk0p1    |-mmcblk0p1    512M part vfat                                                    
+mmcblk0p2    |-mmcblk0p2   26.7G part ext4                                                    
+mmcblk0p3    `-mmcblk0p3    1.9G part swap                                                    
+mmcblk0boot0 mmcblk0boot0     4M disk                                                         
+mmcblk0boot1 mmcblk0boot1     4M disk                                                         

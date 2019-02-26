@@ -1,0 +1,89 @@
+This image was saved by Clonezilla at 2018-06-22 11:31:15 UTC.
+Saved by clonezilla-live-2.6.0-37-amd64.
+The log during saving:
+----------------------------------------------------------
+Starting /usr/sbin/ocs-sr at 2018-06-22 11:14:08 UTC...
+*****************************************************.
+Clonezilla image dir: /home/partimag
+Shutting down the Logical Volume Manager
+Finished Shutting down the Logical Volume Manager
+The selected devices: mmcblk0p2
+PS. Next time you can run this command directly:
+/usr/sbin/ocs-sr -q2 -c -j2 -z1p -i 4096 -sfsck -senc -p choose saveparts 02-19-2019-Pandaimg mmcblk0p2
+*****************************************************.
+The selected devices: mmcblk0p2
+The following step is to save the hard disk/partition(s) on this machine as an image:
+*****************************************************.
+Machine: Default string
+mmcblk0p2 (26.7G_ext4_0xf448a003)
+*****************************************************.
+-> "/home/partimag/02-19-2019-Pandaimg".
+Shutting down the Logical Volume Manager
+Finished Shutting down the Logical Volume Manager
+Saving block devices info in /home/partimag/02-19-2019-Pandaimg/blkdev.list...
+Saving block devices attributes in /home/partimag/02-19-2019-Pandaimg/blkid.list...
+Checking the integrity of partition table in the disk /dev/mmcblk0... 
+Reading the partition table for /dev/mmcblk0...RETVAL=0
+*****************************************************.
+Saving the primary GPT of mmcblk0 as /home/partimag/02-19-2019-Pandaimg/mmcblk0-gpt-1st by dd...
+34+0 records in
+34+0 records out
+17408 bytes (17 kB, 17 KiB) copied, 0.000416625 s, 41.8 MB/s
+*****************************************************.
+Saving the secondary GPT of mmcblk0 as /home/partimag/02-19-2019-Pandaimg/mmcblk0-gpt-2nd by dd...
+32+0 records in
+32+0 records out
+16384 bytes (16 kB, 16 KiB) copied, 0.00278817 s, 5.9 MB/s
+*****************************************************.
+Saving the GPT of mmcblk0 as /home/partimag/02-19-2019-Pandaimg/mmcblk0-gpt.gdisk by gdisk...
+The operation has completed successfully.
+*****************************************************.
+Saving the MBR data for mmcblk0...
+1+0 records in
+1+0 records out
+512 bytes copied, 0.000313413 s, 1.6 MB/s
+Starting saving /dev/mmcblk0p2 as /home/partimag/02-19-2019-Pandaimg/mmcblk0p2.XXX...
+/dev/mmcblk0p2 filesystem: ext4.
+*****************************************************.
+*****************************************************.
+Use partclone with pigz to save the image.
+Image file will be split with size limit 4096 MB.
+*****************************************************.
+If this action fails or hangs, check:
+* Is the disk full ?
+*****************************************************.
+Run partclone: partclone.ext4 -z 10485760 -N -L /var/log/partclone.log -c -s /dev/mmcblk0p2 --output - | pigz -c --fast -b 1024 --rsyncable | split -a 2 -b 4096MB - /home/partimag/02-19-2019-Pandaimg/mmcblk0p2.ext4-ptcl-img.gz. 2> /tmp/split_error.Qmoi4C
+Partclone v0.3.12 http://partclone.org
+Starting to clone device (/dev/mmcblk0p2) to image (-)
+Reading Super Block
+memory needed: 21846212 bytes
+bitmap 874688 bytes, blocks 2*10485760 bytes, checksum 4 bytes
+Calculating bitmap... Please wait... 
+done!
+File system:  EXTFS
+Device size:   28.7 GB = 6997504 Blocks
+Space in use:  15.1 GB = 3693101 Blocks
+Free Space:    13.5 GB = 3304403 Blocks
+Block size:   4096 Byte
+Total block 6997504
+Syncing... OK!
+Partclone successfully cloned the device (/dev/mmcblk0p2) to the image (-)
+>>> Time elapsed: 432.52 secs (~ 7.208 mins)
+*****************************************************.
+Finished saving /dev/mmcblk0p2 as /home/partimag/02-19-2019-Pandaimg/mmcblk0p2.ext4-ptcl-img.gz
+*****************************************************.
+End of saveparts job for image /home/partimag/02-19-2019-Pandaimg.
+GPT 1st partition table file found!
+GPT 2nd partition table file found!
+GPT partition table file for this disk saved by gdisk was found: mmcblk0
+This is not an image for whole disk. Skip checking swap partition info...
+MBR file for this disk was found: mmcblk0
+[1;33mThe image of this partition is restorable: mmcblk0p2
+[0;39m[1;33mAll the images of partition or LV devices in this image were checked and they are restorable: 02-19-2019-Pandaimg
+[0;39mChecking if udevd rules have to be restored...
+This program is not started by Clonezilla server, so skip notifying it the job is done.
+This program is not started by Clonezilla server, so skip notifying it the job is done.
+Finished!
+Finished!
+### End of log ###
+### Image created time: 2018-0622-1131

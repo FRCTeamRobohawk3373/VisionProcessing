@@ -1,0 +1,7 @@
+/dev/loop0: TYPE="squashfs"
+/dev/mmcblk0p1: UUID="88EF-0602" TYPE="vfat" PARTLABEL="EFI System Partition" PARTUUID="572c1826-139c-4675-8be1-49577e4c5db7"
+/dev/mmcblk0p2: UUID="718c28b8-420d-4b2b-b338-0371354ce5cf" TYPE="ext4" PARTUUID="13b25112-8103-4036-ab50-99584acaac67"
+/dev/mmcblk0p3: UUID="aad40bcd-0ec4-42ef-9799-a8cf0d65bc1d" TYPE="swap" PARTUUID="35710705-7026-4f02-9873-cfa0bd981c94"
+/dev/mmcblk0: PTUUID="9842080a-e2e0-4edb-b60c-e81d2da0eda0" PTTYPE="gpt"
+/dev/sda1: LABEL="2_6_0-37-AM" UUID="9837-B4FA" TYPE="vfat" PARTUUID="171ebcc7-01"
+/dev/sdb1: LABEL="DRIVE" UUID="2BE8-3717" TYPE="vfat"

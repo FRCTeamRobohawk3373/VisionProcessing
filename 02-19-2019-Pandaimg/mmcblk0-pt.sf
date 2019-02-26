@@ -1,0 +1,10 @@
+label: gpt
+label-id: 9842080A-E2E0-4EDB-B60C-E81D2DA0EDA0
+device: /dev/mmcblk0
+unit: sectors
+first-lba: 34
+last-lba: 61071326
+
+/dev/mmcblk0p1 : start=        2048, size=     1048576, type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B, uuid=572C1826-139C-4675-8BE1-49577E4C5DB7, name="EFI System Partition"
+/dev/mmcblk0p2 : start=     1050624, size=    55980032, type=0FC63DAF-8483-4772-8E79-3D69D8477DE4, uuid=13B25112-8103-4036-AB50-99584ACAAC67
+/dev/mmcblk0p3 : start=    57030656, size=     4038656, type=0657FD6D-A4AB-43C4-84E5-0933C84B4F4F, uuid=35710705-7026-4F02-9873-CFA0BD981C94

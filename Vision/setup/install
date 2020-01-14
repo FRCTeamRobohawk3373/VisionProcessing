@@ -1,0 +1,5 @@
+#!/bin/sh
+echo "installing OpenCV"
+./installOpenCV-Pi
+echo "Settingup Vision"
+./installVison

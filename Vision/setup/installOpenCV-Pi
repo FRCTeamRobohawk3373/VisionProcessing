@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#https://www.pyimagesearch.com/2019/09/16/install-opencv-4-on-raspberry-pi-4-and-raspbian-buster/
+#https://www.learnopencv.com/install-opencv-4-on-raspberry-pi/
+
 cvVersion="4.2.0"
 
 echo "=======================\nCleaning up\n======================="
@@ -9,6 +12,8 @@ sudo apt-get -y clean
 sudo apt-get -y autoremove
 
 echo "=======================\ninstalling Dependencies\n======================="
+sleep 1
+
 #base packages
 sudo apt-get update -y && sudo apt-get upgrade -y
 sudo apt-get install -y cmake gcc g++
@@ -41,8 +46,10 @@ sudo apt-get install -y libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
 sudo apt-get install -y libatlas-base-dev gfortran
 
 echo "=======================\nSetting up Virtual Enviroment\n======================="
+sleep 1
 
-echo "=======================\nDownloading Open CV\n======================="
+echo "=======================\nDownloading OpenCV\n======================="
+sleep 1
 mkdir installCV
 cd installCV
 
@@ -50,6 +57,9 @@ git clone https://github.com/opencv/opencv.git
 cd opencv
 git checkout $cvVersion
 cd ..
+
+echo "=======================\nBuilding OpenCV\n======================="
+sleep 1
 
 # cd ~/opencv
 # $ mkdir build

@@ -1,9 +1,14 @@
 [NetworkTables Storage 3.0]
 string "/Shuffleboard/.metadata/Selected"="test"
 array string "/Shuffleboard/.metadata/Tabs"="test"
+boolean "/Shuffleboard/.metadata/test/testNumber/Controllable"=false
+array double "/Shuffleboard/.metadata/test/testNumber/Position"=2,3
 string "/Shuffleboard/.metadata/test/testNumber/PreferredComponent"="Number Bar"
 double "/Shuffleboard/.metadata/test/testNumber/Properties/Max"=2
 double "/Shuffleboard/.metadata/test/testNumber/Properties/Min"=-5
+array double "/Shuffleboard/.metadata/test/testNumber/Size"=3,2
 string "/Shuffleboard/test/.type"="ShuffleboardTab"
 double "/Shuffleboard/test/testNumber"=2
-double "/test/test"=2
+string "/Shuffleboard/test/testString"="This is a test"
+array string "/Shuffleboard/test/testStringArray"="Num 1","Num 2","Num 3","Num 4","Num 5"
+double "/test/test"=9

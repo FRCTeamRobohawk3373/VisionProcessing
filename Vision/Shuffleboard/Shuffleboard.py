@@ -1,6 +1,5 @@
 from networktables import NetworkTables
-
-import Suffleboard.SuffleboardTab
+import Shuffleboard.ShuffleboardTab as ShuffleboardTab
 
 class ShuffleboardInstance():
     BASETABLENAME = "/Shuffleboard"
@@ -15,13 +14,14 @@ class ShuffleboardInstance():
 
     def getTab(self, title):
         if(not(title in self.tabs)):
-            self.tabs[title] = Suffleboard.SuffleboardTab.Tab(self.rootTable, title)
+            self.tabs[title] = ShuffleboardTab.Tab(self, title)
             self.tabsChanged = True
 
         return self.tabs[title]
     
     def selectTab(self, title):
-        self.selectedTabEntry.forceSetString(title)
+        if(title in self.tabs):
+            self.selectedTabEntry.forceSetString(title)
 
     def update(self):
         if(self.tabsChanged):
@@ -29,6 +29,7 @@ class ShuffleboardInstance():
             print(tabTitles)
             self.rootMetaTable.getEntry("Tabs").forceSetStringArray(tabTitles)
             self.tabsChanged=False
+            
         for tab in self.tabs.values():
             title = tab.getTitle()
             tab.buildInto(self.rootTable, self.rootMetaTable.getSubTable(title))

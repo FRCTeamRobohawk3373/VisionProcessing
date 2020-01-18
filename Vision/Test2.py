@@ -1,7 +1,8 @@
 from networktables import NetworkTables
 import logging
 import time
-from Suffleboard import Suffleboard
+from Shuffleboard import Shuffleboard
+from Shuffleboard.ShuffleboardComponent import WidgetTypes
 
 if __name__ == '__main__':
     print("started")
@@ -15,16 +16,37 @@ if __name__ == '__main__':
         time.sleep(1)
 
     nt = NetworkTables.getDefault()
-    suffle = Suffleboard.ShuffleboardInstance(nt)
+    shuffle = Shuffleboard.ShuffleboardInstance(nt)
 
-    tab = suffle.getTab("test")
+    tab = shuffle.getTab("test")
     print(tab.getTitle())
-    suffle.update()
+    num = shuffle.getTab("test").addNumber("testNumber", 2.0).getEntry()
+    bol = shuffle.getTab("test").addBoolean("testBool", True).withWidget(WidgetTypes.BOOLEANBOX).withProperties({"Color when true":"#FFFFFF","Color when false":"#000000"}).getEntry()
+    string = shuffle.getTab("test").addString("testStr", "This is a Test").withPosition(5, 4)
+    
+    # shuffle.update()
 
-    suffle.selectTab("test")
+    shuffle.selectTab("test")
+    
+    i = 0
+    dir=1
+    while True:
+        time.sleep(0.5)
+        bol.setBoolean(not bol.getBoolean(False))
+        num.setNumber(num.getNumber(-2)+1)
+        string.getEntry().setString(string.getEntry().getString("")+"|"+str(i))
 
+        #string.withPosition(5, i/2)
+        shuffle.update()
 
+        i+=dir
+        if(i >= 10):
+            dir = -1
+        elif(i < 1):
+            dir = 1
+        
 
+        
     
 
 

@@ -4,6 +4,7 @@ import numpy as np
 sensitivity = 25
 cam = cv2.VideoCapture(0)
 cam.set(cv2.CAP_PROP_EXPOSURE, .5)
+cam.set(cv2.CAP_PROP_AUTO_EXPOSURE, 0)
 
 min_hsv = np.array([85, 205, 140])
 max_hsv = np.array([92, 255, 151])

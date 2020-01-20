@@ -1,6 +1,5 @@
-from Shuffleboard.SimpleWidget import SimpleWidget
-from Shuffleboard.ComplexWidget import ComplexWidget
-
+from shuffleboard.simplewidget import SimpleWidget
+from shuffleboard.complexwidget import ComplexWidget, DropdownWidget
 class Helper:
     def __init__(self, container):
         self.usedTitles = []
@@ -47,11 +46,19 @@ class Helper:
         self.checkTitle(title)
         return self.addSupplied(title, arr)
 
+    def addDropdown(self, title, arr):
+        self.checkTitle(title)
+        widgetC = DropdownWidget(self.container, title)
+        self.components.append(widgetC)
+        widgetC.withOptions(arr)
+
+        return widgetC
+
     def addSupplied(self, title, value):
         widget = SimpleWidget(self.container, title)
         self.components.append(widget)
         widget.getEntry().setValue(value)
-        
+
         return widget
 
     def checkTitle(self, title):

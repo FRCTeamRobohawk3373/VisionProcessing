@@ -2,7 +2,8 @@ from networktables import NetworkTables
 import logging
 import time
 from Shuffleboard import Shuffleboard
-from Shuffleboard.ShuffleboardComponent import WidgetTypes
+from Shuffleboard.shuffleboardComponent import WidgetTypes
+
 
 if __name__ == '__main__':
     print("started")
@@ -23,6 +24,16 @@ if __name__ == '__main__':
     num = shuffle.getTab("test").addNumber("testNumber", 2.0).getEntry()
     bol = shuffle.getTab("test").addBoolean("testBool", True).withWidget(WidgetTypes.BOOLEANBOX).withProperties({"Color when true":"#FFFFFF","Color when false":"#000000"}).getEntry()
     string = shuffle.getTab("test").addString("testStr", "This is a Test").withPosition(5, 4)
+
+    dropdown = shuffle.getTab("test").addDropdown("testChooser", [1,2,3])
+    dropdown.withDefault(2)
+    dropdown.withSelected(3)
+    dropdown.withActive(3)
+    dropdown.getSelected()
+
+
+
+  
     
     # shuffle.update()
 
@@ -45,9 +56,7 @@ if __name__ == '__main__':
         elif(i < 1):
             dir = 1
         
-
-        
-    
+     
 
 
     test = nt.getTable("/test")

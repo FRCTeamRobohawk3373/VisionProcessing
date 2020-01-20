@@ -1,4 +1,4 @@
-from Shuffleboard.ShuffleboardComponent import Component
+from shuffleboard.component import Component
 
 class Layout(Component):
     def __init__(self, parent, name, lType):

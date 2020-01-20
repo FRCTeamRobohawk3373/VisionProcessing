@@ -1,5 +1,5 @@
 from networktables import NetworkTables
-import Shuffleboard.ShuffleboardTab as ShuffleboardTab
+import Shuffleboard.shuffleboardTab as ShuffleboardTab
 
 class ShuffleboardInstance():
     BASETABLENAME = "/Shuffleboard"

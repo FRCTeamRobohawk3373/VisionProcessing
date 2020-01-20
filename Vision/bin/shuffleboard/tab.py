@@ -1,7 +1,7 @@
-from Shuffleboard.ShuffleboardComponent import Component
-from Shuffleboard.SimpleWidget import SimpleWidget
-from Shuffleboard.ComplexWidget import ComplexWidget
-from Shuffleboard.ContainerHelper import Helper
+from Shuffleboard.shuffleboardComponent import Component
+from Shuffleboard.simpleWidget import SimpleWidget
+from Shuffleboard.complexWidget import ComplexWidget
+from Shuffleboard.containerHelper import Helper
 
 
 class Tab():
@@ -39,6 +39,9 @@ class Tab():
     
     def addStringArray(self, title, arr):
         return self.helper.addStringArray(title, arr)
+
+    def addDropdown(self, title, arr):
+        return self.helper.addDropdown(title, arr)
 
     def buildInto(self, parentTable, metaTable):
         tabTable = parentTable.getSubTable(self.getTitle())

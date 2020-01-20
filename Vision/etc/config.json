@@ -1,0 +1,24 @@
+{
+	"cameras": {
+		"usb-046d_0825_88BA4B60-video-index0": {
+			"path": "/dev/v4l/by-id/usb-046d_0825_88BA4B60-video-index0",
+			"name": "driverCam",
+			"properties": {
+				"exposure": 10,
+				"auto_exsposure": 0,
+				"auto_white_balance": 0
+            },
+            "destinations":{
+                "streamVideo": true,
+                "processVideo": false,
+                "switchIndex": -1
+            },
+			"cameraMatrix": [
+				[980.79815218, 0.0, 629.144456],
+				[0.0, 981.43793669, 350.9971199],
+				[0.0, 0.0, 1.0]
+			],
+			"distortionCoefficients": [0.06621377, -0.26423108, -0.00032913, 0.0009213, 0.24902609]
+		}
+    }
+}

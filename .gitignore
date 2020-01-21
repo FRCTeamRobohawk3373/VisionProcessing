@@ -57,3 +57,4 @@ venv.bak/
 
 # VS Code Settings
 .vscode/
+.flake8

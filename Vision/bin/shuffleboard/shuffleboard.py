@@ -26,7 +26,6 @@ class ShuffleboardInstance():
     def update(self):
         if(self.tabsChanged):
             tabTitles = list(self.tabs.keys())
-            print(tabTitles)
             self.rootMetaTable.getEntry("Tabs").forceSetStringArray(tabTitles)
             self.tabsChanged=False
             

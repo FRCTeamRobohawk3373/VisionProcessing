@@ -1,5 +1,5 @@
 from networktables import NetworkTables
-import Shuffleboard.shuffleboardTab as ShuffleboardTab
+from shuffleboard.tab import Tab
 
 class ShuffleboardInstance():
     BASETABLENAME = "/Shuffleboard"
@@ -14,7 +14,7 @@ class ShuffleboardInstance():
 
     def getTab(self, title):
         if(not(title in self.tabs)):
-            self.tabs[title] = ShuffleboardTab.Tab(self, title)
+            self.tabs[title] = Tab(self, title)
             self.tabsChanged = True
 
         return self.tabs[title]

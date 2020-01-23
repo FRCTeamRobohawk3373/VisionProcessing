@@ -1,7 +1,7 @@
-from Shuffleboard.shuffleboardComponent import Component
-from Shuffleboard.simpleWidget import SimpleWidget
-from Shuffleboard.complexWidget import ComplexWidget
-from Shuffleboard.containerHelper import Helper
+from shuffleboard.component import Component
+from shuffleboard.simplewidget import SimpleWidget
+from shuffleboard.complexwidget import ComplexWidget
+from shuffleboard.containerhelper import Helper
 
 
 class Tab():

@@ -1,5 +1,5 @@
-from Shuffleboard.shuffleboardComponent import Component
-from Shuffleboard.shuffleboardLayout import Layout
+from shuffleboard.component import Component
+from shuffleboard.layout import Layout
 
 class SimpleWidget(Component):
     def __init__(self, parent, title):

@@ -1,8 +1,8 @@
 from networktables import NetworkTables
 import logging
 import time
-from Shuffleboard import Shuffleboard
-from Shuffleboard.shuffleboardComponent import WidgetTypes
+from shuffleboard import shuffleboard
+from shuffleboard.component import WidgetTypes
 
 
 if __name__ == '__main__':
@@ -17,7 +17,7 @@ if __name__ == '__main__':
         time.sleep(1)
 
     nt = NetworkTables.getDefault()
-    shuffle = Shuffleboard.ShuffleboardInstance(nt)
+    shuffle = shuffleboard.ShuffleboardInstance(nt)
 
     tab = shuffle.getTab("test")
     print(tab.getTitle())

@@ -110,8 +110,8 @@ class ToggleButton(ComplexWidget):
             self.entry = parentTable.getSubTable(self.getTitle())
             self.entry.getEntry(".controllable").forceSetBoolean(True)
             self.entry.getEntry(".instance").forceSetString(1.0)
-            self.entry.getEntry(".type").forceSetString("String Chooser")
-            #######333self.entry.getEntry(".type").forceSetString(WidgetTypes.TOGGLEBUTTON)
+            #self.entry.getEntry(".type").forceSetString("Boolean Box")
+            self.entry.getEntry(".type").forceSetString(WidgetTypes.TOGGLEBUTTON)
 
             self.entry.getEntry("active").forceSetString('aa')
             self.entry.getEntry("default").forceSetString('aa')

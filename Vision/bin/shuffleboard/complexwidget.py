@@ -1,6 +1,5 @@
 from shuffleboard.component import Component
 from shuffleboard.layout import Layout
-from networktables.util import ChooserControl
 
 class ComplexWidget(Component):
     def __init__(self, parent, title):
@@ -18,9 +17,28 @@ class DropdownWidget(ComplexWidget):
         self.active = None
         self.default = None
         self.selected = None
+        self.onChoice = None   
+        self._selectionHandler = None
+ 
+    def _handleOnChange(self, table, key, value, isNew):
+        if key == "selected":
+            if self._selectionHandler is not None:
+                self._selectionHandler(value)
         
-        # listner 
-        #ChooserControl(title, (lambda v:print("onChoices",v)), (lambda v:print("onSelected",v)))
+
+    def withListener(self, onSelected):
+        if callable(onSelected):
+            self._selectionHandler = onSelected
+            self.getEntry().addTableListener(self._handleOnChange, True)
+        else:
+            raise TypeError(str(type(onSelected))+" object isn't callable")
+
+        return self
+
+    def close(self):#doesn't work rn
+        if self.on_choices or self.on_selected:
+            self.subtable.removeTableListener(self._on_change)
+
 
     def getEntry(self):
         if self.entry is None:
@@ -47,9 +65,6 @@ class DropdownWidget(ComplexWidget):
     def withSelected(self, value):
         self.selected = value
         return self
-
-    def getSelected(self):
-        return self.selected
 
     def buildInto(self, parentTable, metaTable):
         self.buildMetadata(metaTable)

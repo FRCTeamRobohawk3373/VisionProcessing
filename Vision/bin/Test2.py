@@ -19,24 +19,35 @@ if __name__ == '__main__':
     nt = NetworkTables.getDefault()
     shuffle = shuffleboard.ShuffleboardInstance(nt)
 
-    tab = shuffle.getTab("test")
-    print("On tab '"+tab.getTitle()+"'")
-    num = shuffle.getTab("test").addNumber("testNumber", 2.0).getEntry()
-    bol = shuffle.getTab("test").addBoolean("testBool", True).withWidget(WidgetTypes.BOOLEANBOX).withProperties({"Color when true":"#FFFFFF","Color when false":"#000000"}).getEntry()
-    string = shuffle.getTab("test").addString("testStr", "This is a Test").withPosition(5, 4)
+    yPosDropdown = shuffle.addDropdown(["move up", "move down"]).getEntry()
 
-    dropdown = shuffle.getTab("test").addDropdown("testChooser", [1,2,3])
+    tt1 = shuffle.getTab("test")
+    print("On tab '"+tt1.getTitle()+"'")
+    num = tt1.addNumber("testNumber", 2.0).getEntry()
+    bol = tt1.addBoolean("testBool", True).withWidget(WidgetTypes.BOOLEANBOX).withProperties({"Color when true":"#FFFFFF","Color when false":"#000000"}).getEntry()
+    string = tt1.addString("Dropdown Value", " - - - ").withPosition(5, 4).getEntry()
+
+    def myListener(value):
+        if value == "Aa":
+            shuffle.selectTab("test")
+        elif value == "Bb":
+            shuffle.getTab("testB")
+            shuffle.selectTab("testB")
+        elif value == "Ccc":
+            shuffle.getTab("test").addString("greeting", "haseyo").withPosition(4, 4).getEntry()
+        else:
+            print("Value changed to "+value)
+
+        string.setString(value)
+        
+
+    dropdown = shuffle.getTab("test").addDropdown("testChooser", ["Aa","Bb","Ccc","Dd","Ee"])\
+        .withDefault("Bb")\
+        .withActive("Aa")\
+        .withSelected("Ee")\
+        .withListener(myListener)\
+        .getEntry()
     
-    dropdown.withActive(2)
-    #dropdown.withDefault(3)#!default doesn't do anything?
-    dropdown.withSelected(2)
- 
-
-
-
-  
-    
-    # shuffle.update()
 
     shuffle.selectTab("test")
     
@@ -46,13 +57,9 @@ if __name__ == '__main__':
         while True:
             time.sleep(0.5)
             bol.setBoolean(not bol.getBoolean(False))
-            num.setNumber(i)
-            string.getEntry().setString(string.getEntry().getString("")+"|"+str(i))
 
-            if i == 7:
-                dropdown.withActive(3)
-            elif i == 0:
-                dropdown.withActive(2)
+            num.setNumber(i)
+
 
             #string.withPosition(5, i/2)
             shuffle.update()
@@ -63,10 +70,8 @@ if __name__ == '__main__':
             elif(i < 1):
                 dir = 1
     except KeyboardInterrupt:
-        print("hola amigos")
+        print("Exited")
 
-    test = nt.getTable("/test")
-    test.putNumber('test',2)
 
     print("NetworkTables is connected: "+str(NetworkTables.isConnected()))
  

@@ -1,4 +1,4 @@
-from shuffleboard.component import Component
+from shuffleboard.component import Component, WidgetTypes
 from shuffleboard.layout import Layout
 
 class ComplexWidget(Component):
@@ -39,7 +39,6 @@ class DropdownWidget(ComplexWidget):
         if self.on_choices or self.on_selected:
             self.subtable.removeTableListener(self._on_change)
 
-
     def getEntry(self):
         if self.entry is None:
             self.forceGenerate()
@@ -77,6 +76,48 @@ class DropdownWidget(ComplexWidget):
             self.entry.getEntry("default").forceSetString(self.default)
             self.entry.getEntry("selected").forceSetString(self.selected)
             self.entry.getEntry("options").forceSetStringArray(self.options)
+
+    def forceGenerate(self):
+        parent = self.getParent()
+        
+        while isinstance(parent, Layout):
+            parent = parent.getParent()
+
+        parent.getRoot().update()
+
+class ToggleButton(ComplexWidget):
+    def __init__(self, parent, title):
+        super().__init__(parent, title)
+        self.option = None
+
+    def getEntry(self):
+        if self.entry is None:
+            self.forceGenerate()
+        return self.entry    
+
+    def withOption(self, options):
+        if options is None:
+            raise NameError("No option for DropdownWidget provided")
+        
+        self.option = options
+        self.active = self.default = self.selected = options[0]
+
+        return self
+
+    def buildInto(self, parentTable, metaTable):
+        self.buildMetadata(metaTable)
+        if (self.entry is None):
+            self.entry = parentTable.getSubTable(self.getTitle())
+            self.entry.getEntry(".controllable").forceSetBoolean(True)
+            self.entry.getEntry(".instance").forceSetString(1.0)
+            self.entry.getEntry(".type").forceSetString("String Chooser")
+            #######333self.entry.getEntry(".type").forceSetString(WidgetTypes.TOGGLEBUTTON)
+
+            self.entry.getEntry("active").forceSetString('aa')
+            self.entry.getEntry("default").forceSetString('aa')
+            self.entry.getEntry("selected").forceSetString('aa')
+            self.entry.getEntry("options").forceSetStringArray(['aa', 'bb'])
+            
 
     def forceGenerate(self):
         parent = self.getParent()

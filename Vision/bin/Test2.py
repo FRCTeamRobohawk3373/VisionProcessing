@@ -19,13 +19,15 @@ if __name__ == '__main__':
     nt = NetworkTables.getDefault()
     shuffle = shuffleboard.ShuffleboardInstance(nt)
 
-    yPosDropdown = shuffle.addDropdown(["move up", "move down"]).getEntry()
+    
 
     tt1 = shuffle.getTab("test")
     print("On tab '"+tt1.getTitle()+"'")
-    num = tt1.addNumber("testNumber", 2.0).getEntry()
+    ##num = tt1.addNumber("testNumber", 2.0).getEntry()
     bol = tt1.addBoolean("testBool", True).withWidget(WidgetTypes.BOOLEANBOX).withProperties({"Color when true":"#FFFFFF","Color when false":"#000000"}).getEntry()
-    string = tt1.addString("Dropdown Value", " - - - ").withPosition(5, 4).getEntry()
+    ##string = tt1.addString("Dropdown Value", " - - - ").withPosition(5, 4).getEntry()
+
+    ##yPosDropdown = tt1.addDropdown("TestX", ["move up", "move down"]).getEntry()
 
     def myListener(value):
         if value == "Aa":
@@ -38,16 +40,22 @@ if __name__ == '__main__':
         else:
             print("Value changed to "+value)
 
-        string.setString(value)
+        #string.setString(value)
         
 
-    dropdown = shuffle.getTab("test").addDropdown("testChooser", ["Aa","Bb","Ccc","Dd","Ee"])\
+    dropdown = tt1.addDropdown("testChooser", ["Aa","Bb","Ccc","Dd","Ee"])\
         .withDefault("Bb")\
         .withActive("Aa")\
         .withSelected("Ee")\
         .withListener(myListener)\
         .getEntry()
+
+    ##    
+
     
+    clickme = tt1.addToggleButton("testButton", "okboomer").withPosition(5,3).getEntry()
+    
+    ##
 
     shuffle.selectTab("test")
     
@@ -58,7 +66,7 @@ if __name__ == '__main__':
             time.sleep(0.5)
             bol.setBoolean(not bol.getBoolean(False))
 
-            num.setNumber(i)
+            ##num.setNumber(i)
 
 
             #string.withPosition(5, i/2)

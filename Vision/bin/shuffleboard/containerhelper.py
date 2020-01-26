@@ -1,5 +1,5 @@
 from shuffleboard.simplewidget import SimpleWidget
-from shuffleboard.complexwidget import ComplexWidget, DropdownWidget
+from shuffleboard.complexwidget import ComplexWidget, DropdownWidget, ToggleButton
 class Helper:
     def __init__(self, container):
         self.usedTitles = []
@@ -51,6 +51,14 @@ class Helper:
         widgetC = DropdownWidget(self.container, title)
         self.components.append(widgetC)
         widgetC.withOptions(arr)
+
+        return widgetC
+
+    def addToggleButton(self, title, value):
+        self.checkTitle(title)
+        widgetC = ToggleButton(self.container, title)
+        self.components.append(widgetC)
+        widgetC.withOption(value)
 
         return widgetC
 

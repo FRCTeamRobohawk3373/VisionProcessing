@@ -43,6 +43,9 @@ class Tab():
     def addDropdown(self, title, arr):
         return self.helper.addDropdown(title, arr)
 
+    def addToggleButton(self, title, value):
+        return self.helper.addToggleButton(title, value)
+
     def buildInto(self, parentTable, metaTable):
         tabTable = parentTable.getSubTable(self.getTitle())
         tabTable.getEntry(".type").setString("ShuffleboardTab")

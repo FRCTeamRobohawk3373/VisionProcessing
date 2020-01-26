@@ -1,4 +1,3 @@
-print("Starting")
 import json
 from drivers.usbcamera import USBCamera
 from os import listdir
@@ -7,7 +6,7 @@ import time
 config = {}
 cameraPath = "/dev/v4l/"
 configFile = "../etc/config.json"
-backupFile = "../etc/config.json.bak" 
+backupFile = "../etc/config.json.bak"
 streamCams = []
 processCams = []
 
@@ -19,7 +18,7 @@ def loadConfig(cfile=configFile):
 
 def loadBackup(bfile=backupFile):
     bak = loadConfig(bfile)
-    saveConfig(bak)
+    saveConfig(bak, backup=False)
 
 
 
@@ -29,7 +28,7 @@ def saveConfig(config, cfile=configFile, backup=True, bfile=backupFile):
             with open(bfile, 'w') as b:
                 b.writelines(c.readlines())
     with open(cfile, 'w') as f:
-        json.dump(config, f)
+        json.dump(config, f, indent=4, sort_keys=True)
 
 
 def cameraInit(id_):
@@ -54,12 +53,12 @@ def setupCameras():
                                           "switchIndex": -1
                                       },
                                       "cameraMatrix": [],
-                                      "distortionCoefficients": [] 
+                                      "distortionCoefficients": []
                                      }
     saveConfig(config)
 
 
 if __name__ == '__main__':
-    loadBackup()
+    config = loadConfig()
 
     # camera1 = cameraInit("usb-046d_0825_88BA4B60-video-index0")

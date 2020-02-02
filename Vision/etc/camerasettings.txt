@@ -1,0 +1,3 @@
+gain = 18
+gamma = 85
+contrast = 45

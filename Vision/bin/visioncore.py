@@ -1,10 +1,11 @@
 import json
+import cv2
 from drivers.usbcamera import USBCamera
 from os import listdir
 import time
 
 config = {}
-cameraPath = "/dev/v4l/"
+cameraPath = "/dev/v4l/by-id"
 configFile = "../etc/config.json"
 backupFile = "../etc/config.json.bak"
 streamCams = []
@@ -36,14 +37,12 @@ def cameraInit(id_):
 
 
 def setupCameras():
-    ids = os.listdir(cameraPath)
+    ids = listdir(cameraPath)
     for id_ in ids:
-        destinations = config["cameras"][id_]["destinations"]
-        if destinations["streamVideo"]:
-            streamCams.append(cameraInit(id_))
-        elif destinations["processCams"]:
-            processCams.append(cameraInit(id_))
-        else:
+        try:
+            destinations = config["cameras"][id_]["destinations"]
+        except KeyError:
+            print("Setting up camera id {}.".format(id_))
             config["cameras"][id_] = {"path": "/dev/v4l/by-id/" + id_,
                                       "name": "",
                                       "properties": {},
@@ -55,10 +54,29 @@ def setupCameras():
                                       "cameraMatrix": [],
                                       "distortionCoefficients": []
                                      }
+            continue
+        print("Camera id {} initializing".format(id_))
+        if destinations["streamVideo"]:
+            streamCams.append(cameraInit(id_))
+        elif destinations["processVideo"]:
+            processCams.append(cameraInit(id_))
+
     saveConfig(config)
 
 
 if __name__ == '__main__':
     config = loadConfig()
+    setupCameras()
 
-    # camera1 = cameraInit("usb-046d_0825_88BA4B60-video-index0")
+    for camera in streamCams:
+        camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+
+    while True:
+        # Display streaming cameras
+        for camera in streamCams:
+            _, frame = camera.read()
+            cv2.imshow("{} ({})".format(camera.name, camera.path), frame)
+
+        if cv2.waitKey(1) & 0xff == ord('q'):
+            break

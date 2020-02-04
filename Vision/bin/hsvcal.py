@@ -1,19 +1,43 @@
 import cv2
 import numpy as np
-import time
-import os
 
-lowerb = (71, 237, 171)
-upperb = (73, 255, 179)
+H = np.array([71, 73])
+S = np.array([237, 255])
+V = np.array([171, 179])
 
 cam = cv2.VideoCapture("/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0")
 cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
 cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
-savindex = 0
 
+cv2.namedWindow("Image",)
+cv2.setMouseCallback("Image", mouseHSV)
+
+def mouseHSV(event,x,y,flags,param):
+    if event == cv2.EVENT_LBUTTONDOWN:
+        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        colorsH = hsv[y,x,0]
+        colorsS = hsv[y,x,1]
+        colorsV = hsv[y,x,2]
+        colors = hsv[y,x]
+        if colorsH > H[1]:
+            H[1] = colorsH
+        elif colorsH < H[0]:
+            H[0] = colorsH
+        if colorsS > S[1]:
+            S[1] = colorsS
+        elif colorsS < S[0]:
+            S[0] = colorsS
+        if colorsV > V[1]:
+            V[1] = colorsV
+        elif colorsV < S[0]:
+            V[0] = colorsV
+        print("HSV Format: ",colors)
+        
 def drawFrame(frame):
 	cv2.imshow("Image", frame)
 	hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+    lowerb = (H[0], S[0], V[0])
+    upperb = (H[1], S[1], V[1])
 	inrange = cv2.inRange(hsv, lowerb, upperb)
 	mask = cv2.bitwise_and(frame, frame, mask = inrange)
 	cv2.imshow("Mask", mask)
@@ -26,6 +50,7 @@ if __name__ == "__main__":
 		time_start = time.time()
 		key = cv2.waitKey(1)
 		if key & 0xFF == ord('q'):
+            print(H, S, V)
 			break
 		elif key & 0xFF == ord('.'):
 			ret, frame = cam.retrieve()

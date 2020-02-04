@@ -1,3 +1,4 @@
 gain = 18
 gamma = 85
 contrast = 45
+exposure_absolute = 10

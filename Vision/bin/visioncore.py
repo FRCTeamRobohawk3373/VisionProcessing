@@ -39,6 +39,8 @@ def cameraInit(id_):
 def setupCameras():
     ids = listdir(cameraPath)
     for id_ in ids:
+        if id_[-1] == "1":
+            continue
         try:
             destinations = config["cameras"][id_]["destinations"]
         except KeyError:

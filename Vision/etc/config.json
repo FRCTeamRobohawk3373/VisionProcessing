@@ -45,21 +45,15 @@
                 "streamVideo": true,
                 "switchIndex": -1
             },
-            "distortionCoefficients": [],
+            "distortionCoefficients": [
+                -1.03301952e+01,
+                -2.41200817e+04,
+                6.00390632e-02,
+                -2.78240440e-01,
+                -9.02368894e+01
+            ],
             "name": "",
             "path": "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0",
-            "properties": {}
-        },
-        "usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index1": {
-            "cameraMatrix": [],
-            "destinations": {
-                "processVideo": false,
-                "streamVideo": false,
-                "switchIndex": -1
-            },
-            "distortionCoefficients": [],
-            "name": "",
-            "path": "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index1",
             "properties": {}
         },
         "usb-Microsoft_Microsoft_LifeCam_HD-3000-video-index0": {
@@ -74,17 +68,8 @@
             "path": "/dev/v4l/by-id/usb-Microsoft_Microsoft\u00c2\u00ae_LifeCam_HD-3000-video-index0",
             "properties": {}
         },
-        "usb-Microsoft_Microsoft\u00c2\u00ae_LifeCam_HD-3000-video-index1": {
-            "cameraMatrix": [],
-            "destinations": {
-                "processVideo": false,
-                "streamVideo": false,
-                "switchIndex": -1
-            },
-            "distortionCoefficients": [],
-            "name": "",
-            "path": "/dev/v4l/by-id/usb-Microsoft_Microsoft\u00c2\u00ae_LifeCam_HD-3000-video-index1",
-            "properties": {}
-        }
+    }
+    "calib": {
+        "HSV_threshold": [[63, 78], [195, 255], [118, 190]]
     }
 }

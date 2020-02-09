@@ -58,7 +58,7 @@ if __name__ == "__main__":
     while True:
         key = cv2.waitKey(1)
         if key & 0xFF == ord('q'):
-            break   
+            break
         elif key & 0xFF == ord('.'):
             ret, frame = cam.retrieve()
             drawFrame(frame)

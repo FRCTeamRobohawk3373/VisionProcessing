@@ -3,6 +3,7 @@ import cv2
 from drivers.usbcamera import USBCamera
 from os import listdir
 import time
+import processing
 
 config = {}
 cameraPath = "/dev/v4l/by-id"
@@ -77,8 +78,13 @@ if __name__ == '__main__':
     while True:
         # Display streaming cameras
         for camera in streamCams:
-            _, frame = camera.read()
+            frame = camera.read()
             cv2.imshow("{} ({})".format(camera.name, camera.path), frame)
 
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
+
+        for camera in processCams:
+            camera.grab()
+
+    cv2.destroyAllWindows()

@@ -39,7 +39,11 @@
             }
         },
         "usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0": {
-            "cameraMatrix": [],
+            "cameraMatrix": [
+                [2.51394629e+04, 0.00000000e+00, 1.14952902e+03],
+                [0.00000000e+00, 2.68897824e+04, 7.98795645e+02],
+                [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]
+            ],
             "destinations": {
                 "processVideo": false,
                 "streamVideo": true,

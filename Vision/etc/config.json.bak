@@ -30,61 +30,67 @@
                 0.0009213,
                 0.24902609
             ],
-            "name": "driverCam",
+            "name": "driver Camera",
             "path": "/dev/v4l/by-id/usb-046d_0825_88BA4B60-video-index0",
-            "properties": {
-                "auto_exsposure": 0,
-                "auto_white_balance": 0,
-                "exposure": 10
-            }
+            "properties": {},
+            "settings": {}
+        },
+        "usb-046d_0825_C2082660-video-index0": {
+            "cameraMatrix": [],
+            "destinations": {
+                "processVideo": false,
+                "streamVideo": true,
+                "switchIndex": 2
+            },
+            "distortionCoefficients": [],
+            "name": "shootingCam",
+            "path": "/dev/v4l/by-id/usb-046d_0825_C2082660-video-index0",
+            "properties": {},
+            "settings": {}
         },
         "usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0": {
-            "cameraMatrix": [],
+            "cameraMatrix": [
+                [
+                    1222.66604,
+                    0.0,
+                    617.898658
+                ],
+                [
+                    0.0,
+                    1224.42924,
+                    328.161475
+                ],
+                [
+                    0.0,
+                    0.0,
+                    1.0
+                ]
+            ],
             "destinations": {
-                "processVideo": false,
-                "streamVideo": true,
+                "processVideo": true,
+                "streamVideo": false,
                 "switchIndex": -1
             },
-            "distortionCoefficients": [],
-            "name": "",
+            "distortionCoefficients": [
+                -0.646114994,
+                0.681283229,
+                0.00338390553,
+                0.000532681356,
+                -0.465817116
+            ],
+            "name": "Vision Camera",
             "path": "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0",
-            "properties": {}
-        },
-        "usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index1": {
-            "cameraMatrix": [],
-            "destinations": {
-                "processVideo": false,
-                "streamVideo": false,
-                "switchIndex": -1
-            },
-            "distortionCoefficients": [],
-            "name": "",
-            "path": "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index1",
-            "properties": {}
-        },
-        "usb-Microsoft_Microsoft\u00c2\u00ae_LifeCam_HD-3000-video-index0": {
-            "cameraMatrix": [],
-            "destinations": {
-                "processVideo": false,
-                "streamVideo": true,
-                "switchIndex": -1
-            },
-            "distortionCoefficients": [],
-            "name": "",
-            "path": "/dev/v4l/by-id/usb-Microsoft_Microsoft\u00c2\u00ae_LifeCam_HD-3000-video-index0",
-            "properties": {}
-        },
-        "usb-Microsoft_Microsoft\u00c2\u00ae_LifeCam_HD-3000-video-index1": {
-            "cameraMatrix": [],
-            "destinations": {
-                "processVideo": false,
-                "streamVideo": false,
-                "switchIndex": -1
-            },
-            "distortionCoefficients": [],
-            "name": "",
-            "path": "/dev/v4l/by-id/usb-Microsoft_Microsoft\u00c2\u00ae_LifeCam_HD-3000-video-index1",
-            "properties": {}
+            "properties": {},
+            "settings": {
+                "contrast": 45,
+                "exposure_absolute": 10,
+                "exposure_auto": 1,
+                "exposure_auto_priority": 0,
+                "gain": 18,
+                "gamma": 85,
+                "white_balance_temperature": 3500,
+                "white_balance_temperature_auto": 0
+            }
         }
     }
 }

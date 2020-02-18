@@ -1,0 +1,58 @@
+2020-02-17 20:41:33,020: [Level 45] -> root : ############# Vision Started #############
+2020-02-17 20:41:33,021: [INFO    ] -> main : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-17 20:41:33,021: [INFO    ] -> main : usb-046d_0825_C2082660-video-index0 was found in config with name "shootingCam"
+2020-02-17 20:41:33,021: [INFO    ] -> main : usb-046d_0825_88BA4B60-video-index0 was found in config with name "driver Camera"
+2020-02-17 20:41:33,022: [DEBUG   ] -> camera-Vision Camera : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-17 20:41:33,989: [INFO    ] -> camera-Vision Camera : camera started
+2020-02-17 20:41:33,990: [DEBUG   ] -> camera-shootingCam : settings {}
+2020-02-17 20:41:33,990: [INFO    ] -> camera-shootingCam : camera started
+2020-02-17 20:41:33,991: [DEBUG   ] -> camera-driver Camera : settings {}
+2020-02-17 20:41:33,991: [INFO    ] -> camera-driver Camera : camera started
+2020-02-17 20:42:01,725: [Level 45] -> root : ############# Vision Started #############
+2020-02-17 20:42:01,726: [INFO    ] -> main : usb-046d_HD_Pro_Webcam_C920_91D7DD5F-video-index0 was not found in config! Adding...
+2020-02-17 20:42:01,726: [DEBUG   ] -> main : usb-046d_HD_Pro_Webcam_C920_91D7DD5F-video-index0 added to ../etc/config.json
+2020-02-17 20:42:01,729: [INFO    ] -> main : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-17 20:42:01,730: [INFO    ] -> main : usb-046d_0825_88BA4B60-video-index0 was found in config with name "driver Camera"
+2020-02-17 20:42:01,730: [WARNING ] -> main : usb-046d_0825_C2082660-video-index0(shootingCam) is not connected, but is used!
+2020-02-17 20:42:01,731: [DEBUG   ] -> camera-Vision Camera : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-17 20:42:02,691: [INFO    ] -> camera-Vision Camera : camera started
+2020-02-17 20:42:02,692: [DEBUG   ] -> camera-driver Camera : settings {}
+2020-02-17 20:42:02,693: [INFO    ] -> camera-driver Camera : camera started
+2020-02-17 20:43:37,596: [Level 45] -> root : ############# Vision Started #############
+2020-02-17 20:43:37,598: [INFO    ] -> main : usb-046d_0825_C2082660-video-index0 was found in config with name "shootingCam"
+2020-02-17 20:43:37,598: [INFO    ] -> main : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-17 20:43:37,598: [INFO    ] -> main : usb-046d_0825_88BA4B60-video-index0 was found in config with name "driver Camera"
+2020-02-17 20:43:37,599: [DEBUG   ] -> camera-shootingCam : settings {}
+2020-02-17 20:43:37,599: [INFO    ] -> camera-shootingCam : camera started
+2020-02-17 20:43:37,599: [DEBUG   ] -> camera-Vision Camera : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-17 20:43:38,571: [INFO    ] -> camera-Vision Camera : camera started
+2020-02-17 20:43:38,572: [DEBUG   ] -> camera-driver Camera : settings {}
+2020-02-17 20:43:38,575: [INFO    ] -> camera-driver Camera : camera started
+2020-02-17 20:44:03,349: [Level 45] -> root : ############# Vision Started #############
+2020-02-17 20:44:03,351: [INFO    ] -> main : usb-046d_0825_C2082660-video-index0 was found in config with name "shootingCam"
+2020-02-17 20:44:03,351: [INFO    ] -> main : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-17 20:44:03,351: [INFO    ] -> main : usb-046d_0825_88BA4B60-video-index0 was found in config with name "driver Camera"
+2020-02-17 20:44:03,352: [DEBUG   ] -> camera-shootingCam : settings {}
+2020-02-17 20:44:03,352: [INFO    ] -> camera-shootingCam : camera started
+2020-02-17 20:44:03,353: [DEBUG   ] -> camera-Vision Camera : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-17 20:44:04,328: [INFO    ] -> camera-Vision Camera : camera started
+2020-02-17 20:44:04,329: [DEBUG   ] -> camera-driver Camera : settings {}
+2020-02-17 20:44:04,330: [INFO    ] -> camera-driver Camera : camera started
+2020-02-17 20:44:17,039: [Level 45] -> root : ############# Vision Started #############
+2020-02-17 20:44:17,040: [INFO    ] -> main : usb-046d_0825_C2082660-video-index0 was found in config with name "shootingCam"
+2020-02-17 20:44:17,041: [INFO    ] -> main : usb-046d_0825_88BA4B60-video-index0 was found in config with name "driver Camera"
+2020-02-17 20:44:17,041: [WARNING ] -> main : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0(Vision Camera) is not connected, but is used!
+2020-02-17 20:44:17,041: [DEBUG   ] -> camera-shootingCam : settings {}
+2020-02-17 20:44:17,042: [INFO    ] -> camera-shootingCam : camera started
+2020-02-17 20:44:17,042: [DEBUG   ] -> camera-driver Camera : settings {}
+2020-02-17 20:44:17,043: [INFO    ] -> camera-driver Camera : camera started
+2020-02-17 20:44:35,022: [Level 45] -> root : ############# Vision Started #############
+2020-02-17 20:44:35,024: [INFO    ] -> main : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-17 20:44:35,026: [INFO    ] -> main : usb-046d_0825_C2082660-video-index0 was found in config with name "shootingCam"
+2020-02-17 20:44:35,027: [INFO    ] -> main : usb-046d_0825_88BA4B60-video-index0 was found in config with name "driver Camera"
+2020-02-17 20:44:35,028: [DEBUG   ] -> camera-Vision Camera : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-17 20:44:36,091: [INFO    ] -> camera-Vision Camera : camera started
+2020-02-17 20:44:36,094: [DEBUG   ] -> camera-shootingCam : settings {}
+2020-02-17 20:44:36,095: [INFO    ] -> camera-shootingCam : camera started
+2020-02-17 20:44:36,096: [DEBUG   ] -> camera-driver Camera : settings {}
+2020-02-17 20:44:36,096: [INFO    ] -> camera-driver Camera : camera started

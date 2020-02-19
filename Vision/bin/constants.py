@@ -4,6 +4,7 @@ import numpy as np
 ###############
 #   General   #
 ###############
+IS_TESTING = True
 TEAM_NUMBER = 3373
 
 #############

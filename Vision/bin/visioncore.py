@@ -7,6 +7,8 @@ import processing
 import logging
 import constants as const
 import sys
+import cscore
+import networktables
 
 config = {}
 
@@ -53,9 +55,9 @@ def setupCameras(cameras):
     for camera in cameras:
         cam = cameras[camera]
         if(cam["destinations"]["streamVideo"]):
-            streamCams.append(USBCamera(cam))
+            streamCams.append(USBCamera(cameraServer, cam))
         elif(cam["destinations"]["processVideo"]):
-            processCams.append(USBCamera(cam))
+            processCams.append(USBCamera(cameraServer, cam))
     pass
 
     # ids = listdir(const.CAMERA_PATH)
@@ -114,6 +116,10 @@ if __name__ == '__main__':
 
     #Load the json config file
     config = loadConfig()
+
+    #Start the camera Server
+    cameraServer = cscore.CameraServer.getInstance()
+    cameraServer.enableLogging()
 
     #identify connected cameras and their config
     cameras={}

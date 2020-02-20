@@ -93,7 +93,11 @@
             ],
             "name": "Vision Camera",
             "path": "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0",
-            "properties": {},
+            "properties": {
+                "width":1280,
+                "height":720,
+                "fps":30
+            },
             "settings": {
                 "contrast": 45,
                 "exposure_absolute": 10,

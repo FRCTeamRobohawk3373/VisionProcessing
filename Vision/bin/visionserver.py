@@ -25,6 +25,9 @@ class VisionServer:
         self.cameraServer = cscore.CameraServer.getInstance()
         self.cameraServer.enableLogging()
 
+        self.switchingCamera = self.cameraServer.addSwitchedCamera(const.STREAM_NAME)
+        self.cameraServer.startAutomaticCapture(camera=self.switchingCamera)
+
         self.cameras={}
         self.active_camera = None
 
@@ -63,8 +66,15 @@ class VisionServer:
             elif(cam["destinations"]["processVideo"]):
                 camType="VISION"
 
-            self.cameras[camera]={"camera": USBCamera(self.cameraServer, cam), "switchIndex": cam["destinations"]["switchIndex"], "type": "stream", "isConnected": True}
+            self.cameras[camera]={
+                "camera": USBCamera(self.cameraServer, cam, const.DEFAULT_RESOLUTION),
+                "switchIndex": cam["destinations"]["switchIndex"], 
+                "type": camType, 
+                "isConnected": True
+            }
 
+            if(self.switchingCamera.getSource() is None and (camType="BOTH" or camType="STREAM")):
+                self.switchingCamera.setSource(self.cameras[camera]["camera"].getSource())
 
     def loadConfig(self, cfile=const.CONFIG_FILE):
         with open(cfile, 'r') as f:

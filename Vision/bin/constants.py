@@ -6,6 +6,7 @@ import numpy as np
 ###############
 IS_TESTING = True
 TEAM_NUMBER = 3373
+DEFAULT_RESOLUTION=(320,240)
 
 #############
 #   Paths   #

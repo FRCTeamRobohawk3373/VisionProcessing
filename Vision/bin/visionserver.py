@@ -24,9 +24,14 @@ class VisionServer:
         #Start the camera Server
         self.cameraServer = cscore.CameraServer.getInstance()
         self.cameraServer.enableLogging()
+        
+        #usb0 = cscore.UsbCamera("Camera 0", 0)
 
-        self.switchingCamera = self.cameraServer.addSwitchedCamera(const.STREAM_NAME)
-        self.cameraServer.startAutomaticCapture(camera=self.switchingCamera)
+        #switchingCamera = self.cameraServer.addSwitchedCamera(const.STREAM_NAME)
+        #switchingCamera.setSource(usb0)
+
+        #self.logger.warning("Type: "+str(type(server)))
+        #self.cameraServer.startAutomaticCapture(camera=self.switchingCamera)
 
         self.cameras={}
         self.active_camera = None
@@ -34,7 +39,12 @@ class VisionServer:
         cams = self.findCameras()
         self.startCameras(cams)
 
-        #setupCameras(cameras)
+        #self.switchingCamera = self.cameraServer.addServer(name='camera', port=const.STREAM_PORT)
+        #self.logger.debug(self.cameras[next(iter(self.cameras))])
+        #self.switchingCamera.setSource(self.cameras[next(iter(self.cameras))]["camera"].getSource())
+        #self.switchingCamera.setResolution(320,240)
+
+        self.switchingServer = self.createOutputStream()
 
     def findCameras(self):
         cams = {}
@@ -55,9 +65,9 @@ class VisionServer:
         
         return cams
 
-    def startCameras(self, cams):
-        for camera in cams:
-            cam = cams[camera]
+    def startCameras(self, cameras):
+        for camera in cameras:
+            cam = cameras[camera]
             if(cam["destinations"]["streamVideo"] and cam["destinations"]["processVideo"]):
                 self.logger.warning("{0}({1}) is configured to stream and process".format(camera, cam["name"]))
                 camType="BOTH"
@@ -66,15 +76,38 @@ class VisionServer:
             elif(cam["destinations"]["processVideo"]):
                 camType="VISION"
 
+            newCamera=USBCamera(self.cameraServer, cam, const.DEFAULT_RESOLUTION)
+            newCamera.start()
+
             self.cameras[camera]={
-                "camera": USBCamera(self.cameraServer, cam, const.DEFAULT_RESOLUTION),
+                "camera": newCamera,
                 "switchIndex": cam["destinations"]["switchIndex"], 
                 "type": camType, 
                 "isConnected": True
             }
 
-            if(self.switchingCamera.getSource() is None and (camType="BOTH" or camType="STREAM")):
-                self.switchingCamera.setSource(self.cameras[camera]["camera"].getSource())
+            #if(self.switchingCamera.getSource() is None and (camType=="BOTH" or camType=="STREAM")):
+            #    self.switchingCamera.setSource(self.cameras[camera]["camera"])
+
+    def createOutputStream(self):
+        #Create the MJPEG server
+
+        #give the stream a blank stream to give it the name we want
+        blankFrame = cscore.CvSource(const.STREAM_NAME, cscore.VideoMode.PixelFormat.kMJPEG,
+                                             const.STREAM_RESOLUTION[0],const.STREAM_RESOLUTION[1],
+                                             const.STREAM_FPS)
+        
+        self.cameraServer.addCamera(blankFrame)
+        server=self.cameraServer.addServer(name="serve_"+const.STREAM_NAME, port=const.STREAM_PORT)
+        server.setSource(blankFrame)
+
+        return server
+        #self.blankFrame = self.cameraServer.addSwitchedCamera(const.STREAM_NAME)
+        # self.switchingServer = self.cameraServer.startAutomaticCapture(camera=self.blankFrame)#addServer(name=const.STREAM_NAME, port=const.STREAM_PORT)
+        # #self.switchingServer.setSource(self.blankFrame)
+        # self.switchingServer.setResolution(*const.STREAM_RESOLUTION)
+        # self.switchingServer.setFPS(const.STREAM_FPS)
+        # self.switchingServer.setCompression(const.STREAM_DEFAULT_COMPRESSION)
 
     def loadConfig(self, cfile=const.CONFIG_FILE):
         with open(cfile, 'r') as f:
@@ -110,10 +143,17 @@ class VisionServer:
         logger.debug(cam+" added to "+ const.CONFIG_FILE)
         saveConfig(self.config)
 
+    def switchCameras(self, cam):
+        self.switchingServer.setSource(cam)
+
     def run(self):
         #Main Loop.
         while True:
-            cv2.waitKey(10)
+            for cam in self.cameras:
+                if(self.cameras[cam]["type"]=="STREAM"):
+                    self.switchCameras(self.cameras[cam]["camera"].getSource())
+                    time.sleep(5)
+            #cv2.waitKey(10)
     
 def exceptionHandler(exc_type, exc_value, exc_traceback):
     logging.exception("Uncaught exception:",exc_info=(exc_type, exc_value, exc_traceback))

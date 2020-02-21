@@ -33,6 +33,7 @@ STREAM_PORT = 5801
 STREAM_RESOLUTION = (320,240)
 STREAM_FPS = 15
 STREAM_NAME = "stream"
+STREAM_DEFAULT_COMPRESSION = -1
 
 ################
 #  Processing  #

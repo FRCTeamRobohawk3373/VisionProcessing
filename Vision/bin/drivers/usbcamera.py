@@ -11,17 +11,17 @@ from time import time, sleep
 
 class USBCamera:
     def __init__(self, server, settings, size = (320,240), fps = 15):
-        self.logger=logging.getLogger("camera("+self.name+")")
-
         self.name = settings["name"]
         self.path = settings["path"]
-        
+
+        self.logger=logging.getLogger("camera("+self.name+")")
+
         if(settings["destinations"]["streamVideo"] and settings["destinations"]["processVideo"]):
             self.logger.warning("{0} is configured to stream and process".format(self.name))
             self.destination="BOTH"
-        elif(cam["destinations"]["streamVideo"]):
+        elif(settings["destinations"]["streamVideo"]):
             self.destination="STREAM"
-        elif(cam["destinations"]["processVideo"]):
+        elif(settings["destinations"]["processVideo"]):
             self.destination="VISION"
         else:
             self.destination="NONE"
@@ -99,12 +99,12 @@ class USBCamera:
             self.logger.warning("Unable to set property '{0}' to '{1}'".format(name,value))
             return False
 
-    def start(self)
+    def start(self):
         t=Thread(target=self._update,args=())
         t.daemon = True
         t.start()
 
-    def _update(self)
+    def _update(self):
         fpsStart = time()
 
         while True:

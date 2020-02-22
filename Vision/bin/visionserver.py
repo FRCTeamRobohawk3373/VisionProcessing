@@ -9,6 +9,7 @@ import constants as const
 import sys
 import cscore
 from networktables import NetworkTables
+import numpy as np
 
 
 
@@ -77,7 +78,7 @@ class VisionServer:
                 camType="VISION"
 
             newCamera=USBCamera(self.cameraServer, cam, const.DEFAULT_RESOLUTION)
-            newCamera.start()
+            #newCamera.start()
 
             self.cameras[camera]={
                 "camera": newCamera,
@@ -94,12 +95,20 @@ class VisionServer:
 
         #give the stream a blank stream to give it the name we want
         blankFrame = cscore.CvSource(const.STREAM_NAME, cscore.VideoMode.PixelFormat.kMJPEG,
-                                             const.STREAM_RESOLUTION[0],const.STREAM_RESOLUTION[1],
-                                             const.STREAM_FPS)
-        
+                                     const.STREAM_RESOLUTION[0], const.STREAM_RESOLUTION[1],
+                                     const.STREAM_FPS)
+
         self.cameraServer.addCamera(blankFrame)
-        server=self.cameraServer.addServer(name="serve_"+const.STREAM_NAME, port=const.STREAM_PORT)
+        server = self.cameraServer.addServer(name="serve_" + blankFrame.getName())
+        self.cameraServer._fixedSources[server.getHandle()] = blankFrame #! The only thing that actualy makes this work and it is stupid and wrong. DO NOT DO UNLESS NECESSARY! (Remove if addSwitchedCamera() works) Breaks PEP 8 guidelines
         server.setSource(blankFrame)
+        
+        #server = self.cameraServer.startAutomaticCapture(camera=blankFrame, return_server=True)
+        #time.sleep(0.5)
+        #blankFrame.putFrame(np.zeros((const.STREAM_RESOLUTION[1],const.STREAM_RESOLUTION[0],3),np.uint8))
+        #print(cam.getName(),blankFrame.getName())
+        #server=self.cameraServer.getServer(name="serve_"+cam.getName())#self.cameraServer.addServer(name="serve_"+const.STREAM_NAME, port=const.STREAM_PORT)
+        #server.setSource(blankFrame)
 
         return server
         #self.blankFrame = self.cameraServer.addSwitchedCamera(const.STREAM_NAME)

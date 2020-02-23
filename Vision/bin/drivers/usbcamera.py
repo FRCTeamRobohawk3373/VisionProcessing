@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import multiprocessing
+from threading import Thread
 import cscore
 from utility import filterDict
 import logging
@@ -40,6 +40,9 @@ class USBCamera:
             self.height = self.properties["height"]
         else:
             self.width, self.height = size
+
+        if("fps" in self.properties):
+            fps = self.properties["fps"]
         
         #initalize the camera
         self.camera = cscore.UsbCamera(self.name, self.path)
@@ -60,7 +63,7 @@ class USBCamera:
         self.sink.setSource(self.camera)
         self.cameraFrame = None
         self.frameTime=None
-        self.stoped=False
+        self.stopped=False
 
     def configSettings(self):
         if("exposure_auto" in self.settings):
@@ -105,25 +108,34 @@ class USBCamera:
         t.start()
 
     def _update(self):
-        fpsStart = time()
+        threadLogger=logging.getLogger("camera("+self.name+")-Thread")
 
+        fpsStart = time()
+        frameNumber=0
         while True:
             if (self.stopped):
                 return
 
-            self.frametime, self.camera_frame = self.sink.grabFrame(self.camera_frame)
+            self.frametime, self.cameraFrame = self.sink.grabFrame(self.cameraFrame)
+
+            if(self.frametime == 0):
+                threadLogger.warning("Error grabbing frame: " +self.sink.getError())
+
             frameNumber+=1
             if (frameNumber % 150 == 0):
                 fpsEnd = time()
                 dt = fpsEnd - fpsStart
-                self.logger.info("150 frames in {0:.3f} seconds = {1:.2f} FPS".format(dt, 150.0 / dt))
+                if(150.0 / dt<=5):
+                    threadLogger.warning("camera dropped to {1:.2f} FPS and took {0:.3f} seconds for 150 frames".format(dt, 150.0 / dt))
+                else:
+                    threadLogger.debug("150 frames in {0:.3f} seconds = {1:.2f} FPS".format(dt, 150.0 / dt))
                 fpsStart=fpsEnd
                 frameNumber=0
         
         return
 
     def read(self):
-        return self.frametime, self.camera_frame
+        return self.frametime, self.cameraFrame
 
     def stop(self):
         self.stopped = True

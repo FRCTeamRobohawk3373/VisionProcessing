@@ -9,11 +9,15 @@ import constants as const
 import sys
 import cscore
 from networktables import NetworkTables
+from networktables.util import ntproperty
 import numpy as np
 
 
 
 class VisionServer:
+
+    
+
     def __init__(self, debug=False):
         self.areDebugging=debug
 
@@ -25,14 +29,8 @@ class VisionServer:
         #Start the camera Server
         self.cameraServer = cscore.CameraServer.getInstance()
         self.cameraServer.enableLogging()
-        
-        #usb0 = cscore.UsbCamera("Camera 0", 0)
 
-        #switchingCamera = self.cameraServer.addSwitchedCamera(const.STREAM_NAME)
-        #switchingCamera.setSource(usb0)
-
-        #self.logger.warning("Type: "+str(type(server)))
-        #self.cameraServer.startAutomaticCapture(camera=self.switchingCamera)
+        #self.processingThread = 
 
         self.cameras={}
         self.active_camera = None
@@ -40,10 +38,8 @@ class VisionServer:
         cams = self.findCameras()
         self.startCameras(cams)
 
-        #self.switchingCamera = self.cameraServer.addServer(name='camera', port=const.STREAM_PORT)
-        #self.logger.debug(self.cameras[next(iter(self.cameras))])
-        #self.switchingCamera.setSource(self.cameras[next(iter(self.cameras))]["camera"].getSource())
-        #self.switchingCamera.setResolution(320,240)
+        self.test = ntproperty('/vision/selectedCamera', True)
+        self.oldValue = True
 
         self.switchingServer = self.createOutputStream()
 
@@ -69,6 +65,7 @@ class VisionServer:
     def startCameras(self, cameras):
         for camera in cameras:
             cam = cameras[camera]
+            camType=None
             if(cam["destinations"]["streamVideo"] and cam["destinations"]["processVideo"]):
                 self.logger.warning("{0}({1}) is configured to stream and process".format(camera, cam["name"]))
                 camType="BOTH"
@@ -77,15 +74,22 @@ class VisionServer:
             elif(cam["destinations"]["processVideo"]):
                 camType="VISION"
 
-            newCamera=USBCamera(self.cameraServer, cam, const.DEFAULT_RESOLUTION)
-            #newCamera.start()
-
-            self.cameras[camera]={
-                "camera": newCamera,
-                "switchIndex": cam["destinations"]["switchIndex"], 
-                "type": camType, 
-                "isConnected": True
-            }
+            if(camType is not None):
+                newCamera=USBCamera(self.cameraServer, cam, const.DEFAULT_RESOLUTION)
+                if(camType=="VISION" or camType=="BOTH"):
+                    newCamera.start()
+                    
+                self.cameras[camera]={
+                    "camera": newCamera,
+                    "switchIndex": cam["destinations"]["switchIndex"], 
+                    "type": camType, 
+                    "isConnected": True
+                    ""
+                }
+    
+    def addCamera(self, cameraName):
+        if(cameraName not in self.cameras):
+            pass
 
             #if(self.switchingCamera.getSource() is None and (camType=="BOTH" or camType=="STREAM")):
             #    self.switchingCamera.setSource(self.cameras[camera]["camera"])
@@ -102,21 +106,8 @@ class VisionServer:
         server = self.cameraServer.addServer(name="serve_" + blankFrame.getName())
         self.cameraServer._fixedSources[server.getHandle()] = blankFrame #! The only thing that actualy makes this work and it is stupid and wrong. DO NOT DO UNLESS NECESSARY! (Remove if addSwitchedCamera() works) Breaks PEP 8 guidelines
         server.setSource(blankFrame)
-        
-        #server = self.cameraServer.startAutomaticCapture(camera=blankFrame, return_server=True)
-        #time.sleep(0.5)
-        #blankFrame.putFrame(np.zeros((const.STREAM_RESOLUTION[1],const.STREAM_RESOLUTION[0],3),np.uint8))
-        #print(cam.getName(),blankFrame.getName())
-        #server=self.cameraServer.getServer(name="serve_"+cam.getName())#self.cameraServer.addServer(name="serve_"+const.STREAM_NAME, port=const.STREAM_PORT)
-        #server.setSource(blankFrame)
 
         return server
-        #self.blankFrame = self.cameraServer.addSwitchedCamera(const.STREAM_NAME)
-        # self.switchingServer = self.cameraServer.startAutomaticCapture(camera=self.blankFrame)#addServer(name=const.STREAM_NAME, port=const.STREAM_PORT)
-        # #self.switchingServer.setSource(self.blankFrame)
-        # self.switchingServer.setResolution(*const.STREAM_RESOLUTION)
-        # self.switchingServer.setFPS(const.STREAM_FPS)
-        # self.switchingServer.setCompression(const.STREAM_DEFAULT_COMPRESSION)
 
     def loadConfig(self, cfile=const.CONFIG_FILE):
         with open(cfile, 'r') as f:
@@ -157,11 +148,25 @@ class VisionServer:
 
     def run(self):
         #Main Loop.
+
+        switchTime = time.time()+5
+        cams = list(self.cameras.keys())
+        index=0
         while True:
-            for cam in self.cameras:
-                if(self.cameras[cam]["type"]=="STREAM"):
-                    self.switchCameras(self.cameras[cam]["camera"].getSource())
-                    time.sleep(5)
+            
+            if(not(self.test==self.oldValue)):
+                print(str(self.test)+"="+str(type(self.test)))
+                self.oldValue=self.test
+
+            if(time.time()>switchTime):
+                if(self.cameras[cams[index]]["type"]=="STREAM"):
+                    self.switchCameras(self.cameras[cams[index]]["camera"].getSource())
+                    switchTime = time.time()+5
+
+                index = (index + 1)%len(cams)
+            
+            
+            time.sleep(0.01)
             #cv2.waitKey(10)
     
 def exceptionHandler(exc_type, exc_value, exc_traceback):

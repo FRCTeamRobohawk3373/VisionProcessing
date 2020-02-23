@@ -1,189 +1,179 @@
 import cv2
 import numpy as np
-
-def process(image):
-    fHeight,fWidth=image.shape[:2]
-    contourImg = np.copy(image)
-
-    mask = cv2.GaussianBlur(image, (5, 5), 0)
-    mask = cv2.cvtColor(mask, cv2.COLOR_BGR2HSV)
-    mask = cv2.inRange(mask, lowerb, upperb)
-
-    struct_erode = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-    struct_dilate = cv2.getStructuringElement(cv2.MORPH_CROSS, (5, 5))
-    mask = cv2.erode(mask, struct_erode, iterations=1)
-    mask = cv2.dilate(mask, struct_dilate, iterations=1)
-
-    masked = cv2.bitwise_and(image, image, mask = mask)
-
-    contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-    output = []
-    for contour in contours:
-        #x,y,w,h = cv2.boundingRect(contour)
-        area = cv2.contourArea(contour)
-        if (area < MIN_AREA):
-            continue
-        if (cv2.arcLength(contour, True) < MIN_PERIMETER):
-            continue
-        hull = cv2.convexHull(contour)
-        solid = 100 * area / cv2.contourArea(hull)
-        if (solid < SOLIDITY[0] or solid > SOLIDITY[1]):
-            continue
-
-        output.append(contour)
-
-    print("Found " + str(len(output))+" ")
-    cv2.drawContours(contourImg, output, -1, (0, 0, 255), 1)
+from threading import Thread
 
 
-    for i, cnt in enumerate(output):
-        # poly = approxPolyDP_adaptive(cnt,8)
-        rotRect = cv2.minAreaRect(cnt)
-        # print(len(poly))
+class ProcessingThread:
+    def __init__(self, debug=False):
+        self.imageLock = threading.Lock()
+        self.thread = Thread(target=self.process)
+        #self.thread = Process(target=self.process, args=(self,))
+        self.thread.daemon=True
+        self.running = False
+        self.img=None
+        self.newImageAvailable=False
+        self.debug=debug
+        self.finalTargets=[None]
+        self.cameraMatrix=None
+        self.distortionCoefficients=None
 
-        # cv2.drawContours(contourImg, [poly] ,0,(0, 255, 255),1)
+    def setCameraCharacteristics(self,cameraMatrix,distortionCoefficients):
+        self.cameraMatrix=cameraMatrix
+        self.distortionCoefficients=distortionCoefficients
 
-        hull = cv2.convexHull(cnt)
-        #print(len(hull))
-        cv2.drawContours(contourImg, [hull] ,0,(255, 255, 0),1)
-        
-        #print(hull)
+    def run(self, firstImage):
+        self.img = firstImage
+        self.running=True
+        self.thread.start()
 
-        rect = cv2.boundingRect(cnt)
-        cv2.rectangle(contourImg, rect, (255, 0, 255))
-        x,y,w,h = rect
-        cx=int(x+w/2)
-        cy=int(y+h/2)
-        cv2.drawMarker(contourImg,(cx,cy),(255, 255, 255))
+    def stop(self):
+        self.running=False
+        cv2.destroyAllWindows()
+        self.thread.join(20)
+
+    def __delete__(self):
+        self.stop()
+
+    def processNewImage(self, img):
+        with self.imageLock:
+            self.img=img
+            self.newImageAvailable=True
+
+    def getTargets(self):
+        return self.finalTargets
 
 
-        # topLeft=-hull[0][0][0]-hull[0][0][1]
-        # topLeftIndex=0
-        # topRight=hull[0][0][0]-hull[0][0][1]
-        # topRightIndex=0
+    def process(self):
+        newImage = False
+        image = np.zeros((const.STREAM_RESOLUTION[1],const.STREAM_RESOLUTION[0],3),np.uint8)
+        while(self.running):
+            with self.imageLock:
+                newImage = self.newImageAvailable
+                if(newImage)
+                    image = np.copy(self.img)
 
-        # bottomLeft=hull[0][0][1]-hull[0][0][0]
-        # bottomLeftIndex=0
-        # bottomRight=hull[0][0][0]+hull[0][0][0]
-        # bottomRightIndex=0
-        # for x,pt in enumerate(hull):
-        #     #top left corner point
-        #     if(-pt[0][0]-pt[0][1]>topLeft):
-        #         topLeft=-pt[0][0]-pt[0][1]
-        #         topLeftIndex=x
+			if(newImage):
+                fHeight,fWidth=image.shape[:2]
 
-        #     #top right corner point
-        #     if(pt[0][0]-pt[0][1]>topRight):
-        #         topRight=pt[0][0]-pt[0][1]
-        #         topRightIndex=x
+                mask = cv2.GaussianBlur(image, (5, 5), 0)
+                mask = cv2.cvtColor(mask, cv2.COLOR_BGR2HSV)
+                mask = cv2.inRange(mask, lowerb, upperb)
 
-        #     #bottom left corner point
-        #     if(pt[0][1]-(pt[0][0]-mx)>bottomLeft):
-        #         bottomLeft=pt[0][1]-(pt[0][0]-mx)
-        #         bottomLeftIndex=x
+                struct_erode = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+                struct_dilate = cv2.getStructuringElement(cv2.MORPH_CROSS, (5, 5))
+                mask = cv2.erode(mask, struct_erode, iterations=1)
+                mask = cv2.dilate(mask, struct_dilate, iterations=1)
 
-        #     #bottom right corner point
-        #     if((my-pt[0][1])+(mx-pt[0][0])<bottomRight):
-        #         bottomRight=(my-pt[0][1])+(mx-pt[0][0])
-        #         bottomRightIndex=x
+                masked = cv2.bitwise_and(image, image, mask = mask)
 
-        #cv2.drawMarker(contourImg,tuple(hull[bottomLeftIndex][0]),(0, 255, 255),thickness=2)
-        #cv2.drawMarker(contourImg,tuple(hull[bottomRightIndex][0]),(0, 255, 255),thickness=2)
-        #cv2.drawMarker(contourImg,tuple(hull[topLeftIndex][0]),(0, 255, 255),thickness=2)
-        #cv2.drawMarker(contourImg,tuple(hull[topRightIndex][0]),(0, 255, 255),thickness=2)
-        
-        #topLeft = tuple(hull[topLeftIndex][0])
-        #topRight = tuple(hull[topRightIndex][0])
-        #bottomLeft = tuple(hull[bottomLeftIndex][0])
-        #bottomRight = tuple(hull[bottomRightIndex][0])
+                contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-        #print(slopes)
+                output = []
+                for contour in contours:
+                    #x,y,w,h = cv2.boundingRect(contour)
+                    area = cv2.contourArea(contour)
+                    if (area < MIN_AREA):
+                        continue
+                    if (cv2.arcLength(contour, True) < MIN_PERIMETER):
+                        continue
+                    hull = cv2.convexHull(contour)
+                    solid = 100 * area / cv2.contourArea(hull)
+                    if (solid < SOLIDITY[0] or solid > SOLIDITY[1]):
+                        continue
 
-        box = cv2.boxPoints(rotRect)
-        box = np.int0(box)
-        #print(box)
-        cv2.drawContours(contourImg,[box],0,(255,255,255),2)
+                    output.append(contour)
 
-        #centerX=(topLeft[0]+topRight[0]+bottomLeft[0]+bottomRight[0])/4
-        #centerY=(topLeft[1]+topRight[1]+bottomLeft[1]+bottomRight[1])/4
+                print("Found " + str(len(output))+" ")
+                cv2.drawContours(image, output, -1, (0, 0, 255), 1)
 
-        #cv2.rectangle(contourImg, rect, (255, 0, 255))
-        '''Corners2d=np.array([
-            (topLeft[0]-centerX, topLeft[1]-centerY), # top-left
-            (topRight[0]-centerX, topRight[1]-centerY), # top-right
-            (bottomRight[0]-centerX, bottomRight[1]-centerY), # bottom-right
-            (bottomLeft[0]-centerX, bottomLeft[1]-centerY) # bottom-left
-        ], dtype=np.float32)'''
 
-        Corners2d=np.array([
-            (x-w/2, y-h/2),	# top-left
-            (x+w/2, y-h/2),	# top-right
-            (x+w/2, y+h/2),	# bottom-right
-            (x-w/2, y+h/2)	# bottom-left
-        ])
-        '''Corners2d=np.array([
-            (x, y),	# top-left
-            (x+w, y),	# top-right
-            (x+w, y+h),	# bottom-right
-            (x, y+h)	# bottom-left
-        ])'''
+                for i, cnt in enumerate(output):
+                    # poly = approxPolyDP_adaptive(cnt,8)
+                    rotRect = cv2.minAreaRect(cnt)
+                    # print(len(poly))
 
-        retval, rvec, tvec=cv2.solvePnP(CORNERS_3D, Corners2d, CAMERA_MATRIX, DISTORTION_COEFFICIENTS)
+                    # cv2.drawContours(image, [poly] ,0,(0, 255, 255),1)
 
-        print(rect)
-        distance, robotAngle, targetAngle = computeValues(rvec, tvec)
-        #cv2.putText(contourImg,str(distance)+"in",(5,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
-        distance = DISTANCE_SCALER*distance+DISTANCE_OFFSET
-        robotAngle = ROBOT_ANGLE_SCALER*robotAngle+ROBOT_ANGLE_OFFSET
-        targetOffset = cx-fWidth/2
+                    hull = cv2.convexHull(cnt)
+                    #print(len(hull))
+                    cv2.drawContours(image, [hull] ,0,(255, 255, 0),1)
 
-        #r=(WIDTH_3D_TOP/w)
-        robotAngle=(targetOffset*(WIDTH_3D_TOP/w))/distance
-        if(abs(robotAngle)>1):
-            robotAngle=math.copysign(1.0,robotAngle)
-        
-        robotAngle=90-math.degrees(math.acos(robotAngle))
+                    #print(hull)
 
-        
-        print("Target #"+str(i)+":distance="+str(distance)+", robot Angle="+\
-              str(robotAngle)+", targetAngle="+str(targetAngle))
-        
-        cv2.putText(contourImg,str(distance)+"in",(5,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
-        cv2.putText(contourImg,str(robotAngle)+"deg",(5,100),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
+                    rect = cv2.boundingRect(cnt)
+                    cv2.rectangle(image, rect, (255, 0, 255))
+                    x,y,w,h = rect
+                    cx=int(x+w/2)
+                    cy=int(y+h/2)
+                    cv2.drawMarker(image,(cx,cy),(255, 255, 255))
 
-    cv2.imshow("contours", contourImg)
-    return masked
+                    box = cv2.boxPoints(rotRect)
+                    box = np.int0(box)
+                    #print(box)
+                    cv2.drawContours(image,[box],0,(255,255,255),2)
 
-def approxPolyDP_adaptive(contour, nsides, max_dp_error=0.1):
+                    Corners2d=np.array([
+                        (x-w/2, y-h/2),	# top-left
+                        (x+w/2, y-h/2),	# top-right
+                        (x+w/2, y+h/2),	# bottom-right
+                        (x-w/2, y+h/2)	# bottom-left
+                    ])
 
-    step = 0.005
-    peri = cv2.arcLength(contour, True)
-    dp_err = step
-    while dp_err < max_dp_error:
-        res = cv2.approxPolyDP(contour, dp_err * peri, True)
-        if len(res) <= nsides:
-            print(dp_err)
-            return res
-        dp_err += step
-    return None
+                    retval, rvec, tvec=cv2.solvePnP(CORNERS_3D, Corners2d, CAMERA_MATRIX, DISTORTION_COEFFICIENTS)
 
-def computeValues(rvec, tvec):
-    print(tvec)
-    print(rvec)
-    x=tvec[0][0]
-    z=tvec[2][0]
+                    print(rect)
+                    distance, robotAngle, targetAngle = computeValues(rvec, tvec)
+                    #cv2.putText(image,str(distance)+"in",(5,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
+                    distance = DISTANCE_SCALER*distance+DISTANCE_OFFSET
+                    robotAngle = ROBOT_ANGLE_SCALER*robotAngle+ROBOT_ANGLE_OFFSET
+                    targetOffset = cx-fWidth/2
 
-    distance = math.sqrt(x**2+z**2)
+                    #r=(WIDTH_3D_TOP/w)
+                    robotAngle=(targetOffset*(WIDTH_3D_TOP/w))/distance
+                    if(abs(robotAngle)>1):
+                        robotAngle=math.copysign(1.0,robotAngle)
 
-    robotAngle = math.degrees(math.atan2(x,z))
+                    robotAngle=90-math.degrees(math.acos(robotAngle))
 
-    rot,_ = cv2.Rodrigues(rvec)
+                    print("Target #"+str(i)+":distance="+str(distance)+", robot Angle="+\
+                        str(robotAngle)+", targetAngle="+str(targetAngle))
 
-    print(rot)
+                    cv2.putText(image,str(distance)+"in",(5,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
+                    cv2.putText(image,str(robotAngle)+"deg",(5,100),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
 
-    rotInv = rot.transpose()
-    pZeroWorld = np.matmul(rotInv, -tvec)
-    targetAngle = math.degrees(math.atan2(pZeroWorld[0][0], pZeroWorld[2][0]))
+                cv2.imshow("contours", image)
 
-    return distance, robotAngle, targetAngle
+
+
+    def approxPolyDP_adaptive(contour, nsides, max_dp_error=0.1):
+
+        step = 0.005
+        peri = cv2.arcLength(contour, True)
+        dp_err = step
+        while dp_err < max_dp_error:
+            res = cv2.approxPolyDP(contour, dp_err * peri, True)
+            if len(res) <= nsides:
+                print(dp_err)
+                return res
+            dp_err += step
+        return None
+
+    def computeValues(rvec, tvec):
+        print(tvec)
+        print(rvec)
+        x=tvec[0][0]
+        z=tvec[2][0]
+
+        distance = math.sqrt(x**2+z**2)
+
+        robotAngle = math.degrees(math.atan2(x,z))
+
+        rot,_ = cv2.Rodrigues(rvec)
+
+        print(rot)
+
+        rotInv = rot.transpose()
+        pZeroWorld = np.matmul(rotInv, -tvec)
+        targetAngle = math.degrees(math.atan2(pZeroWorld[0][0], pZeroWorld[2][0]))
+
+        return distance, robotAngle, targetAngle

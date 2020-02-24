@@ -66,6 +66,7 @@ class VisionServer:
         for camera in cameras:
             cam = cameras[camera]
             camType=None
+            visionThread = None
             if(cam["destinations"]["streamVideo"] and cam["destinations"]["processVideo"]):
                 self.logger.warning("{0}({1}) is configured to stream and process".format(camera, cam["name"]))
                 camType="BOTH"
@@ -84,7 +85,6 @@ class VisionServer:
                     "switchIndex": cam["destinations"]["switchIndex"], 
                     "type": camType, 
                     "isConnected": True
-                    ""
                 }
     
     def addCamera(self, cameraName):
@@ -151,20 +151,17 @@ class VisionServer:
 
         switchTime = time.time()+5
         cams = list(self.cameras.keys())
+        print(cams)
         index=0
         while True:
-            
-            if(not(self.test==self.oldValue)):
-                print(str(self.test)+"="+str(type(self.test)))
-                self.oldValue=self.test
-
             if(time.time()>switchTime):
                 if(self.cameras[cams[index]]["type"]=="STREAM"):
                     self.switchCameras(self.cameras[cams[index]]["camera"].getSource())
                     switchTime = time.time()+5
 
-                index = (index + 1)%len(cams)
-            
+                index = index + 1
+                if(index>=len(cams)):
+                    index=0
             
             time.sleep(0.01)
             #cv2.waitKey(10)

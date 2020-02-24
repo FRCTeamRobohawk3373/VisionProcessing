@@ -1,10 +1,16 @@
 import cv2
 import numpy as np
+import logging
 from threading import Thread
 
 
 class ProcessingThread:
+    threadCount = 0
+
     def __init__(self, debug=False):
+        ProcessingThread.threadCount+=1
+		self.processingLogger = logging.getLogger("ProcessingThread-"+str(ProcessingThread.threadCount))
+
         self.imageLock = threading.Lock()
         self.thread = Thread(target=self.process)
         #self.thread = Process(target=self.process, args=(self,))
@@ -46,13 +52,16 @@ class ProcessingThread:
     def process(self):
         newImage = False
         image = np.zeros((const.STREAM_RESOLUTION[1],const.STREAM_RESOLUTION[0],3),np.uint8)
+        data = None
         while(self.running):
             with self.imageLock:
                 newImage = self.newImageAvailable
-                if(newImage)
+                if(newImage):
                     image = np.copy(self.img)
+                    self.newImageAvailable=False
 
-			if(newImage):
+            if(newImage):
+                newImage=False
                 fHeight,fWidth=image.shape[:2]
 
                 mask = cv2.GaussianBlur(image, (5, 5), 0)
@@ -86,7 +95,7 @@ class ProcessingThread:
                 print("Found " + str(len(output))+" ")
                 cv2.drawContours(image, output, -1, (0, 0, 255), 1)
 
-
+                finalTargets = []
                 for i, cnt in enumerate(output):
                     # poly = approxPolyDP_adaptive(cnt,8)
                     rotRect = cv2.minAreaRect(cnt)
@@ -125,7 +134,7 @@ class ProcessingThread:
                     distance, robotAngle, targetAngle = computeValues(rvec, tvec)
                     #cv2.putText(image,str(distance)+"in",(5,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
                     distance = DISTANCE_SCALER*distance+DISTANCE_OFFSET
-                    robotAngle = ROBOT_ANGLE_SCALER*robotAngle+ROBOT_ANGLE_OFFSET
+                    #robotAngle = ROBOT_ANGLE_SCALER*robotAngle+ROBOT_ANGLE_OFFSET
                     targetOffset = cx-fWidth/2
 
                     #r=(WIDTH_3D_TOP/w)
@@ -140,6 +149,13 @@ class ProcessingThread:
 
                     cv2.putText(image,str(distance)+"in",(5,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
                     cv2.putText(image,str(robotAngle)+"deg",(5,100),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
+                    
+                    posx=(cx-fWidth/2)/(fWidth/2)
+					posy=(cy-fHeight/2)/(fHeight/2)
+                    finalTargets.append([i,round(posx,4),round(posy,4),round(distance,4), round(robotAngle,4), round(targetAngle,4)])
+
+
+                data=[]
 
                 cv2.imshow("contours", image)
 

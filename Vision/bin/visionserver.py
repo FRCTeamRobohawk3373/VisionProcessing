@@ -8,6 +8,7 @@ import logging
 import constants as const
 import sys
 import cscore
+import socket
 from networktables import NetworkTables
 from networktables.util import ntproperty
 import numpy as np
@@ -15,9 +16,6 @@ import numpy as np
 
 
 class VisionServer:
-
-    
-
     def __init__(self, debug=False):
         self.areDebugging=debug
 
@@ -70,6 +68,7 @@ class VisionServer:
             if(cam["destinations"]["streamVideo"] and cam["destinations"]["processVideo"]):
                 self.logger.warning("{0}({1}) is configured to stream and process".format(camera, cam["name"]))
                 camType="BOTH"
+                visionThread = processing.visionThread()
             elif(cam["destinations"]["streamVideo"]):
                 camType="STREAM"
             elif(cam["destinations"]["processVideo"]):
@@ -84,7 +83,8 @@ class VisionServer:
                     "camera": newCamera,
                     "switchIndex": cam["destinations"]["switchIndex"], 
                     "type": camType, 
-                    "isConnected": True
+                    "isConnected": True,
+                    "processing": visionThread
                 }
     
     def addCamera(self, cameraName):
@@ -165,9 +165,19 @@ class VisionServer:
             
             time.sleep(0.01)
             #cv2.waitKey(10)
-    
+
+def getHostNameAndIP(): 
+    try: 
+        host_name = socket.gethostname() 
+        host_ip = socket.gethostbyname(host_name+".local") 
+        
+        logging.info("Hostname: " + host_name + ", IP: " + host_ip) 
+    except: 
+        logging.warning("Unable to get Hostname and IP") 
+
+
 def exceptionHandler(exc_type, exc_value, exc_traceback):
-    logging.exception("Uncaught exception:",exc_info=(exc_type, exc_value, exc_traceback))
+    logging.critical("Uncaught exception:",exc_info=(exc_type, exc_value, exc_traceback))
 
 if __name__ == '__main__':
 
@@ -189,6 +199,8 @@ if __name__ == '__main__':
     logging.info("############# Vision Started #############")
     logging.info("OpenCV Version: {0}".format(cv2.__version__))
     logging.info("CSCore Version: {0}".format(cscore.__version__))
+    getHostNameAndIP()
+
     #logging.info("NetworkTables Version: {0}".format(NetworkTables.__version__))
 
     sys.excepthook = exceptionHandler

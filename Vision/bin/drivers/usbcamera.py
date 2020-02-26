@@ -64,6 +64,7 @@ class USBCamera:
         self.cameraFrame = None
         self.frameTime=None
         self.stopped=False
+        self.wasConnected = self.camera.isConnected()
 
     def configSettings(self):
         if("exposure_auto" in self.settings):
@@ -115,6 +116,19 @@ class USBCamera:
         while True:
             if (self.stopped):
                 return
+
+            if(not(self.camera.isConnected()) and self.wasConnected):
+                threadLogger.error("Lost Connection to Camera! Trying in 1 second")
+                self.wasConnected = False
+                sleep(1)
+                continue
+            elif(not(self.camera.isConnected())):
+                threadLogger.warn("Attempt to reconnect failed, trying again in 5 seconds")
+                sleep(5)
+                continue
+            elif(not(self.wasConnected)):
+                threadLogger.info("Connection Restored")
+                self.wasConnected = True
 
             self.frametime, self.cameraFrame = self.sink.grabFrame(self.cameraFrame)
 

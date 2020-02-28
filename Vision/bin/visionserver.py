@@ -16,6 +16,8 @@ import numpy as np
 
 
 class VisionServer:
+    tableName = "vision"
+    
     def __init__(self, debug=False):
         self.areDebugging=debug
 
@@ -40,6 +42,9 @@ class VisionServer:
         self.oldValue = True
 
         self.switchingServer = self.createOutputStream()
+
+        #NetworkTables
+        self.table = NetworkTables.getTable('vision')
 
     def findCameras(self):
         cams = {}

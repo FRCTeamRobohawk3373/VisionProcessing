@@ -1,5 +1,18 @@
 {
     "cameras": {
+        "usb-046d_0825_6E3FEAE0-video-index0": {
+            "cameraMatrix": [],
+            "destinations": {
+                "processVideo": false,
+                "streamVideo": true,
+                "switchIndex": 1
+            },
+            "distortionCoefficients": [],
+            "name": "driverCamera",
+            "path": "/dev/v4l/by-id/usb-046d_0825_6E3FEAE0-video-index0",
+            "properties": {},
+            "settings": {}
+        },
         "usb-046d_0825_88BA4B60-video-index0": {
             "cameraMatrix": [
                 [
@@ -21,7 +34,7 @@
             "destinations": {
                 "processVideo": false,
                 "streamVideo": true,
-                "switchIndex": -1
+                "switchIndex": 2
             },
             "distortionCoefficients": [
                 0.06621377,
@@ -30,7 +43,7 @@
                 0.0009213,
                 0.24902609
             ],
-            "name": "driver Camera",
+            "name": "shooterCamera",
             "path": "/dev/v4l/by-id/usb-046d_0825_88BA4B60-video-index0",
             "properties": {},
             "settings": {}
@@ -40,24 +53,11 @@
             "destinations": {
                 "processVideo": false,
                 "streamVideo": true,
-                "switchIndex": 2
+                "switchIndex": 3
             },
             "distortionCoefficients": [],
-            "name": "shootingCam",
+            "name": "testingCamera-Bad",
             "path": "/dev/v4l/by-id/usb-046d_0825_C2082660-video-index0",
-            "properties": {},
-            "settings": {}
-        },
-        "usb-046d_HD_Pro_Webcam_C920_91D7DD5F-video-index0": {
-            "cameraMatrix": [],
-            "destinations": {
-                "processVideo": false,
-                "streamVideo": false,
-                "switchIndex": -1
-            },
-            "distortionCoefficients": [],
-            "name": "usb-046d_HD_Pro_Webcam_C920_91D7DD5F-video-index0",
-            "path": "/dev/v4l/by-id/usb-046d_HD_Pro_Webcam_C920_91D7DD5F-video-index0",
             "properties": {},
             "settings": {}
         },
@@ -94,9 +94,10 @@
             "name": "Vision Camera",
             "path": "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0",
             "properties": {
-                "width":1280,
-                "height":720,
-                "fps":30
+                "fps": 30,
+                "height": 720,
+                "width": 1280,
+                "flip":true
             },
             "settings": {
                 "contrast": 45,

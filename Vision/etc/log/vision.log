@@ -4297,3 +4297,1089 @@ Traceback (most recent call last):
   File "visionserver.py", line 169, in run
     time.sleep(0.01)
 KeyboardInterrupt
+2020-02-28 17:07:43,592: [INFO    ] -> root : ############# Vision Started #############
+2020-02-28 17:07:43,594: [INFO    ] -> root : OpenCV Version: 4.2.0
+2020-02-28 17:07:43,594: [INFO    ] -> root : CSCore Version: 2020.0.0
+2020-02-28 17:07:43,709: [INFO    ] -> root : Hostname: raspberrypi, IP: 10.11.4.202
+2020-02-28 17:07:43,709: [INFO    ] -> nt : NetworkTables initialized in server mode
+2020-02-28 17:07:43,710: [DEBUG   ] -> nt.th : Started thread nt-dispatch-thread-0
+2020-02-28 17:07:43,711: [DEBUG   ] -> nt.th : Started thread nt-server-thread-0
+2020-02-28 17:07:43,714: [DEBUG   ] -> nt : Listening on  1735
+2020-02-28 17:07:43,715: [DEBUG   ] -> nt.th : Started thread entry-notifier-0
+2020-02-28 17:07:43,716: [INFO    ] -> server : usb-046d_0825_2020FAE0-video-index0 was not found in config! Adding...
+2020-02-28 17:07:43,718: [DEBUG   ] -> server : usb-046d_0825_2020FAE0-video-index0 added to ../etc/config.json
+2020-02-28 17:07:43,721: [INFO    ] -> server : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-28 17:07:43,722: [INFO    ] -> server : usb-046d_0825_C2082660-video-index0 was found in config with name "testingCamera-Bad"
+2020-02-28 17:07:43,723: [WARNING ] -> server : usb-046d_0825_6E3FEAE0-video-index0(driverCamera) is not connected, but is used!
+2020-02-28 17:07:43,724: [WARNING ] -> server : usb-046d_0825_88BA4B60-video-index0(shooterCamera) is not connected, but is used!
+2020-02-28 17:07:43,724: [DEBUG   ] -> camera(Vision Camera) : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-28 17:07:43,728: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:07:44,735: [INFO    ] -> cscore : Vision Camera: set format 1 res 320x240
+2020-02-28 17:07:45,003: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:07:45,061: [INFO    ] -> cscore : Vision Camera: set format 1 res 1280x720
+2020-02-28 17:07:45,119: [INFO    ] -> cscore : Vision Camera: set FPS to 60
+2020-02-28 17:07:45,459: [INFO    ] -> cscore : Vision Camera: set FPS to 30
+2020-02-28 17:07:45,693: [DEBUG   ] -> camera(Vision Camera) : Settings:
+brightness 0x00980900 (int)    : min=-64 max=64 step=1 default=0 value=0
+                       contrast 0x00980901 (int)    : min=0 max=64 step=1 default=32 value=28
+                     saturation 0x00980902 (int)    : min=0 max=128 step=1 default=60 value=60
+                            hue 0x00980903 (int)    : min=-40 max=40 step=1 default=0 value=0
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=0
+                          gamma 0x00980910 (int)    : min=72 max=500 step=1 default=100 value=85
+                           gain 0x00980913 (int)    : min=0 max=100 step=1 default=0 value=18
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=1 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=2800 max=6500 step=1 default=4600 value=3500
+                      sharpness 0x0098091b (int)    : min=0 max=6 step=1 default=2 value=2
+         backlight_compensation 0x0098091c (int)    : min=0 max=2 step=1 default=1 value=1
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=1
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=5000 step=1 default=157 value=10
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=0
+2020-02-28 17:07:45,701: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto" to "1" as a number
+2020-02-28 17:07:45,704: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto" to "1" as a number
+2020-02-28 17:07:45,705: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature_auto" to "0" as a number
+2020-02-28 17:07:45,708: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature_auto" to "0" as a number
+2020-02-28 17:07:45,709: [DEBUG   ] -> camera(Vision Camera) : setting property "contrast" to "45" as a number
+2020-02-28 17:07:45,718: [DEBUG   ] -> camera(Vision Camera) : current property "contrast" to "45" as a number
+2020-02-28 17:07:45,719: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_absolute" to "10" as a number
+2020-02-28 17:07:45,720: [ERROR   ] -> cscore : ioctl VIDIOC_S_EXT_CTRLS failed at UsbCameraProperty.cpp:64: Invalid argument
+2020-02-28 17:07:45,720: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_absolute" to "10" as a number
+2020-02-28 17:07:45,721: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto_priority" to "0" as a number
+2020-02-28 17:07:45,722: [ERROR   ] -> cscore : ioctl VIDIOC_S_EXT_CTRLS failed at UsbCameraProperty.cpp:64: Invalid argument
+2020-02-28 17:07:45,722: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto_priority" to "0" as a number
+2020-02-28 17:07:45,723: [DEBUG   ] -> camera(Vision Camera) : setting property "gain" to "18" as a number
+2020-02-28 17:07:45,732: [DEBUG   ] -> camera(Vision Camera) : current property "gain" to "18" as a number
+2020-02-28 17:07:45,733: [DEBUG   ] -> camera(Vision Camera) : setting property "gamma" to "85" as a number
+2020-02-28 17:07:45,742: [DEBUG   ] -> camera(Vision Camera) : current property "gamma" to "85" as a number
+2020-02-28 17:07:45,742: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature" to "3500" as a number
+2020-02-28 17:07:45,758: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature" to "3500" as a number
+2020-02-28 17:07:45,759: [INFO    ] -> camera(Vision Camera) : Vision Camera started with pixelFormat:PixelFormat.kMJPEG, at 1280x720 30FPS
+2020-02-28 17:07:45,762: [INFO    ] -> server : Starting usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 vision Thread
+2020-02-28 17:07:45,764: [DEBUG   ] -> camera(testingCamera-Bad) : settings {}
+2020-02-28 17:07:46,317: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:07:46,447: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 160x120
+2020-02-28 17:07:46,463: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:07:48,072: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 320x240
+2020-02-28 17:07:48,096: [INFO    ] -> cscore : testingCamera-Bad: set FPS to 30
+2020-02-28 17:07:48,415: [INFO    ] -> cscore : testingCamera-Bad: set FPS to 15
+2020-02-28 17:07:48,725: [DEBUG   ] -> camera(testingCamera-Bad) : Settings:
+brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                           gain 0x00980913 (int)    : min=0 max=255 step=1 default=64 value=192
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=2 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=0 max=10000 step=10 default=4000 value=1070 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=255 step=1 default=24 value=24
+         backlight_compensation 0x0098091c (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=10000 step=1 default=166 value=833 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+2020-02-28 17:07:48,726: [INFO    ] -> camera(testingCamera-Bad) : testingCamera-Bad started with pixelFormat:PixelFormat.kMJPEG, at 320x240 15FPS
+2020-02-28 17:07:48,728: [INFO    ] -> cscore.cserver : CameraServer 'serve_stream' listening on port 1181
+2020-02-28 17:07:55,391: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.629 seconds = 15.58 FPS
+2020-02-28 17:08:04,438: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.047 seconds = 16.58 FPS
+2020-02-28 17:08:13,485: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.047 seconds = 16.58 FPS
+2020-02-28 17:08:20,110: [CRITICAL] -> root : Uncaught exception:
+Traceback (most recent call last):
+  File "visionserver.py", line 225, in <module>
+    server.run()
+  File "visionserver.py", line 169, in run
+    time.sleep(0.01)
+KeyboardInterrupt
+2020-02-28 17:29:19,932: [INFO    ] -> root : ############# Vision Started #############
+2020-02-28 17:29:19,932: [INFO    ] -> root : OpenCV Version: 4.2.0
+2020-02-28 17:29:19,932: [INFO    ] -> root : CSCore Version: 2020.0.0
+2020-02-28 17:29:20,045: [INFO    ] -> root : Hostname: raspberrypi, IP: 10.11.4.202
+2020-02-28 17:29:20,045: [INFO    ] -> nt : NetworkTables initialized in server mode
+2020-02-28 17:29:20,046: [DEBUG   ] -> nt.th : Started thread nt-dispatch-thread-0
+2020-02-28 17:29:20,047: [DEBUG   ] -> nt.th : Started thread nt-server-thread-0
+2020-02-28 17:29:20,050: [DEBUG   ] -> nt.th : Started thread entry-notifier-0
+2020-02-28 17:29:20,051: [DEBUG   ] -> nt : Listening on  1735
+2020-02-28 17:29:20,052: [INFO    ] -> server : usb-046d_0825_2020FAE0-video-index0 was found in config with name "usb-046d_0825_2020FAE0-video-index0"
+2020-02-28 17:29:20,052: [INFO    ] -> server : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-28 17:29:20,053: [INFO    ] -> server : usb-046d_0825_C2082660-video-index0 was found in config with name "testingCamera-Bad"
+2020-02-28 17:29:20,053: [WARNING ] -> server : usb-046d_0825_6E3FEAE0-video-index0(driverCamera) is not connected, but is used!
+2020-02-28 17:29:20,054: [WARNING ] -> server : usb-046d_0825_88BA4B60-video-index0(shooterCamera) is not connected, but is used!
+2020-02-28 17:29:20,054: [DEBUG   ] -> camera(Vision Camera) : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-28 17:29:20,055: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:29:20,353: [INFO    ] -> cscore : Vision Camera: set format 1 res 320x240
+2020-02-28 17:29:21,221: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:29:21,278: [INFO    ] -> cscore : Vision Camera: set format 1 res 1280x720
+2020-02-28 17:29:21,336: [INFO    ] -> cscore : Vision Camera: set FPS to 60
+2020-02-28 17:29:21,677: [INFO    ] -> cscore : Vision Camera: set FPS to 30
+2020-02-28 17:29:21,906: [DEBUG   ] -> camera(Vision Camera) : Settings:
+brightness 0x00980900 (int)    : min=-64 max=64 step=1 default=0 value=0
+                       contrast 0x00980901 (int)    : min=0 max=64 step=1 default=32 value=28
+                     saturation 0x00980902 (int)    : min=0 max=128 step=1 default=60 value=60
+                            hue 0x00980903 (int)    : min=-40 max=40 step=1 default=0 value=0
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=0
+                          gamma 0x00980910 (int)    : min=72 max=500 step=1 default=100 value=85
+                           gain 0x00980913 (int)    : min=0 max=100 step=1 default=0 value=18
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=1 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=2800 max=6500 step=1 default=4600 value=3500
+                      sharpness 0x0098091b (int)    : min=0 max=6 step=1 default=2 value=2
+         backlight_compensation 0x0098091c (int)    : min=0 max=2 step=1 default=1 value=1
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=1
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=5000 step=1 default=157 value=10
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=0
+2020-02-28 17:29:21,908: [INFO    ] -> camera(Vision Camera) : property "exposure_auto" is a Kind.kEnum
+2020-02-28 17:29:21,909: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto" to "1" as a number
+2020-02-28 17:29:21,911: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto" to "1" as a number
+2020-02-28 17:29:21,912: [INFO    ] -> camera(Vision Camera) : property "white_balance_temperature_auto" is a Kind.kBoolean
+2020-02-28 17:29:21,913: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature_auto" to "0" as a number
+2020-02-28 17:29:21,915: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature_auto" to "0" as a number
+2020-02-28 17:29:21,916: [INFO    ] -> camera(Vision Camera) : property "contrast" is a Kind.kInteger
+2020-02-28 17:29:21,916: [DEBUG   ] -> camera(Vision Camera) : setting property "contrast" to "45" as a number
+2020-02-28 17:29:21,925: [DEBUG   ] -> camera(Vision Camera) : current property "contrast" to "45" as a number
+2020-02-28 17:29:21,925: [INFO    ] -> camera(Vision Camera) : property "exposure_absolute" is a Kind.kInteger
+2020-02-28 17:29:21,926: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_absolute" to "10" as a number
+2020-02-28 17:29:21,948: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_absolute" to "10" as a number
+2020-02-28 17:29:21,948: [INFO    ] -> camera(Vision Camera) : property "exposure_auto_priority" is a Kind.kBoolean
+2020-02-28 17:29:21,949: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto_priority" to "0" as a number
+2020-02-28 17:29:21,959: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto_priority" to "0" as a number
+2020-02-28 17:29:21,960: [INFO    ] -> camera(Vision Camera) : property "gain" is a Kind.kInteger
+2020-02-28 17:29:21,960: [DEBUG   ] -> camera(Vision Camera) : setting property "gain" to "18" as a number
+2020-02-28 17:29:21,969: [DEBUG   ] -> camera(Vision Camera) : current property "gain" to "18" as a number
+2020-02-28 17:29:21,970: [INFO    ] -> camera(Vision Camera) : property "gamma" is a Kind.kInteger
+2020-02-28 17:29:21,970: [DEBUG   ] -> camera(Vision Camera) : setting property "gamma" to "85" as a number
+2020-02-28 17:29:21,980: [DEBUG   ] -> camera(Vision Camera) : current property "gamma" to "85" as a number
+2020-02-28 17:29:21,981: [INFO    ] -> camera(Vision Camera) : property "white_balance_temperature" is a Kind.kInteger
+2020-02-28 17:29:21,981: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature" to "3500" as a number
+2020-02-28 17:29:21,997: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature" to "3500" as a number
+2020-02-28 17:29:21,997: [INFO    ] -> camera(Vision Camera) : Vision Camera started with pixelFormat:PixelFormat.kMJPEG, at 1280x720 30FPS
+2020-02-28 17:29:21,999: [INFO    ] -> server : Starting usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 vision Thread
+2020-02-28 17:29:22,000: [DEBUG   ] -> camera(testingCamera-Bad) : settings {}
+2020-02-28 17:29:22,558: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:29:22,643: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 160x120
+2020-02-28 17:29:22,662: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:29:24,268: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 320x240
+2020-02-28 17:29:24,293: [INFO    ] -> cscore : testingCamera-Bad: set FPS to 15
+2020-02-28 17:29:24,605: [DEBUG   ] -> camera(testingCamera-Bad) : Settings:
+brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                           gain 0x00980913 (int)    : min=0 max=255 step=1 default=64 value=192
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=2 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=0 max=10000 step=10 default=4000 value=1070 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=255 step=1 default=24 value=24
+         backlight_compensation 0x0098091c (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=10000 step=1 default=166 value=833 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+2020-02-28 17:29:24,606: [INFO    ] -> camera(testingCamera-Bad) : testingCamera-Bad started with pixelFormat:PixelFormat.kMJPEG, at 320x240 15FPS
+2020-02-28 17:29:24,608: [INFO    ] -> cscore.cserver : CameraServer 'serve_stream' listening on port 1181
+2020-02-28 17:29:32,207: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 10.208 seconds = 14.69 FPS
+2020-02-28 17:29:41,820: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:29:51,434: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:30:01,047: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:30:10,660: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:30:20,273: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:30:29,891: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.618 seconds = 15.60 FPS
+2020-02-28 17:30:39,500: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.608 seconds = 15.61 FPS
+2020-02-28 17:30:49,117: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.617 seconds = 15.60 FPS
+2020-02-28 17:30:58,730: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:31:08,340: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.610 seconds = 15.61 FPS
+2020-02-28 17:31:17,957: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.617 seconds = 15.60 FPS
+2020-02-28 17:31:27,570: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:31:37,178: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.608 seconds = 15.61 FPS
+2020-02-28 17:31:46,796: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.618 seconds = 15.60 FPS
+2020-02-28 17:31:56,409: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:32:06,023: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:32:15,632: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.610 seconds = 15.61 FPS
+2020-02-28 17:32:23,839: [CRITICAL] -> root : Uncaught exception:
+Traceback (most recent call last):
+  File "visionserver.py", line 225, in <module>
+    server.run()
+  File "visionserver.py", line 169, in run
+    time.sleep(0.01)
+KeyboardInterrupt
+2020-02-28 17:32:25,411: [INFO    ] -> root : ############# Vision Started #############
+2020-02-28 17:32:25,411: [INFO    ] -> root : OpenCV Version: 4.2.0
+2020-02-28 17:32:25,412: [INFO    ] -> root : CSCore Version: 2020.0.0
+2020-02-28 17:32:25,525: [INFO    ] -> root : Hostname: raspberrypi, IP: 10.11.4.202
+2020-02-28 17:32:25,525: [INFO    ] -> nt : NetworkTables initialized in server mode
+2020-02-28 17:32:25,526: [DEBUG   ] -> nt.th : Started thread nt-dispatch-thread-0
+2020-02-28 17:32:25,527: [DEBUG   ] -> nt.th : Started thread nt-server-thread-0
+2020-02-28 17:32:25,530: [DEBUG   ] -> nt.th : Started thread entry-notifier-0
+2020-02-28 17:32:25,532: [INFO    ] -> server : usb-046d_0825_2020FAE0-video-index0 was found in config with name "usb-046d_0825_2020FAE0-video-index0"
+2020-02-28 17:32:25,532: [DEBUG   ] -> nt : Listening on  1735
+2020-02-28 17:32:25,532: [INFO    ] -> server : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-28 17:32:25,533: [INFO    ] -> server : usb-046d_0825_C2082660-video-index0 was found in config with name "testingCamera-Bad"
+2020-02-28 17:32:25,533: [WARNING ] -> server : usb-046d_0825_6E3FEAE0-video-index0(driverCamera) is not connected, but is used!
+2020-02-28 17:32:25,533: [WARNING ] -> server : usb-046d_0825_88BA4B60-video-index0(shooterCamera) is not connected, but is used!
+2020-02-28 17:32:25,534: [DEBUG   ] -> camera(Vision Camera) : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-28 17:32:25,535: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:32:25,594: [INFO    ] -> cscore : Vision Camera: set format 1 res 320x240
+2020-02-28 17:32:25,864: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:32:25,922: [INFO    ] -> cscore : Vision Camera: set format 1 res 1280x720
+2020-02-28 17:32:25,980: [INFO    ] -> cscore : Vision Camera: set FPS to 60
+2020-02-28 17:32:26,335: [INFO    ] -> cscore : Vision Camera: set FPS to 30
+2020-02-28 17:32:26,447: [DEBUG   ] -> camera(Vision Camera) : Settings:
+brightness 0x00980900 (int)    : min=-64 max=64 step=1 default=0 value=0
+                       contrast 0x00980901 (int)    : min=0 max=64 step=1 default=32 value=28
+                     saturation 0x00980902 (int)    : min=0 max=128 step=1 default=60 value=60
+                            hue 0x00980903 (int)    : min=-40 max=40 step=1 default=0 value=0
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=0
+                          gamma 0x00980910 (int)    : min=72 max=500 step=1 default=100 value=85
+                           gain 0x00980913 (int)    : min=0 max=100 step=1 default=0 value=18
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=1 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=2800 max=6500 step=1 default=4600 value=3500
+                      sharpness 0x0098091b (int)    : min=0 max=6 step=1 default=2 value=2
+         backlight_compensation 0x0098091c (int)    : min=0 max=2 step=1 default=1 value=1
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=1
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=5000 step=1 default=157 value=500
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=0
+2020-02-28 17:32:26,449: [INFO    ] -> camera(Vision Camera) : property "exposure_auto" is a Kind.kEnum
+2020-02-28 17:32:26,450: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto" to "1" as a number
+2020-02-28 17:32:26,561: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto" to "1" as a number
+2020-02-28 17:32:26,562: [INFO    ] -> camera(Vision Camera) : property "white_balance_temperature_auto" is a Kind.kBoolean
+2020-02-28 17:32:26,563: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature_auto" to "0" as a number
+2020-02-28 17:32:26,566: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature_auto" to "0" as a number
+2020-02-28 17:32:26,566: [INFO    ] -> camera(Vision Camera) : property "contrast" is a Kind.kInteger
+2020-02-28 17:32:26,566: [DEBUG   ] -> camera(Vision Camera) : setting property "contrast" to "45" as a number
+2020-02-28 17:32:26,576: [DEBUG   ] -> camera(Vision Camera) : current property "contrast" to "45" as a number
+2020-02-28 17:32:26,576: [INFO    ] -> camera(Vision Camera) : property "exposure_absolute" is a Kind.kInteger
+2020-02-28 17:32:26,577: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_absolute" to "10" as a number
+2020-02-28 17:32:26,599: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_absolute" to "10" as a number
+2020-02-28 17:32:26,601: [INFO    ] -> camera(Vision Camera) : property "exposure_auto_priority" is a Kind.kBoolean
+2020-02-28 17:32:26,602: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto_priority" to "0" as a number
+2020-02-28 17:32:26,613: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto_priority" to "0" as a number
+2020-02-28 17:32:26,614: [INFO    ] -> camera(Vision Camera) : property "gain" is a Kind.kInteger
+2020-02-28 17:32:26,615: [DEBUG   ] -> camera(Vision Camera) : setting property "gain" to "18" as a number
+2020-02-28 17:32:26,623: [DEBUG   ] -> camera(Vision Camera) : current property "gain" to "18" as a number
+2020-02-28 17:32:26,625: [INFO    ] -> camera(Vision Camera) : property "gamma" is a Kind.kInteger
+2020-02-28 17:32:26,625: [DEBUG   ] -> camera(Vision Camera) : setting property "gamma" to "85" as a number
+2020-02-28 17:32:26,634: [DEBUG   ] -> camera(Vision Camera) : current property "gamma" to "85" as a number
+2020-02-28 17:32:26,635: [INFO    ] -> camera(Vision Camera) : property "white_balance_temperature" is a Kind.kInteger
+2020-02-28 17:32:26,635: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature" to "3500" as a number
+2020-02-28 17:32:26,651: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature" to "3500" as a number
+2020-02-28 17:32:26,652: [INFO    ] -> camera(Vision Camera) : Vision Camera started with pixelFormat:PixelFormat.kMJPEG, at 1280x720 30FPS
+2020-02-28 17:32:26,655: [INFO    ] -> server : Starting usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 vision Thread
+2020-02-28 17:32:26,662: [DEBUG   ] -> camera(testingCamera-Bad) : settings {}
+2020-02-28 17:32:27,235: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:32:27,276: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 160x120
+2020-02-28 17:32:27,293: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:32:28,901: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 320x240
+2020-02-28 17:32:28,926: [INFO    ] -> cscore : testingCamera-Bad: set FPS to 15
+2020-02-28 17:32:29,239: [DEBUG   ] -> camera(testingCamera-Bad) : Settings:
+brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                           gain 0x00980913 (int)    : min=0 max=255 step=1 default=64 value=192
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=2 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=0 max=10000 step=10 default=4000 value=1070 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=255 step=1 default=24 value=24
+         backlight_compensation 0x0098091c (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=10000 step=1 default=166 value=833 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+2020-02-28 17:32:29,243: [INFO    ] -> camera(testingCamera-Bad) : testingCamera-Bad started with pixelFormat:PixelFormat.kMJPEG, at 320x240 15FPS
+2020-02-28 17:32:29,246: [INFO    ] -> cscore.cserver : CameraServer 'serve_stream' listening on port 1181
+2020-02-28 17:32:37,043: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 10.389 seconds = 14.44 FPS
+2020-02-28 17:32:46,650: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.607 seconds = 15.61 FPS
+2020-02-28 17:32:56,264: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.614 seconds = 15.60 FPS
+2020-02-28 17:33:05,881: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.617 seconds = 15.60 FPS
+2020-02-28 17:33:15,496: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.615 seconds = 15.60 FPS
+2020-02-28 17:33:25,103: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.607 seconds = 15.61 FPS
+2020-02-28 17:33:34,717: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.614 seconds = 15.60 FPS
+2020-02-28 17:33:44,330: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:33:53,948: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.617 seconds = 15.60 FPS
+2020-02-28 17:34:03,561: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:34:13,178: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.617 seconds = 15.60 FPS
+2020-02-28 17:34:22,793: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.615 seconds = 15.60 FPS
+2020-02-28 17:34:32,401: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.608 seconds = 15.61 FPS
+2020-02-28 17:34:42,019: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.618 seconds = 15.60 FPS
+2020-02-28 17:34:51,696: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.678 seconds = 15.50 FPS
+2020-02-28 17:35:01,307: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.611 seconds = 15.61 FPS
+2020-02-28 17:35:10,918: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.610 seconds = 15.61 FPS
+2020-02-28 17:35:20,534: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.616 seconds = 15.60 FPS
+2020-02-28 17:35:30,147: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:35:39,756: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.609 seconds = 15.61 FPS
+2020-02-28 17:35:49,374: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.618 seconds = 15.60 FPS
+2020-02-28 17:35:59,051: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.678 seconds = 15.50 FPS
+2020-02-28 17:36:08,661: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.609 seconds = 15.61 FPS
+2020-02-28 17:36:18,278: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.617 seconds = 15.60 FPS
+2020-02-28 17:36:27,895: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.617 seconds = 15.60 FPS
+2020-02-28 17:36:37,504: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.609 seconds = 15.61 FPS
+2020-02-28 17:36:47,118: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:36:56,731: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:37:06,343: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.612 seconds = 15.61 FPS
+2020-02-28 17:37:15,961: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.618 seconds = 15.60 FPS
+2020-02-28 17:37:25,574: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:37:34,156: [CRITICAL] -> root : Uncaught exception:
+Traceback (most recent call last):
+  File "visionserver.py", line 225, in <module>
+    server.run()
+  File "visionserver.py", line 169, in run
+    time.sleep(0.01)
+KeyboardInterrupt
+2020-02-28 17:37:57,354: [INFO    ] -> root : ############# Vision Started #############
+2020-02-28 17:37:57,355: [INFO    ] -> root : OpenCV Version: 4.2.0
+2020-02-28 17:37:57,355: [INFO    ] -> root : CSCore Version: 2020.0.0
+2020-02-28 17:37:57,467: [INFO    ] -> root : Hostname: raspberrypi, IP: 10.11.4.202
+2020-02-28 17:37:57,468: [INFO    ] -> nt : NetworkTables initialized in server mode
+2020-02-28 17:37:57,469: [DEBUG   ] -> nt.th : Started thread nt-dispatch-thread-0
+2020-02-28 17:37:57,470: [DEBUG   ] -> nt.th : Started thread nt-server-thread-0
+2020-02-28 17:37:57,472: [DEBUG   ] -> nt : Listening on  1735
+2020-02-28 17:37:57,473: [DEBUG   ] -> nt.th : Started thread entry-notifier-0
+2020-02-28 17:37:57,474: [INFO    ] -> server : usb-046d_0825_2020FAE0-video-index0 was found in config with name "usb-046d_0825_2020FAE0-video-index0"
+2020-02-28 17:37:57,474: [INFO    ] -> server : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-28 17:37:57,475: [INFO    ] -> server : usb-046d_0825_C2082660-video-index0 was found in config with name "testingCamera-Bad"
+2020-02-28 17:37:57,475: [WARNING ] -> server : usb-046d_0825_6E3FEAE0-video-index0(driverCamera) is not connected, but is used!
+2020-02-28 17:37:57,475: [WARNING ] -> server : usb-046d_0825_88BA4B60-video-index0(shooterCamera) is not connected, but is used!
+2020-02-28 17:37:57,476: [DEBUG   ] -> camera(Vision Camera) : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-28 17:37:57,477: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:37:57,774: [INFO    ] -> cscore : Vision Camera: set format 1 res 320x240
+2020-02-28 17:37:58,640: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:37:58,698: [INFO    ] -> cscore : Vision Camera: set format 1 res 1280x720
+2020-02-28 17:37:58,756: [INFO    ] -> cscore : Vision Camera: set FPS to 60
+2020-02-28 17:37:59,100: [INFO    ] -> cscore : Vision Camera: set FPS to 30
+2020-02-28 17:37:59,329: [DEBUG   ] -> camera(Vision Camera) : Settings:
+brightness 0x00980900 (int)    : min=-64 max=64 step=1 default=0 value=0
+                       contrast 0x00980901 (int)    : min=0 max=64 step=1 default=32 value=28
+                     saturation 0x00980902 (int)    : min=0 max=128 step=1 default=60 value=60
+                            hue 0x00980903 (int)    : min=-40 max=40 step=1 default=0 value=0
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=0
+                          gamma 0x00980910 (int)    : min=72 max=500 step=1 default=100 value=85
+                           gain 0x00980913 (int)    : min=0 max=100 step=1 default=0 value=18
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=1 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=2800 max=6500 step=1 default=4600 value=3500
+                      sharpness 0x0098091b (int)    : min=0 max=6 step=1 default=2 value=2
+         backlight_compensation 0x0098091c (int)    : min=0 max=2 step=1 default=1 value=1
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=1
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=5000 step=1 default=157 value=500
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=0
+2020-02-28 17:37:59,330: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto" is a Kind.kEnum
+2020-02-28 17:37:59,331: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto" to "1" as a str
+2020-02-28 17:37:59,331: [WARNING ] -> camera(Vision Camera) : Unable to set property 'exposure_auto' to '1'
+2020-02-28 17:37:59,332: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature_auto" is a Kind.kBoolean
+2020-02-28 17:37:59,332: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature_auto" to "0" as a str
+2020-02-28 17:37:59,333: [WARNING ] -> camera(Vision Camera) : Unable to set property 'white_balance_temperature_auto' to '0'
+2020-02-28 17:37:59,333: [DEBUG   ] -> camera(Vision Camera) : property "contrast" is a Kind.kInteger
+2020-02-28 17:37:59,334: [DEBUG   ] -> camera(Vision Camera) : setting property "contrast" to "45" as a str
+2020-02-28 17:37:59,334: [WARNING ] -> camera(Vision Camera) : Unable to set property 'contrast' to '45'
+2020-02-28 17:37:59,335: [DEBUG   ] -> camera(Vision Camera) : property "exposure_absolute" is a Kind.kInteger
+2020-02-28 17:37:59,335: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_absolute" to "10" as a str
+2020-02-28 17:37:59,336: [WARNING ] -> camera(Vision Camera) : Unable to set property 'exposure_absolute' to '10'
+2020-02-28 17:37:59,337: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto_priority" is a Kind.kBoolean
+2020-02-28 17:37:59,337: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto_priority" to "0" as a str
+2020-02-28 17:37:59,338: [WARNING ] -> camera(Vision Camera) : Unable to set property 'exposure_auto_priority' to '0'
+2020-02-28 17:37:59,339: [DEBUG   ] -> camera(Vision Camera) : property "gain" is a Kind.kInteger
+2020-02-28 17:37:59,340: [DEBUG   ] -> camera(Vision Camera) : setting property "gain" to "18" as a str
+2020-02-28 17:37:59,340: [WARNING ] -> camera(Vision Camera) : Unable to set property 'gain' to '18'
+2020-02-28 17:37:59,341: [DEBUG   ] -> camera(Vision Camera) : property "gamma" is a Kind.kInteger
+2020-02-28 17:37:59,341: [DEBUG   ] -> camera(Vision Camera) : setting property "gamma" to "85" as a str
+2020-02-28 17:37:59,342: [WARNING ] -> camera(Vision Camera) : Unable to set property 'gamma' to '85'
+2020-02-28 17:37:59,343: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature" is a Kind.kInteger
+2020-02-28 17:37:59,343: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature" to "3500" as a str
+2020-02-28 17:37:59,344: [WARNING ] -> camera(Vision Camera) : Unable to set property 'white_balance_temperature' to '3500'
+2020-02-28 17:37:59,345: [INFO    ] -> camera(Vision Camera) : Vision Camera started with pixelFormat:PixelFormat.kMJPEG, at 1280x720 30FPS
+2020-02-28 17:37:59,349: [INFO    ] -> server : Starting usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 vision Thread
+2020-02-28 17:37:59,351: [DEBUG   ] -> camera(testingCamera-Bad) : settings {}
+2020-02-28 17:37:59,893: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:37:59,947: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 160x120
+2020-02-28 17:37:59,965: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:38:01,573: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 320x240
+2020-02-28 17:38:01,598: [INFO    ] -> cscore : testingCamera-Bad: set FPS to 15
+2020-02-28 17:38:01,910: [DEBUG   ] -> camera(testingCamera-Bad) : Settings:
+brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                           gain 0x00980913 (int)    : min=0 max=255 step=1 default=64 value=192
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=2 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=0 max=10000 step=10 default=4000 value=1070 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=255 step=1 default=24 value=24
+         backlight_compensation 0x0098091c (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=10000 step=1 default=166 value=833 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+2020-02-28 17:38:01,911: [INFO    ] -> camera(testingCamera-Bad) : testingCamera-Bad started with pixelFormat:PixelFormat.kMJPEG, at 320x240 15FPS
+2020-02-28 17:38:01,913: [INFO    ] -> cscore.cserver : CameraServer 'serve_stream' listening on port 1181
+2020-02-28 17:38:09,486: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 10.137 seconds = 14.80 FPS
+2020-02-28 17:38:19,094: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.608 seconds = 15.61 FPS
+2020-02-28 17:38:28,713: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.619 seconds = 15.59 FPS
+2020-02-28 17:38:38,320: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.607 seconds = 15.61 FPS
+2020-02-28 17:38:47,933: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:38:57,555: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.622 seconds = 15.59 FPS
+2020-02-28 17:38:59,550: [CRITICAL] -> root : Uncaught exception:
+Traceback (most recent call last):
+  File "visionserver.py", line 225, in <module>
+    server.run()
+  File "visionserver.py", line 169, in run
+    time.sleep(0.01)
+KeyboardInterrupt
+2020-02-28 17:39:01,627: [INFO    ] -> root : ############# Vision Started #############
+2020-02-28 17:39:01,627: [INFO    ] -> root : OpenCV Version: 4.2.0
+2020-02-28 17:39:01,627: [INFO    ] -> root : CSCore Version: 2020.0.0
+2020-02-28 17:39:01,642: [INFO    ] -> root : Hostname: raspberrypi, IP: 10.11.4.202
+2020-02-28 17:39:01,642: [INFO    ] -> nt : NetworkTables initialized in server mode
+2020-02-28 17:39:01,643: [DEBUG   ] -> nt.th : Started thread nt-dispatch-thread-0
+2020-02-28 17:39:01,644: [DEBUG   ] -> nt.th : Started thread nt-server-thread-0
+2020-02-28 17:39:01,647: [DEBUG   ] -> nt.th : Started thread entry-notifier-0
+2020-02-28 17:39:01,647: [INFO    ] -> server : usb-046d_0825_2020FAE0-video-index0 was found in config with name "usb-046d_0825_2020FAE0-video-index0"
+2020-02-28 17:39:01,649: [INFO    ] -> server : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-28 17:39:01,650: [INFO    ] -> server : usb-046d_0825_C2082660-video-index0 was found in config with name "testingCamera-Bad"
+2020-02-28 17:39:01,650: [WARNING ] -> server : usb-046d_0825_6E3FEAE0-video-index0(driverCamera) is not connected, but is used!
+2020-02-28 17:39:01,650: [WARNING ] -> server : usb-046d_0825_88BA4B60-video-index0(shooterCamera) is not connected, but is used!
+2020-02-28 17:39:01,650: [DEBUG   ] -> camera(Vision Camera) : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-28 17:39:01,653: [DEBUG   ] -> nt : Listening on  1735
+2020-02-28 17:39:01,654: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:39:01,714: [INFO    ] -> cscore : Vision Camera: set format 1 res 320x240
+2020-02-28 17:39:01,984: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:39:02,041: [INFO    ] -> cscore : Vision Camera: set format 1 res 1280x720
+2020-02-28 17:39:02,098: [INFO    ] -> cscore : Vision Camera: set FPS to 60
+2020-02-28 17:39:02,432: [INFO    ] -> cscore : Vision Camera: set FPS to 30
+2020-02-28 17:39:02,662: [DEBUG   ] -> camera(Vision Camera) : Settings:
+brightness 0x00980900 (int)    : min=-64 max=64 step=1 default=0 value=0
+                       contrast 0x00980901 (int)    : min=0 max=64 step=1 default=32 value=28
+                     saturation 0x00980902 (int)    : min=0 max=128 step=1 default=60 value=60
+                            hue 0x00980903 (int)    : min=-40 max=40 step=1 default=0 value=0
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=0
+                          gamma 0x00980910 (int)    : min=72 max=500 step=1 default=100 value=85
+                           gain 0x00980913 (int)    : min=0 max=100 step=1 default=0 value=18
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=1 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=2800 max=6500 step=1 default=4600 value=3500
+                      sharpness 0x0098091b (int)    : min=0 max=6 step=1 default=2 value=2
+         backlight_compensation 0x0098091c (int)    : min=0 max=2 step=1 default=1 value=1
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=1
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=5000 step=1 default=157 value=500
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=0
+2020-02-28 17:39:02,670: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto" is a Kind.kEnum
+2020-02-28 17:39:02,670: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto" to "1" as a str
+2020-02-28 17:39:02,671: [WARNING ] -> camera(Vision Camera) : Unable to set property 'exposure_auto' to '1'
+2020-02-28 17:39:02,672: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature_auto" is a Kind.kBoolean
+2020-02-28 17:39:02,672: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature_auto" to "0" as a str
+2020-02-28 17:39:02,673: [WARNING ] -> camera(Vision Camera) : Unable to set property 'white_balance_temperature_auto' to '0'
+2020-02-28 17:39:02,674: [DEBUG   ] -> camera(Vision Camera) : property "contrast" is a Kind.kInteger
+2020-02-28 17:39:02,674: [DEBUG   ] -> camera(Vision Camera) : setting property "contrast" to "45" as a str
+2020-02-28 17:39:02,675: [WARNING ] -> camera(Vision Camera) : Unable to set property 'contrast' to '45'
+2020-02-28 17:39:02,675: [DEBUG   ] -> camera(Vision Camera) : property "exposure_absolute" is a Kind.kInteger
+2020-02-28 17:39:02,676: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_absolute" to "10" as a str
+2020-02-28 17:39:02,676: [WARNING ] -> camera(Vision Camera) : Unable to set property 'exposure_absolute' to '10'
+2020-02-28 17:39:02,677: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto_priority" is a Kind.kBoolean
+2020-02-28 17:39:02,678: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto_priority" to "0" as a str
+2020-02-28 17:39:02,678: [WARNING ] -> camera(Vision Camera) : Unable to set property 'exposure_auto_priority' to '0'
+2020-02-28 17:39:02,679: [DEBUG   ] -> camera(Vision Camera) : property "gain" is a Kind.kInteger
+2020-02-28 17:39:02,679: [DEBUG   ] -> camera(Vision Camera) : setting property "gain" to "18" as a str
+2020-02-28 17:39:02,680: [WARNING ] -> camera(Vision Camera) : Unable to set property 'gain' to '18'
+2020-02-28 17:39:02,680: [DEBUG   ] -> camera(Vision Camera) : property "gamma" is a Kind.kInteger
+2020-02-28 17:39:02,681: [DEBUG   ] -> camera(Vision Camera) : setting property "gamma" to "85" as a str
+2020-02-28 17:39:02,681: [WARNING ] -> camera(Vision Camera) : Unable to set property 'gamma' to '85'
+2020-02-28 17:39:02,682: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature" is a Kind.kInteger
+2020-02-28 17:39:02,682: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature" to "3500" as a str
+2020-02-28 17:39:02,683: [WARNING ] -> camera(Vision Camera) : Unable to set property 'white_balance_temperature' to '3500'
+2020-02-28 17:39:02,684: [INFO    ] -> camera(Vision Camera) : Vision Camera started with pixelFormat:PixelFormat.kMJPEG, at 1280x720 30FPS
+2020-02-28 17:39:02,688: [INFO    ] -> server : Starting usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 vision Thread
+2020-02-28 17:39:02,689: [DEBUG   ] -> camera(testingCamera-Bad) : settings {}
+2020-02-28 17:39:03,271: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:39:03,321: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 160x120
+2020-02-28 17:39:03,348: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:39:04,955: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 320x240
+2020-02-28 17:39:04,979: [INFO    ] -> cscore : testingCamera-Bad: set FPS to 15
+2020-02-28 17:39:05,291: [DEBUG   ] -> camera(testingCamera-Bad) : Settings:
+brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                           gain 0x00980913 (int)    : min=0 max=255 step=1 default=64 value=192
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=2 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=0 max=10000 step=10 default=4000 value=1070 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=255 step=1 default=24 value=24
+         backlight_compensation 0x0098091c (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=10000 step=1 default=166 value=833 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+2020-02-28 17:39:05,293: [INFO    ] -> camera(testingCamera-Bad) : testingCamera-Bad started with pixelFormat:PixelFormat.kMJPEG, at 320x240 15FPS
+2020-02-28 17:39:05,294: [INFO    ] -> cscore.cserver : CameraServer 'serve_stream' listening on port 1181
+2020-02-28 17:39:12,879: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 10.192 seconds = 14.72 FPS
+2020-02-28 17:39:22,492: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.613 seconds = 15.60 FPS
+2020-02-28 17:39:25,732: [CRITICAL] -> root : Uncaught exception:
+Traceback (most recent call last):
+  File "visionserver.py", line 225, in <module>
+    server.run()
+  File "visionserver.py", line 169, in run
+    time.sleep(0.01)
+KeyboardInterrupt
+2020-02-28 17:39:27,699: [INFO    ] -> root : ############# Vision Started #############
+2020-02-28 17:39:27,700: [INFO    ] -> root : OpenCV Version: 4.2.0
+2020-02-28 17:39:27,700: [INFO    ] -> root : CSCore Version: 2020.0.0
+2020-02-28 17:39:27,709: [INFO    ] -> root : Hostname: raspberrypi, IP: 10.11.4.202
+2020-02-28 17:39:27,709: [INFO    ] -> nt : NetworkTables initialized in server mode
+2020-02-28 17:39:27,710: [DEBUG   ] -> nt.th : Started thread nt-dispatch-thread-0
+2020-02-28 17:39:27,711: [DEBUG   ] -> nt.th : Started thread nt-server-thread-0
+2020-02-28 17:39:27,714: [DEBUG   ] -> nt.th : Started thread entry-notifier-0
+2020-02-28 17:39:27,715: [DEBUG   ] -> nt : Listening on  1735
+2020-02-28 17:39:27,715: [INFO    ] -> server : usb-046d_0825_2020FAE0-video-index0 was found in config with name "usb-046d_0825_2020FAE0-video-index0"
+2020-02-28 17:39:27,716: [INFO    ] -> server : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-28 17:39:27,716: [INFO    ] -> server : usb-046d_0825_C2082660-video-index0 was found in config with name "testingCamera-Bad"
+2020-02-28 17:39:27,717: [WARNING ] -> server : usb-046d_0825_6E3FEAE0-video-index0(driverCamera) is not connected, but is used!
+2020-02-28 17:39:27,717: [WARNING ] -> server : usb-046d_0825_88BA4B60-video-index0(shooterCamera) is not connected, but is used!
+2020-02-28 17:39:27,717: [DEBUG   ] -> camera(Vision Camera) : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-28 17:39:27,720: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:39:27,778: [INFO    ] -> cscore : Vision Camera: set format 1 res 320x240
+2020-02-28 17:39:28,048: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:39:28,105: [INFO    ] -> cscore : Vision Camera: set format 1 res 1280x720
+2020-02-28 17:39:28,163: [INFO    ] -> cscore : Vision Camera: set FPS to 60
+2020-02-28 17:39:28,498: [INFO    ] -> cscore : Vision Camera: set FPS to 30
+2020-02-28 17:39:28,727: [DEBUG   ] -> camera(Vision Camera) : Settings:
+brightness 0x00980900 (int)    : min=-64 max=64 step=1 default=0 value=0
+                       contrast 0x00980901 (int)    : min=0 max=64 step=1 default=32 value=28
+                     saturation 0x00980902 (int)    : min=0 max=128 step=1 default=60 value=60
+                            hue 0x00980903 (int)    : min=-40 max=40 step=1 default=0 value=0
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=0
+                          gamma 0x00980910 (int)    : min=72 max=500 step=1 default=100 value=85
+                           gain 0x00980913 (int)    : min=0 max=100 step=1 default=0 value=18
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=1 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=2800 max=6500 step=1 default=4600 value=3500
+                      sharpness 0x0098091b (int)    : min=0 max=6 step=1 default=2 value=2
+         backlight_compensation 0x0098091c (int)    : min=0 max=2 step=1 default=1 value=1
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=1
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=5000 step=1 default=157 value=500
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=0
+2020-02-28 17:39:28,732: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto" is a Kind.kEnum
+2020-02-28 17:39:28,732: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto" to "1" as a str
+2020-02-28 17:39:28,773: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto" to "1" as a number
+2020-02-28 17:39:28,774: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature_auto" is a Kind.kBoolean
+2020-02-28 17:39:28,775: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature_auto" to "0" as a str
+2020-02-28 17:39:28,819: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature_auto" to "0" as a number
+2020-02-28 17:39:28,820: [DEBUG   ] -> camera(Vision Camera) : property "contrast" is a Kind.kInteger
+2020-02-28 17:39:28,820: [DEBUG   ] -> camera(Vision Camera) : setting property "contrast" to "45" as a str
+2020-02-28 17:39:28,850: [DEBUG   ] -> camera(Vision Camera) : current property "contrast" to "45" as a number
+2020-02-28 17:39:28,851: [DEBUG   ] -> camera(Vision Camera) : property "exposure_absolute" is a Kind.kInteger
+2020-02-28 17:39:28,863: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_absolute" to "10" as a str
+2020-02-28 17:39:28,908: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_absolute" to "10" as a number
+2020-02-28 17:39:28,909: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto_priority" is a Kind.kBoolean
+2020-02-28 17:39:28,909: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto_priority" to "0" as a str
+2020-02-28 17:39:28,941: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto_priority" to "0" as a number
+2020-02-28 17:39:28,942: [DEBUG   ] -> camera(Vision Camera) : property "gain" is a Kind.kInteger
+2020-02-28 17:39:28,943: [DEBUG   ] -> camera(Vision Camera) : setting property "gain" to "18" as a str
+2020-02-28 17:39:28,972: [DEBUG   ] -> camera(Vision Camera) : current property "gain" to "18" as a number
+2020-02-28 17:39:28,973: [DEBUG   ] -> camera(Vision Camera) : property "gamma" is a Kind.kInteger
+2020-02-28 17:39:28,973: [DEBUG   ] -> camera(Vision Camera) : setting property "gamma" to "85" as a str
+2020-02-28 17:39:29,004: [DEBUG   ] -> camera(Vision Camera) : current property "gamma" to "85" as a number
+2020-02-28 17:39:29,005: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature" is a Kind.kInteger
+2020-02-28 17:39:29,005: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature" to "3500" as a str
+2020-02-28 17:39:29,044: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature" to "3500" as a number
+2020-02-28 17:39:29,045: [INFO    ] -> camera(Vision Camera) : Vision Camera started with pixelFormat:PixelFormat.kMJPEG, at 1280x720 30FPS
+2020-02-28 17:39:29,047: [INFO    ] -> server : Starting usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 vision Thread
+2020-02-28 17:39:29,055: [DEBUG   ] -> camera(testingCamera-Bad) : settings {}
+2020-02-28 17:39:29,634: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:39:29,685: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 160x120
+2020-02-28 17:39:29,707: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:39:31,320: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 320x240
+2020-02-28 17:39:31,344: [INFO    ] -> cscore : testingCamera-Bad: set FPS to 15
+2020-02-28 17:39:31,657: [DEBUG   ] -> camera(testingCamera-Bad) : Settings:
+brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                           gain 0x00980913 (int)    : min=0 max=255 step=1 default=64 value=192
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=2 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=0 max=10000 step=10 default=4000 value=1070 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=255 step=1 default=24 value=24
+         backlight_compensation 0x0098091c (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=10000 step=1 default=166 value=998 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+2020-02-28 17:39:31,661: [INFO    ] -> camera(testingCamera-Bad) : testingCamera-Bad started with pixelFormat:PixelFormat.kMJPEG, at 320x240 15FPS
+2020-02-28 17:39:31,666: [INFO    ] -> cscore.cserver : CameraServer 'serve_stream' listening on port 1181
+2020-02-28 17:39:38,702: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.655 seconds = 15.54 FPS
+2020-02-28 17:39:47,754: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.052 seconds = 16.57 FPS
+2020-02-28 17:39:56,778: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.024 seconds = 16.62 FPS
+2020-02-28 17:40:05,792: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.014 seconds = 16.64 FPS
+2020-02-28 17:40:14,837: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.044 seconds = 16.58 FPS
+2020-02-28 17:40:23,886: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:40:27,749: [CRITICAL] -> root : Uncaught exception:
+Traceback (most recent call last):
+  File "visionserver.py", line 225, in <module>
+    server.run()
+  File "visionserver.py", line 169, in run
+    time.sleep(0.01)
+KeyboardInterrupt
+2020-02-28 17:40:29,610: [INFO    ] -> root : ############# Vision Started #############
+2020-02-28 17:40:29,611: [INFO    ] -> root : OpenCV Version: 4.2.0
+2020-02-28 17:40:29,611: [INFO    ] -> root : CSCore Version: 2020.0.0
+2020-02-28 17:40:29,725: [INFO    ] -> root : Hostname: raspberrypi, IP: 10.11.4.202
+2020-02-28 17:40:29,725: [INFO    ] -> nt : NetworkTables initialized in server mode
+2020-02-28 17:40:29,726: [DEBUG   ] -> nt.th : Started thread nt-dispatch-thread-0
+2020-02-28 17:40:29,727: [DEBUG   ] -> nt.th : Started thread nt-server-thread-0
+2020-02-28 17:40:29,728: [DEBUG   ] -> nt : Listening on  1735
+2020-02-28 17:40:29,731: [DEBUG   ] -> nt.th : Started thread entry-notifier-0
+2020-02-28 17:40:29,731: [INFO    ] -> server : usb-046d_0825_2020FAE0-video-index0 was found in config with name "usb-046d_0825_2020FAE0-video-index0"
+2020-02-28 17:40:29,732: [INFO    ] -> server : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-28 17:40:29,733: [INFO    ] -> server : usb-046d_0825_C2082660-video-index0 was found in config with name "testingCamera-Bad"
+2020-02-28 17:40:29,734: [WARNING ] -> server : usb-046d_0825_6E3FEAE0-video-index0(driverCamera) is not connected, but is used!
+2020-02-28 17:40:29,734: [WARNING ] -> server : usb-046d_0825_88BA4B60-video-index0(shooterCamera) is not connected, but is used!
+2020-02-28 17:40:29,735: [DEBUG   ] -> camera(Vision Camera) : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-28 17:40:29,737: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:40:29,796: [INFO    ] -> cscore : Vision Camera: set format 1 res 320x240
+2020-02-28 17:40:30,063: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:40:30,121: [INFO    ] -> cscore : Vision Camera: set format 1 res 1280x720
+2020-02-28 17:40:30,178: [INFO    ] -> cscore : Vision Camera: set FPS to 60
+2020-02-28 17:40:30,534: [INFO    ] -> cscore : Vision Camera: set FPS to 30
+2020-02-28 17:40:30,763: [DEBUG   ] -> camera(Vision Camera) : Settings:
+brightness 0x00980900 (int)    : min=-64 max=64 step=1 default=0 value=0
+                       contrast 0x00980901 (int)    : min=0 max=64 step=1 default=32 value=45
+                     saturation 0x00980902 (int)    : min=0 max=128 step=1 default=60 value=60
+                            hue 0x00980903 (int)    : min=-40 max=40 step=1 default=0 value=0
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=0
+                          gamma 0x00980910 (int)    : min=72 max=500 step=1 default=100 value=85
+                           gain 0x00980913 (int)    : min=0 max=100 step=1 default=0 value=18
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=1 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=2800 max=6500 step=1 default=4600 value=3500
+                      sharpness 0x0098091b (int)    : min=0 max=6 step=1 default=2 value=2
+         backlight_compensation 0x0098091c (int)    : min=0 max=2 step=1 default=1 value=1
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=1
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=5000 step=1 default=157 value=10
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=0
+2020-02-28 17:40:30,765: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto" is a Kind.kEnum
+2020-02-28 17:40:30,765: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto" to "1" as a str
+2020-02-28 17:40:30,789: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto" to "1" as a number
+2020-02-28 17:40:30,790: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature_auto" is a Kind.kBoolean
+2020-02-28 17:40:30,791: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature_auto" to "0" as a str
+2020-02-28 17:40:30,816: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature_auto" to "0" as a number
+2020-02-28 17:40:30,817: [DEBUG   ] -> camera(Vision Camera) : property "contrast" is a Kind.kInteger
+2020-02-28 17:40:30,817: [DEBUG   ] -> camera(Vision Camera) : setting property "contrast" to "45" as a str
+2020-02-28 17:40:30,848: [DEBUG   ] -> camera(Vision Camera) : current property "contrast" to "45" as a number
+2020-02-28 17:40:30,849: [DEBUG   ] -> camera(Vision Camera) : property "exposure_absolute" is a Kind.kInteger
+2020-02-28 17:40:30,849: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_absolute" to "10" as a str
+2020-02-28 17:40:30,894: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_absolute" to "10" as a number
+2020-02-28 17:40:30,895: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto_priority" is a Kind.kBoolean
+2020-02-28 17:40:30,896: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto_priority" to "0" as a str
+2020-02-28 17:40:30,933: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto_priority" to "0" as a number
+2020-02-28 17:40:30,934: [DEBUG   ] -> camera(Vision Camera) : property "gain" is a Kind.kInteger
+2020-02-28 17:40:30,934: [DEBUG   ] -> camera(Vision Camera) : setting property "gain" to "18" as a str
+2020-02-28 17:40:30,965: [DEBUG   ] -> camera(Vision Camera) : current property "gain" to "18" as a number
+2020-02-28 17:40:30,966: [DEBUG   ] -> camera(Vision Camera) : property "gamma" is a Kind.kInteger
+2020-02-28 17:40:30,967: [DEBUG   ] -> camera(Vision Camera) : setting property "gamma" to "85" as a str
+2020-02-28 17:40:30,997: [DEBUG   ] -> camera(Vision Camera) : current property "gamma" to "85" as a number
+2020-02-28 17:40:30,997: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature" is a Kind.kInteger
+2020-02-28 17:40:30,998: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature" to "3500" as a str
+2020-02-28 17:40:31,035: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature" to "3500" as a number
+2020-02-28 17:40:31,036: [INFO    ] -> camera(Vision Camera) : Vision Camera started with pixelFormat:PixelFormat.kMJPEG, at 1280x720 30FPS
+2020-02-28 17:40:31,039: [INFO    ] -> server : Starting usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 vision Thread
+2020-02-28 17:40:31,046: [DEBUG   ] -> camera(testingCamera-Bad) : settings {}
+2020-02-28 17:40:31,609: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:40:31,661: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 160x120
+2020-02-28 17:40:31,698: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:40:33,299: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 320x240
+2020-02-28 17:40:33,325: [INFO    ] -> cscore : testingCamera-Bad: set FPS to 15
+2020-02-28 17:40:33,637: [DEBUG   ] -> camera(testingCamera-Bad) : Settings:
+brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                           gain 0x00980913 (int)    : min=0 max=255 step=1 default=64 value=192
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=2 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=0 max=10000 step=10 default=4000 value=1070 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=255 step=1 default=24 value=24
+         backlight_compensation 0x0098091c (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=10000 step=1 default=166 value=833 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+2020-02-28 17:40:33,640: [INFO    ] -> camera(testingCamera-Bad) : testingCamera-Bad started with pixelFormat:PixelFormat.kMJPEG, at 320x240 15FPS
+2020-02-28 17:40:33,643: [INFO    ] -> cscore.cserver : CameraServer 'serve_stream' listening on port 1181
+2020-02-28 17:40:40,681: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.643 seconds = 15.56 FPS
+2020-02-28 17:40:49,735: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.054 seconds = 16.57 FPS
+2020-02-28 17:40:58,784: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:41:07,799: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.015 seconds = 16.64 FPS
+2020-02-28 17:41:07,881: [CRITICAL] -> root : Uncaught exception:
+Traceback (most recent call last):
+  File "visionserver.py", line 225, in <module>
+    server.run()
+  File "visionserver.py", line 169, in run
+    time.sleep(0.01)
+KeyboardInterrupt
+2020-02-28 17:41:10,067: [INFO    ] -> root : ############# Vision Started #############
+2020-02-28 17:41:10,067: [INFO    ] -> root : OpenCV Version: 4.2.0
+2020-02-28 17:41:10,067: [INFO    ] -> root : CSCore Version: 2020.0.0
+2020-02-28 17:41:10,076: [INFO    ] -> root : Hostname: raspberrypi, IP: 10.11.4.202
+2020-02-28 17:41:10,077: [INFO    ] -> nt : NetworkTables initialized in server mode
+2020-02-28 17:41:10,078: [DEBUG   ] -> nt.th : Started thread nt-dispatch-thread-0
+2020-02-28 17:41:10,079: [DEBUG   ] -> nt.th : Started thread nt-server-thread-0
+2020-02-28 17:41:10,082: [DEBUG   ] -> nt.th : Started thread entry-notifier-0
+2020-02-28 17:41:10,082: [DEBUG   ] -> nt : Listening on  1735
+2020-02-28 17:41:10,084: [INFO    ] -> server : usb-046d_0825_2020FAE0-video-index0 was found in config with name "usb-046d_0825_2020FAE0-video-index0"
+2020-02-28 17:41:10,084: [INFO    ] -> server : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-28 17:41:10,085: [INFO    ] -> server : usb-046d_0825_C2082660-video-index0 was found in config with name "testingCamera-Bad"
+2020-02-28 17:41:10,085: [WARNING ] -> server : usb-046d_0825_6E3FEAE0-video-index0(driverCamera) is not connected, but is used!
+2020-02-28 17:41:10,085: [WARNING ] -> server : usb-046d_0825_88BA4B60-video-index0(shooterCamera) is not connected, but is used!
+2020-02-28 17:41:10,086: [DEBUG   ] -> camera(Vision Camera) : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-28 17:41:10,087: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:41:10,146: [INFO    ] -> cscore : Vision Camera: set format 1 res 320x240
+2020-02-28 17:41:10,413: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:41:10,470: [INFO    ] -> cscore : Vision Camera: set format 1 res 1280x720
+2020-02-28 17:41:10,528: [INFO    ] -> cscore : Vision Camera: set FPS to 60
+2020-02-28 17:41:10,864: [INFO    ] -> cscore : Vision Camera: set FPS to 30
+2020-02-28 17:41:11,093: [DEBUG   ] -> camera(Vision Camera) : Settings:
+brightness 0x00980900 (int)    : min=-64 max=64 step=1 default=0 value=0
+                       contrast 0x00980901 (int)    : min=0 max=64 step=1 default=32 value=45
+                     saturation 0x00980902 (int)    : min=0 max=128 step=1 default=60 value=60
+                            hue 0x00980903 (int)    : min=-40 max=40 step=1 default=0 value=0
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=0
+                          gamma 0x00980910 (int)    : min=72 max=500 step=1 default=100 value=85
+                           gain 0x00980913 (int)    : min=0 max=100 step=1 default=0 value=18
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=1 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=2800 max=6500 step=1 default=4600 value=3500
+                      sharpness 0x0098091b (int)    : min=0 max=6 step=1 default=2 value=2
+         backlight_compensation 0x0098091c (int)    : min=0 max=2 step=1 default=1 value=1
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=1
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=5000 step=1 default=157 value=50
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=0
+2020-02-28 17:41:11,094: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto" is a Kind.kEnum
+2020-02-28 17:41:11,095: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto" to "1" as a str
+2020-02-28 17:41:11,127: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto" to "1" as a number
+2020-02-28 17:41:11,128: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature_auto" is a Kind.kBoolean
+2020-02-28 17:41:11,129: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature_auto" to "0" as a str
+2020-02-28 17:41:11,168: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature_auto" to "0" as a number
+2020-02-28 17:41:11,169: [DEBUG   ] -> camera(Vision Camera) : property "contrast" is a Kind.kInteger
+2020-02-28 17:41:11,170: [DEBUG   ] -> camera(Vision Camera) : setting property "contrast" to "45" as a str
+2020-02-28 17:41:11,221: [DEBUG   ] -> camera(Vision Camera) : current property "contrast" to "45" as a number
+2020-02-28 17:41:11,223: [DEBUG   ] -> camera(Vision Camera) : property "exposure_absolute" is a Kind.kInteger
+2020-02-28 17:41:11,223: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_absolute" to "10" as a str
+2020-02-28 17:41:11,280: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_absolute" to "10" as a number
+2020-02-28 17:41:11,282: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto_priority" is a Kind.kBoolean
+2020-02-28 17:41:11,282: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto_priority" to "0" as a str
+2020-02-28 17:41:11,316: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto_priority" to "0" as a number
+2020-02-28 17:41:11,318: [DEBUG   ] -> camera(Vision Camera) : property "gain" is a Kind.kInteger
+2020-02-28 17:41:11,318: [DEBUG   ] -> camera(Vision Camera) : setting property "gain" to "18" as a str
+2020-02-28 17:41:11,349: [DEBUG   ] -> camera(Vision Camera) : current property "gain" to "18" as a number
+2020-02-28 17:41:11,350: [DEBUG   ] -> camera(Vision Camera) : property "gamma" is a Kind.kInteger
+2020-02-28 17:41:11,350: [DEBUG   ] -> camera(Vision Camera) : setting property "gamma" to "85" as a str
+2020-02-28 17:41:11,379: [DEBUG   ] -> camera(Vision Camera) : current property "gamma" to "85" as a number
+2020-02-28 17:41:11,380: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature" is a Kind.kInteger
+2020-02-28 17:41:11,380: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature" to "3500" as a str
+2020-02-28 17:41:11,417: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature" to "3500" as a number
+2020-02-28 17:41:11,418: [INFO    ] -> camera(Vision Camera) : Vision Camera started with pixelFormat:PixelFormat.kMJPEG, at 1280x720 30FPS
+2020-02-28 17:41:11,420: [INFO    ] -> server : Starting usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 vision Thread
+2020-02-28 17:41:11,422: [DEBUG   ] -> camera(testingCamera-Bad) : settings {}
+2020-02-28 17:41:11,962: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:41:12,001: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 160x120
+2020-02-28 17:41:12,022: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:41:13,629: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 320x240
+2020-02-28 17:41:13,654: [INFO    ] -> cscore : testingCamera-Bad: set FPS to 15
+2020-02-28 17:41:13,968: [DEBUG   ] -> camera(testingCamera-Bad) : Settings:
+brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                           gain 0x00980913 (int)    : min=0 max=255 step=1 default=64 value=192
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=2 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=0 max=10000 step=10 default=4000 value=1070 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=255 step=1 default=24 value=24
+         backlight_compensation 0x0098091c (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=10000 step=1 default=166 value=833 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+2020-02-28 17:41:13,972: [INFO    ] -> camera(testingCamera-Bad) : testingCamera-Bad started with pixelFormat:PixelFormat.kMJPEG, at 320x240 15FPS
+2020-02-28 17:41:13,975: [INFO    ] -> cscore.cserver : CameraServer 'serve_stream' listening on port 1181
+2020-02-28 17:41:20,951: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.531 seconds = 15.74 FPS
+2020-02-28 17:41:29,964: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.014 seconds = 16.64 FPS
+2020-02-28 17:41:38,994: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.029 seconds = 16.61 FPS
+2020-02-28 17:41:48,038: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.044 seconds = 16.59 FPS
+2020-02-28 17:41:57,092: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.054 seconds = 16.57 FPS
+2020-02-28 17:42:06,101: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.009 seconds = 16.65 FPS
+2020-02-28 17:42:15,145: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.044 seconds = 16.58 FPS
+2020-02-28 17:42:24,199: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.054 seconds = 16.57 FPS
+2020-02-28 17:42:33,265: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.066 seconds = 16.55 FPS
+2020-02-28 17:42:42,333: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.068 seconds = 16.54 FPS
+2020-02-28 17:42:51,382: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:43:00,433: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.050 seconds = 16.57 FPS
+2020-02-28 17:43:09,482: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:43:18,514: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.032 seconds = 16.61 FPS
+2020-02-28 17:43:27,555: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.041 seconds = 16.59 FPS
+2020-02-28 17:43:36,564: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.009 seconds = 16.65 FPS
+2020-02-28 17:43:45,593: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.029 seconds = 16.61 FPS
+2020-02-28 17:43:54,663: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.071 seconds = 16.54 FPS
+2020-02-28 17:44:03,731: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.068 seconds = 16.54 FPS
+2020-02-28 17:44:12,765: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.034 seconds = 16.60 FPS
+2020-02-28 17:44:21,794: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.029 seconds = 16.61 FPS
+2020-02-28 17:44:30,843: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:44:39,868: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.024 seconds = 16.62 FPS
+2020-02-28 17:44:48,862: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 8.994 seconds = 16.68 FPS
+2020-02-28 17:44:57,907: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.046 seconds = 16.58 FPS
+2020-02-28 17:45:06,957: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:45:16,011: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.055 seconds = 16.57 FPS
+2020-02-28 17:45:25,037: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.026 seconds = 16.62 FPS
+2020-02-28 17:45:34,042: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.005 seconds = 16.66 FPS
+2020-02-28 17:45:43,088: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.045 seconds = 16.58 FPS
+2020-02-28 17:45:52,121: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.034 seconds = 16.60 FPS
+2020-02-28 17:46:01,126: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.004 seconds = 16.66 FPS
+2020-02-28 17:46:10,140: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.014 seconds = 16.64 FPS
+2020-02-28 17:46:19,186: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.046 seconds = 16.58 FPS
+2020-02-28 17:46:28,233: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.048 seconds = 16.58 FPS
+2020-02-28 17:46:37,242: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.009 seconds = 16.65 FPS
+2020-02-28 17:46:46,316: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.074 seconds = 16.53 FPS
+2020-02-28 17:46:55,321: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.005 seconds = 16.66 FPS
+2020-02-28 17:47:04,354: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.033 seconds = 16.61 FPS
+2020-02-28 17:47:13,384: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.030 seconds = 16.61 FPS
+2020-02-28 17:47:22,408: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.024 seconds = 16.62 FPS
+2020-02-28 17:47:31,439: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.031 seconds = 16.61 FPS
+2020-02-28 17:47:40,487: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.048 seconds = 16.58 FPS
+2020-02-28 17:47:49,496: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.009 seconds = 16.65 FPS
+2020-02-28 17:47:53,418: [CRITICAL] -> root : Uncaught exception:
+Traceback (most recent call last):
+  File "visionserver.py", line 225, in <module>
+    server.run()
+  File "visionserver.py", line 169, in run
+    time.sleep(0.01)
+KeyboardInterrupt
+2020-02-28 17:47:54,864: [INFO    ] -> root : ############# Vision Started #############
+2020-02-28 17:47:54,865: [INFO    ] -> root : OpenCV Version: 4.2.0
+2020-02-28 17:47:54,865: [INFO    ] -> root : CSCore Version: 2020.0.0
+2020-02-28 17:47:54,978: [INFO    ] -> root : Hostname: raspberrypi, IP: 10.11.4.202
+2020-02-28 17:47:54,978: [INFO    ] -> nt : NetworkTables initialized in server mode
+2020-02-28 17:47:54,979: [DEBUG   ] -> nt.th : Started thread nt-dispatch-thread-0
+2020-02-28 17:47:54,981: [DEBUG   ] -> nt.th : Started thread nt-server-thread-0
+2020-02-28 17:47:54,984: [DEBUG   ] -> nt : Listening on  1735
+2020-02-28 17:47:54,984: [DEBUG   ] -> nt.th : Started thread entry-notifier-0
+2020-02-28 17:47:54,985: [INFO    ] -> server : usb-046d_0825_2020FAE0-video-index0 was found in config with name "usb-046d_0825_2020FAE0-video-index0"
+2020-02-28 17:47:54,986: [INFO    ] -> server : usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 was found in config with name "Vision Camera"
+2020-02-28 17:47:54,987: [INFO    ] -> server : usb-046d_0825_C2082660-video-index0 was found in config with name "testingCamera-Bad"
+2020-02-28 17:47:54,987: [WARNING ] -> server : usb-046d_0825_6E3FEAE0-video-index0(driverCamera) is not connected, but is used!
+2020-02-28 17:47:54,988: [WARNING ] -> server : usb-046d_0825_88BA4B60-video-index0(shooterCamera) is not connected, but is used!
+2020-02-28 17:47:54,989: [DEBUG   ] -> camera(usb-046d_0825_2020FAE0-video-index0) : settings {}
+2020-02-28 17:47:55,531: [INFO    ] -> cscore : usb-046d_0825_2020FAE0-video-index0: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_2020FAE0-video-index0
+2020-02-28 17:47:55,664: [INFO    ] -> cscore : usb-046d_0825_2020FAE0-video-index0: set format 1 res 160x120
+2020-02-28 17:47:55,686: [INFO    ] -> cscore : usb-046d_0825_2020FAE0-video-index0: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_2020FAE0-video-index0
+2020-02-28 17:47:57,301: [INFO    ] -> cscore : usb-046d_0825_2020FAE0-video-index0: set format 1 res 320x240
+2020-02-28 17:47:57,325: [INFO    ] -> cscore : usb-046d_0825_2020FAE0-video-index0: set FPS to 30
+2020-02-28 17:47:57,649: [INFO    ] -> cscore : usb-046d_0825_2020FAE0-video-index0: set FPS to 15
+2020-02-28 17:47:57,965: [DEBUG   ] -> camera(usb-046d_0825_2020FAE0-video-index0) : Settings:
+brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                           gain 0x00980913 (int)    : min=0 max=255 step=1 default=64 value=192
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=2 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=0 max=10000 step=10 default=4000 value=1070 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=255 step=1 default=24 value=24
+         backlight_compensation 0x0098091c (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=10000 step=1 default=166 value=336 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+2020-02-28 17:47:57,968: [INFO    ] -> camera(usb-046d_0825_2020FAE0-video-index0) : usb-046d_0825_2020FAE0-video-index0 started with pixelFormat:PixelFormat.kMJPEG, at 320x240 15FPS
+2020-02-28 17:47:57,970: [DEBUG   ] -> camera(Vision Camera) : settings {'contrast': 45, 'exposure_absolute': 10, 'exposure_auto': 1, 'exposure_auto_priority': 0, 'gain': 18, 'gamma': 85, 'white_balance_temperature': 3500, 'white_balance_temperature_auto': 0}
+2020-02-28 17:47:57,973: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:47:58,125: [INFO    ] -> cscore : Vision Camera: set format 1 res 320x240
+2020-02-28 17:47:58,993: [INFO    ] -> cscore : Vision Camera: Connecting to USB camera on /dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0
+2020-02-28 17:47:59,050: [INFO    ] -> cscore : Vision Camera: set format 1 res 1280x720
+2020-02-28 17:47:59,108: [INFO    ] -> cscore : Vision Camera: set FPS to 60
+2020-02-28 17:47:59,450: [INFO    ] -> cscore : Vision Camera: set FPS to 30
+2020-02-28 17:47:59,680: [DEBUG   ] -> camera(Vision Camera) : Settings:
+brightness 0x00980900 (int)    : min=-64 max=64 step=1 default=0 value=0
+                       contrast 0x00980901 (int)    : min=0 max=64 step=1 default=32 value=45
+                     saturation 0x00980902 (int)    : min=0 max=128 step=1 default=60 value=60
+                            hue 0x00980903 (int)    : min=-40 max=40 step=1 default=0 value=0
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=0
+                          gamma 0x00980910 (int)    : min=72 max=500 step=1 default=100 value=85
+                           gain 0x00980913 (int)    : min=0 max=100 step=1 default=0 value=18
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=1 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=2800 max=6500 step=1 default=4600 value=3500
+                      sharpness 0x0098091b (int)    : min=0 max=6 step=1 default=2 value=2
+         backlight_compensation 0x0098091c (int)    : min=0 max=2 step=1 default=1 value=1
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=1
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=5000 step=1 default=157 value=10
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=0
+2020-02-28 17:47:59,688: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto" is a Kind.kEnum
+2020-02-28 17:47:59,689: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto" to "1" as a str
+2020-02-28 17:47:59,734: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto" to "1"
+2020-02-28 17:47:59,736: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature_auto" is a Kind.kBoolean
+2020-02-28 17:47:59,737: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature_auto" to "0" as a str
+2020-02-28 17:47:59,776: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature_auto" to "0"
+2020-02-28 17:47:59,778: [DEBUG   ] -> camera(Vision Camera) : property "contrast" is a Kind.kInteger
+2020-02-28 17:47:59,778: [DEBUG   ] -> camera(Vision Camera) : setting property "contrast" to "45" as a str
+2020-02-28 17:47:59,819: [DEBUG   ] -> camera(Vision Camera) : current property "contrast" to "45"
+2020-02-28 17:47:59,821: [DEBUG   ] -> camera(Vision Camera) : property "exposure_absolute" is a Kind.kInteger
+2020-02-28 17:47:59,822: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_absolute" to "10" as a str
+2020-02-28 17:47:59,875: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_absolute" to "10"
+2020-02-28 17:47:59,876: [DEBUG   ] -> camera(Vision Camera) : property "exposure_auto_priority" is a Kind.kBoolean
+2020-02-28 17:47:59,877: [DEBUG   ] -> camera(Vision Camera) : setting property "exposure_auto_priority" to "0" as a str
+2020-02-28 17:47:59,910: [DEBUG   ] -> camera(Vision Camera) : current property "exposure_auto_priority" to "0"
+2020-02-28 17:47:59,912: [DEBUG   ] -> camera(Vision Camera) : property "gain" is a Kind.kInteger
+2020-02-28 17:47:59,912: [DEBUG   ] -> camera(Vision Camera) : setting property "gain" to "18" as a str
+2020-02-28 17:47:59,950: [DEBUG   ] -> camera(Vision Camera) : current property "gain" to "18"
+2020-02-28 17:47:59,951: [DEBUG   ] -> camera(Vision Camera) : property "gamma" is a Kind.kInteger
+2020-02-28 17:47:59,952: [DEBUG   ] -> camera(Vision Camera) : setting property "gamma" to "85" as a str
+2020-02-28 17:47:59,984: [DEBUG   ] -> camera(Vision Camera) : current property "gamma" to "85"
+2020-02-28 17:47:59,985: [DEBUG   ] -> camera(Vision Camera) : property "white_balance_temperature" is a Kind.kInteger
+2020-02-28 17:47:59,986: [DEBUG   ] -> camera(Vision Camera) : setting property "white_balance_temperature" to "3500" as a str
+2020-02-28 17:48:00,025: [DEBUG   ] -> camera(Vision Camera) : current property "white_balance_temperature" to "3500"
+2020-02-28 17:48:00,026: [INFO    ] -> camera(Vision Camera) : Vision Camera started with pixelFormat:PixelFormat.kMJPEG, at 1280x720 30FPS
+2020-02-28 17:48:00,028: [INFO    ] -> server : Starting usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0 vision Thread
+2020-02-28 17:48:00,029: [DEBUG   ] -> camera(testingCamera-Bad) : settings {}
+2020-02-28 17:48:00,578: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:48:00,622: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 160x120
+2020-02-28 17:48:00,646: [INFO    ] -> cscore : testingCamera-Bad: Connecting to USB camera on /dev/v4l/by-id/usb-046d_0825_C2082660-video-index0
+2020-02-28 17:48:02,254: [INFO    ] -> cscore : testingCamera-Bad: set format 1 res 320x240
+2020-02-28 17:48:02,278: [INFO    ] -> cscore : testingCamera-Bad: set FPS to 15
+2020-02-28 17:48:02,590: [DEBUG   ] -> camera(testingCamera-Bad) : Settings:
+brightness 0x00980900 (int)    : min=0 max=255 step=1 default=128 value=128
+                       contrast 0x00980901 (int)    : min=0 max=255 step=1 default=32 value=32
+                     saturation 0x00980902 (int)    : min=0 max=255 step=1 default=32 value=32
+ white_balance_temperature_auto 0x0098090c (bool)   : default=1 value=1
+                           gain 0x00980913 (int)    : min=0 max=255 step=1 default=64 value=192
+           power_line_frequency 0x00980918 (menu)   : min=0 max=2 default=2 value=2
+				0: Disabled
+				1: 50 Hz
+				2: 60 Hz
+      white_balance_temperature 0x0098091a (int)    : min=0 max=10000 step=10 default=4000 value=1070 flags=inactive
+                      sharpness 0x0098091b (int)    : min=0 max=255 step=1 default=24 value=24
+         backlight_compensation 0x0098091c (int)    : min=0 max=1 step=1 default=0 value=0
+                  exposure_auto 0x009a0901 (menu)   : min=0 max=3 default=3 value=3
+				1: Manual Mode
+				3: Aperture Priority Mode
+              exposure_absolute 0x009a0902 (int)    : min=1 max=10000 step=1 default=166 value=833 flags=inactive
+         exposure_auto_priority 0x009a0903 (bool)   : default=0 value=1
+2020-02-28 17:48:02,591: [INFO    ] -> camera(testingCamera-Bad) : testingCamera-Bad started with pixelFormat:PixelFormat.kMJPEG, at 320x240 15FPS
+2020-02-28 17:48:02,592: [INFO    ] -> cscore.cserver : CameraServer 'serve_stream' listening on port 1181
+2020-02-28 17:48:09,671: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.644 seconds = 15.55 FPS
+2020-02-28 17:48:18,726: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.055 seconds = 16.57 FPS
+2020-02-28 17:48:27,784: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.057 seconds = 16.56 FPS
+2020-02-28 17:48:36,824: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.041 seconds = 16.59 FPS
+2020-02-28 17:48:45,873: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:48:54,923: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.050 seconds = 16.58 FPS
+2020-02-28 17:49:03,992: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.069 seconds = 16.54 FPS
+2020-02-28 17:49:13,041: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:49:22,095: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.054 seconds = 16.57 FPS
+2020-02-28 17:49:31,144: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:49:40,209: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.065 seconds = 16.55 FPS
+2020-02-28 17:49:44,626: [DEBUG   ] -> nt : server: client connection from 10.11.4.226 port 64192
+2020-02-28 17:49:44,627: [DEBUG   ] -> nt.th : Started thread nt-net-write-0
+2020-02-28 17:49:44,629: [DEBUG   ] -> nt.th : Started thread nt-net-read-0
+2020-02-28 17:49:44,644: [INFO    ] -> nt : CONNECTED 10.11.4.226 port 64192 ()
+2020-02-28 17:49:49,263: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.054 seconds = 16.57 FPS
+2020-02-28 17:49:58,307: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.044 seconds = 16.59 FPS
+2020-02-28 17:50:07,360: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.053 seconds = 16.57 FPS
+2020-02-28 17:50:16,410: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.050 seconds = 16.58 FPS
+2020-02-28 17:50:25,454: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.044 seconds = 16.59 FPS
+2020-02-28 17:50:34,508: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.054 seconds = 16.57 FPS
+2020-02-28 17:50:43,552: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.044 seconds = 16.59 FPS
+2020-02-28 17:50:52,577: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.025 seconds = 16.62 FPS
+2020-02-28 17:51:01,627: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:51:10,675: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:51:19,725: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:51:28,779: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.054 seconds = 16.57 FPS
+2020-02-28 17:51:37,828: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:51:46,872: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.045 seconds = 16.58 FPS
+2020-02-28 17:51:55,902: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.029 seconds = 16.61 FPS
+2020-02-28 17:52:04,955: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.053 seconds = 16.57 FPS
+2020-02-28 17:52:13,980: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.025 seconds = 16.62 FPS
+2020-02-28 17:52:23,033: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.054 seconds = 16.57 FPS
+2020-02-28 17:52:32,078: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.045 seconds = 16.58 FPS
+2020-02-28 17:52:41,132: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.054 seconds = 16.57 FPS
+2020-02-28 17:52:50,156: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.024 seconds = 16.62 FPS
+2020-02-28 17:52:59,254: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.097 seconds = 16.49 FPS
+2020-02-28 17:53:08,297: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.043 seconds = 16.59 FPS
+2020-02-28 17:53:17,339: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.042 seconds = 16.59 FPS
+2020-02-28 17:53:26,422: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.083 seconds = 16.51 FPS
+2020-02-28 17:53:35,482: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.060 seconds = 16.56 FPS
+2020-02-28 17:53:44,533: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.051 seconds = 16.57 FPS
+2020-02-28 17:53:53,578: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.045 seconds = 16.58 FPS
+2020-02-28 17:54:02,634: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.055 seconds = 16.57 FPS
+2020-02-28 17:54:11,677: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.043 seconds = 16.59 FPS
+2020-02-28 17:54:20,728: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.051 seconds = 16.57 FPS
+2020-02-28 17:54:29,777: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:54:38,822: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.045 seconds = 16.58 FPS
+2020-02-28 17:54:47,871: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:54:56,920: [DEBUG   ] -> camera(Vision Camera)-Thread : 150 frames in 9.049 seconds = 16.58 FPS
+2020-02-28 17:55:01,689: [CRITICAL] -> root : Uncaught exception:
+Traceback (most recent call last):
+  File "visionserver.py", line 225, in <module>
+    server.run()
+  File "visionserver.py", line 169, in run
+    time.sleep(0.01)
+KeyboardInterrupt

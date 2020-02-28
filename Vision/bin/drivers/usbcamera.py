@@ -42,7 +42,7 @@ class USBCamera:
             self.width, self.height = size
 
         self.flip=False
-        if("flip" in self.properties and self.properties["flip"])
+        if("flip" in self.properties and self.properties["flip"]):
             self.flip=True
 
         if("fps" in self.properties):
@@ -97,17 +97,21 @@ class USBCamera:
 
     def _setProperty(self, name, value):
         try:
-            if(type(value) is str):
+            self.logger.debug("setting property \""+name+"\" to \""+str(value)+"\" as a str")
+            subprocess.call(shlex.split("v4l2-ctl -d "+str(self.path)+" -c "+name+"="+str(value)))
+
+            """ if(type(value) is str):
                 self.logger.debug("setting property \""+name+"\" to \""+str(value)+"\" as a str")
                 self.camera.getProperty(name).setString(value)
             else:
                 self.logger.debug("setting property \""+name+"\" to \""+str(value)+"\" as a number")
-                self.camera.getProperty(name).set(value)
+                self.camera.getProperty(name).set(value) """
 
-            self.logger.debug("current property \""+name+"\" to \""+str(value)+"\" as a number")
+            self.logger.debug("current property \""+name+"\" to \""+str(value)+"\"")
             return True
 
-        except Exception:
+        except Exception as ex:
+            print(ex)
             self.logger.warning("Unable to set property '{0}' to '{1}'".format(name,value))
         return False
 
@@ -139,6 +143,9 @@ class USBCamera:
                 self.wasConnected = True
 
             self.frameTime, self.cameraFrame = self.sink.grabFrame(self.cameraFrame)
+
+            if(self.flip):
+                self.cameraFrame = np.flipud(self.cameraFrame)
 
             if(self.frameTime == 0):
                 threadLogger.warning("Error grabbing frame: " +self.sink.getError())

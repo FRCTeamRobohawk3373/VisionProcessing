@@ -1,5 +1,18 @@
 {
     "cameras": {
+        "usb-046d_0825_2020FAE0-video-index0": {
+            "cameraMatrix": [],
+            "destinations": {
+                "processVideo": false,
+                "streamVideo": true,
+                "switchIndex": 3
+            },
+            "distortionCoefficients": [],
+            "name": "usb-046d_0825_2020FAE0-video-index0",
+            "path": "/dev/v4l/by-id/usb-046d_0825_2020FAE0-video-index0",
+            "properties": {},
+            "settings": {}
+        },
         "usb-046d_0825_6E3FEAE0-video-index0": {
             "cameraMatrix": [],
             "destinations": {
@@ -94,10 +107,10 @@
             "name": "Vision Camera",
             "path": "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0",
             "properties": {
+                "flip": true,
                 "fps": 30,
                 "height": 720,
-                "width": 1280,
-                "flip":true
+                "width": 1280
             },
             "settings": {
                 "contrast": 45,

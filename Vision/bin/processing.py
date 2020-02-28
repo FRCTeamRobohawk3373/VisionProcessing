@@ -4,22 +4,24 @@ import logging
 import constants as const
 import math
 import time
-from threading import Thread
+from threading import Thread, Lock
 
 class ProcessingThread:
     threadCount = 0
 
     def __init__(self, debug=False):
-        ProcessingThread.threadCount+=1
-		self.processingLogger = logging.getLogger("ProcessingThread-"+str(ProcessingThread.threadCount))
+        ProcessingThread.threadCount +=1
+        self.processingLogger = logging.getLogger("ProcessingThread-"+str(ProcessingThread.threadCount))
 
-        self.imageLock = threading.Lock()
+        self.imageLock = Lock()
         self.thread = Thread(target=self.process)
         #self.thread = Process(target=self.process, args=(self,))
         self.thread.daemon=True
         self.running = False
         self.img=None
         self.newImageAvailable=False
+        self.camera=None
+
         self.debug=debug
         self.finalTargets=[None]
         self.cameraMatrix=None
@@ -29,8 +31,18 @@ class ProcessingThread:
         self.cameraMatrix=cameraMatrix
         self.distortionCoefficients=distortionCoefficients
 
-    def run(self, firstImage):
-        self.img = firstImage
+    def setCamera(self, cam):
+        self.camera = cam
+        self.setCameraCharacteristics(self.camera.cameraMatrix, self.camera.distortionCoeffients)
+
+    def run(self, firstImage=None):
+        if(self.camera is not None):
+            _, self.img = self.camera.read()
+        else:
+            if(firstImage is None):
+                raise AttributeError
+            self.img = firstImage
+
         self.running=True
         self.thread.start()
 
@@ -55,15 +67,22 @@ class ProcessingThread:
         newImage = False
         image = np.zeros((const.STREAM_RESOLUTION[1],const.STREAM_RESOLUTION[0],3),np.uint8)
         data = None
+        lastFrameTime = time.time()
         if(self.debug):
             freezeFrame=False
 
         while(self.running):
             with self.imageLock:
-                newImage = self.newImageAvailable
-                if(newImage):
-                    image = np.copy(self.img)
-                    self.newImageAvailable=False
+                self.finalTargets = data
+                if(self.camera is not None):
+                    frameTime, image = self.camera.read()
+                    if(frameTime > 0):
+                        newImage = True
+                else:
+                    newImage = self.newImageAvailable
+                    if(newImage):
+                        image = np.copy(self.img)
+                        self.newImageAvailable=False
 
             if(newImage):
                 newImage=False
@@ -100,7 +119,7 @@ class ProcessingThread:
 
                 #print("Found " + str(len(output))+" ")
 
-                finalTargets = []
+                data = []
                 for i, cnt in enumerate(output):
                     # poly = approxPolyDP_adaptive(cnt,8)
                     #rotRect = cv2.minAreaRect(cnt)
@@ -146,11 +165,11 @@ class ProcessingThread:
                         robotAngle=math.copysign(1.0,robotAngle)
 
                     robotAngle=90-math.degrees(math.acos(robotAngle))
-                    
+
                     posx=(cx-fWidth/2)/(fWidth/2)
-					posy=(cy-fHeight/2)/(fHeight/2)
-                    finalTargets.append([i,round(posx,4),round(posy,4),round(distance,4), round(robotAngle,4), round(targetAngle,4)])
-                    
+                    posy=(cy-fHeight/2)/(fHeight/2)
+                    data.append([i, round(posx,4), round(posy,4), round(distance,4), round(robotAngle,4), round(targetAngle,4)])
+
                     if(self.debug):
                         cv2.drawContours(image, output, -1, (0, 0, 255), 1)
                         cv2.rectangle(image, rect, (255, 0, 255))
@@ -161,20 +180,26 @@ class ProcessingThread:
 
                         cv2.putText(image,str(distance)+"in",(5,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
                         cv2.putText(image,str(robotAngle)+"deg",(5,100),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
-                        
-                        if(not freezeFrame):
-                            cv2.imshow("Processed", image)
-
-                        key = cv2.waitkey(1)
-                        if key & 0xFF == ord('q'):
-                            cv2.destroyAllWindows()
-                            self.debug=False
-                        elif(key & 0xFF == 32):
-                            freezeFrame = not(freezeFrame)
-                        
-                data=[]
 
                 
+                if(self.debug):
+                    #if(time.time()>lastFrameTime+1 and not freezeFrame):
+                    #print("Elapsed: "+str((time.time() - lastFrameTime)*1000)+"ms")
+                    #lastFrameTime = time.time()
+
+                    cv2.drawContours(image, output, -1, (0, 0, 255), 1)
+
+                    if(not freezeFrame):
+                        cv2.imshow("Processed", image)
+
+                    key = cv2.waitKey(1)
+                    if key & 0xFF == ord('q'):
+                        cv2.destroyAllWindows()
+                        self.debug=False
+                    elif(key & 0xFF == 32):
+                        freezeFrame = not(freezeFrame)
+
+
     def approxPolyDP_adaptive(self, contour, nsides, max_dp_error=0.1):
 
         step = 0.005

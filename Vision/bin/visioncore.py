@@ -47,7 +47,7 @@ def addCamera(cam, config):
             "distortionCoefficients": []
         }
     
-    logger.debug(cam+" added to "+ const.CONFIG_FILE)
+    self.logger.debug(cam+" added to "+ const.CONFIG_FILE)
     saveConfig(config)
 
 

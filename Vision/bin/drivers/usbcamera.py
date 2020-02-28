@@ -41,6 +41,10 @@ class USBCamera:
         else:
             self.width, self.height = size
 
+        self.flip=False
+        if("flip" in self.properties and self.properties["flip"])
+            self.flip=True
+
         if("fps" in self.properties):
             fps = self.properties["fps"]
         
@@ -62,7 +66,7 @@ class USBCamera:
         self.sink = cscore.CvSink("sink_"+self.name)
         self.sink.setSource(self.camera)
         self.cameraFrame = None
-        self.frameTime=None
+        self.frameTime=0
         self.stopped=False
         self.wasConnected = self.camera.isConnected()
 
@@ -94,14 +98,18 @@ class USBCamera:
     def _setProperty(self, name, value):
         try:
             if(type(value) is str):
+                self.logger.debug("setting property \""+name+"\" to \""+str(value)+"\" as a str")
                 self.camera.getProperty(name).setString(value)
             else:
+                self.logger.debug("setting property \""+name+"\" to \""+str(value)+"\" as a number")
                 self.camera.getProperty(name).set(value)
+
+            self.logger.debug("current property \""+name+"\" to \""+str(value)+"\" as a number")
             return True
 
         except Exception:
             self.logger.warning("Unable to set property '{0}' to '{1}'".format(name,value))
-            return False
+        return False
 
     def start(self):
         t=Thread(target=self._update,args=())
@@ -113,7 +121,7 @@ class USBCamera:
 
         fpsStart = time()
         frameNumber=0
-        while True:
+        while not(self.stopped):
             if (self.stopped):
                 return
 
@@ -130,11 +138,11 @@ class USBCamera:
                 threadLogger.info("Connection Restored")
                 self.wasConnected = True
 
-            self.frametime, self.cameraFrame = self.sink.grabFrame(self.cameraFrame)
+            self.frameTime, self.cameraFrame = self.sink.grabFrame(self.cameraFrame)
 
-            if(self.frametime == 0):
+            if(self.frameTime == 0):
                 threadLogger.warning("Error grabbing frame: " +self.sink.getError())
-
+            sleep(0.025)
             frameNumber+=1
             if (frameNumber % 150 == 0):
                 fpsEnd = time()
@@ -149,7 +157,7 @@ class USBCamera:
         return
 
     def read(self):
-        return self.frametime, self.cameraFrame
+        return self.frameTime, self.cameraFrame
 
     def stop(self):
         self.stopped = True

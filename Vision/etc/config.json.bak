@@ -48,6 +48,19 @@
             "properties": {},
             "settings": {}
         },
+        "usb-046d_HD_Pro_Webcam_C920_91D7DD5F-video-index0": {
+            "cameraMatrix": [],
+            "destinations": {
+                "processVideo": false,
+                "streamVideo": false,
+                "switchIndex": -1
+            },
+            "distortionCoefficients": [],
+            "name": "usb-046d_HD_Pro_Webcam_C920_91D7DD5F-video-index0",
+            "path": "/dev/v4l/by-id/usb-046d_HD_Pro_Webcam_C920_91D7DD5F-video-index0",
+            "properties": {},
+            "settings": {}
+        },
         "usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0": {
             "cameraMatrix": [
                 [
@@ -80,7 +93,11 @@
             ],
             "name": "Vision Camera",
             "path": "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0",
-            "properties": {},
+            "properties": {
+                "width":1280,
+                "height":720,
+                "fps":30
+            },
             "settings": {
                 "contrast": 45,
                 "exposure_absolute": 10,

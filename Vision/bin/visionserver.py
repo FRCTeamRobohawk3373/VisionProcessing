@@ -68,7 +68,6 @@ class VisionServer:
             if(cam["destinations"]["streamVideo"] and cam["destinations"]["processVideo"]):
                 self.logger.warning("{0}({1}) is configured to stream and process".format(camera, cam["name"]))
                 camType="BOTH"
-                visionThread = processing.visionThread()
             elif(cam["destinations"]["streamVideo"]):
                 camType="STREAM"
             elif(cam["destinations"]["processVideo"]):
@@ -76,8 +75,12 @@ class VisionServer:
 
             if(camType is not None):
                 newCamera=USBCamera(self.cameraServer, cam, const.DEFAULT_RESOLUTION)
-                if(camType=="VISION" or camType=="BOTH"):
-                    newCamera.start()
+                if(camType=="VISION" or camType=="BOTH"): 
+                    newCamera.start()   
+                    self.logger.info("Starting "+camera+" vision Thread")
+                    visionThread = processing.ProcessingThread(self.areDebugging)
+                    visionThread.setCamera(newCamera)
+                    visionThread.run()
                     
                 self.cameras[camera]={
                     "camera": newCamera,
@@ -140,8 +143,8 @@ class VisionServer:
                 "distortionCoefficients": []
             }
         
-        logger.debug(cam+" added to "+ const.CONFIG_FILE)
-        saveConfig(self.config)
+        self.logger.debug(cam+" added to "+ const.CONFIG_FILE)
+        self.saveConfig(self.config)
 
     def switchCameras(self, cam):
         self.switchingServer.setSource(cam)

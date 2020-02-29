@@ -93,7 +93,7 @@
                 ]
             ],
             "destinations": {
-                "processVideo": true,
+                "processVideo": false,
                 "streamVideo": false,
                 "switchIndex": -1
             },
@@ -107,7 +107,7 @@
             "name": "Vision Camera",
             "path": "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0",
             "properties": {
-                "flip": true,
+                "flip": false,
                 "fps": 30,
                 "height": 720,
                 "width": 1280

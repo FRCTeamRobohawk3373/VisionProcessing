@@ -152,6 +152,7 @@ class VisionServer:
         self.saveConfig(self.config)
 
     def switchCameras(self, cam):
+        
         self.switchingServer.setSource(cam)
 
     def run(self):
@@ -164,6 +165,7 @@ class VisionServer:
         while True:
             if(time.time()>switchTime):
                 if(self.cameras[cams[index]]["type"]=="STREAM"):
+                    print("setting camera to "+cams[index])
                     self.switchCameras(self.cameras[cams[index]]["camera"].getSource())
                     switchTime = time.time()+5
 

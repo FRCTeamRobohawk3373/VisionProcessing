@@ -13,10 +13,22 @@ from networktables import NetworkTables
 from networktables.util import ntproperty
 import numpy as np
 
-
-
 class VisionServer:
-    tableName = "vision"
+    PARENT_NAME = "vision"
+
+    #switching camera ntTable
+    SUBTABLE_STREAM_NAME = "switching"
+    STREAM_CAM_MAP = "CamMap"
+
+    STREAM_READER_SELECTED_CAM_NUM = "selectedCamIndex"
+    STREAM_READER_SELECTED_CAM_NAME = "selectedCamName"
+    STREAM_SETTER_ACTIVE_CAM_NUM =  "activeCamIndex"
+    STREAM_SETTER_ACTIVE_CAM_NAME = "activeCamName"
+
+    #proccesing camera ntTable
+    SUBTABLE_DATA_NAME = "processing"
+    DATA_SETTER_TARGET_INFO = "targetInfo"
+
     
     def __init__(self, debug=False):
         self.areDebugging=debug
@@ -30,21 +42,20 @@ class VisionServer:
         self.cameraServer = cscore.CameraServer.getInstance()
         self.cameraServer.enableLogging()
 
-        #self.processingThread = 
+        self.activeCamera={"index":-1, "name":""}
+        self.streamingCams=[]  
+        self.visionCams=[]
 
-        self.cameras={}
-        self.active_camera = None
-
+        #self.activeCam = None
+        #self.currentCam = None
+        
         cams = self.findCameras()
         self.startCameras(cams)
 
-        self.test = ntproperty('/vision/selectedCamera', True)
-        self.oldValue = True
-
         self.switchingServer = self.createOutputStream()
-
+        
         #NetworkTables
-        self.table = NetworkTables.getTable('vision')
+        self.setUpNetworkTables()
 
     def findCameras(self):
         cams = {}
@@ -68,32 +79,73 @@ class VisionServer:
     def startCameras(self, cameras):
         for camera in cameras:
             cam = cameras[camera]
-            camType=None
-            visionThread = None
-            if(cam["destinations"]["streamVideo"] and cam["destinations"]["processVideo"]):
-                self.logger.warning("{0}({1}) is configured to stream and process".format(camera, cam["name"]))
-                camType="BOTH"
-            elif(cam["destinations"]["streamVideo"]):
-                camType="STREAM"
-            elif(cam["destinations"]["processVideo"]):
-                camType="VISION"
-
-            if(camType is not None):
+            if(cam["destinations"]["streamVideo"] or cam["destinations"]["processVideo"]):
+                #camType=None
+                visionThread = None
                 newCamera=USBCamera(self.cameraServer, cam, const.DEFAULT_RESOLUTION)
-                if(camType=="VISION" or camType=="BOTH"): 
+                camDict={
+                    "camera": newCamera,
+                    "switchIndex": cam["destinations"]["switchIndex"], 
+                    "isConnected": newCamera.isConnected,
+                    "name": cam["name"],
+                    "id": camera
+                }
+
+                if(cam["destinations"]["streamVideo"] and cam["destinations"]["processVideo"]):
+                    self.logger.warning("{0}({1}) is configured to stream and process".format(camera, cam["name"]))
+
+                if(cam["destinations"]["streamVideo"]):
+                    self.logger.debug("adding "+camDict["name"]+" to streaming cameras")
+                    if(len(self.streamingCams)==0):
+                        print("first streaming")
+                        self.streamingCams.append(camDict)
+                    else:
+                        added=False
+                        for i,item in enumerate(self.streamingCams):
+                            if(item["switchIndex"]>camDict["switchIndex"]):
+                                print("cam has smaller index. adding at "+str(i))
+                                self.streamingCams.insert(i,camDict)
+                                added=True
+                                break
+
+                        if(not(added)):
+                            self.streamingCams.append(camDict)
+                
+                if(cam["destinations"]["processVideo"]):
                     newCamera.start()   
                     self.logger.info("Starting "+camera+" vision Thread")
                     visionThread = processing.ProcessingThread(self.areDebugging)
                     visionThread.setCamera(newCamera)
                     visionThread.run()
-                    
-                self.cameras[camera]={
-                    "camera": newCamera,
-                    "switchIndex": cam["destinations"]["switchIndex"], 
-                    "type": camType, 
-                    "isConnected": True,
-                    "processing": visionThread
-                }
+                    camDict["processing"] = visionThread
+                    self.logger.debug("adding "+camDict+" to vision cameras")
+                    self.visionCams.append(camDict)
+
+    def setUpNetworkTables(self):
+        self.parentTable = NetworkTables.getTable(VisionServer.PARENT_NAME)
+        self.streamTable = self.parentTable.getSubTable(VisionServer.SUBTABLE_STREAM_NAME)
+        cams = []
+        for cam in self.streamingCams:
+            cams.append([str(cam["switchIndex"]), cam["name"]])
+
+        self.logger.info("Available streaming cameras: "+str(cams))
+
+        self.streamTable.putStringArray(VisionServer.STREAM_CAM_MAP, cams)
+        if(len(self.streamingCams)>0):
+            self.streamTable.putNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM, self.streamingCams[0]["switchIndex"])
+            self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, self.streamingCams[0]["name"])
+            self.streamTable.putNumber(VisionServer.STREAM_SETTER_ACTIVE_CAM_NUM, -1)
+            self.streamTable.putString(VisionServer.STREAM_SETTER_ACTIVE_CAM_NAME, "")
+
+        else:
+            self.streamTable.putNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM, -1)
+            self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, "")
+            self.streamTable.putNumber(VisionServer.STREAM_SETTER_ACTIVE_CAM_NUM, -1)
+            self.streamTable.putString(VisionServer.STREAM_SETTER_ACTIVE_CAM_NAME, "")
+
+
+        self.processingTable = self.parentTable.getSubTable(VisionServer.SUBTABLE_DATA_NAME)
+        self.processingTable.putStringArray(VisionServer.DATA_SETTER_TARGET_INFO,[])
     
     def addCamera(self, cameraName):
         if(cameraName not in self.cameras):
@@ -157,12 +209,77 @@ class VisionServer:
 
     def run(self):
         #Main Loop.
+        while True:
+            selectedIndex = int(self.streamTable.getNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM,-1))
+            selectedName = self.streamTable.getString(VisionServer.STREAM_READER_SELECTED_CAM_NAME,None)
+            
+            if(not(selectedIndex == self.activeCamera["index"])):
+                self.logger.debug("Attempting to switch cameras to index: "+str(selectedIndex))
+                found = False
+                for item in self.streamingCams:
+                    if(item["switchIndex"] == selectedIndex):
+                        self.logger.info("switching to camera {0}({1}) with index {2}".format(item["id"], item["name"], item["switchIndex"]))
+                        found = True
+                        self.activeCamera["index"] = selectedIndex
+                        self.activeCamera["name"] = item["name"]
+                        self.switchCameras(item["camera"].getSource())
+                        break
 
-        switchTime = time.time()+5
+                if(not(found)):
+                    if(selectedIndex<len(self.streamingCams) and selectedIndex >= 0):
+                        item = self.streamingCams[selectedIndex]
+                        self.logger.info("switching to camera {0}({1}) with index {2}".format(item["id"], item["name"], item["switchIndex"]))
+                        found = True
+                        self.activeCamera["index"] = selectedIndex
+                        self.activeCamera["name"] = item["name"]
+                        self.switchCameras(item["camera"].getSource())
+
+                if(not(found)):
+                    self.logger.info("unable to find camera with index {0}".format(selectedIndex))
+                
+                self.streamTable.putNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM, self.activeCamera["index"])
+                self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, self.activeCamera["name"])
+                    
+
+            elif(not(selectedName == self.activeCamera["name"])):
+                self.logger.debug("Attempting to switch cameras to name: \""+str(selectedName)+"\"")
+                found = False
+                for item in self.streamingCams:
+                    if(item["name"] == selectedName):
+                        self.logger.info("switching to camera {0}({1}) with index {2}".format(item["id"], item["name"], item["switchIndex"]))
+                        found = True
+                        self.activeCamera["index"] = item["switchIndex"]
+                        self.activeCamera["name"] = item["name"]
+                        self.switchCameras(item["camera"].getSource())
+                        break
+
+                if(not(found)):
+                    self.logger.info("unable to find camera with name \"{0}\"".format(selectedName))
+                
+                self.streamTable.putNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM, self.activeCamera["index"])
+                self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, self.activeCamera["name"])
+                    
+
+            #self.streamTable.putNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM, self.streamingCams[0]["switchIndex"])
+            #self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, self.streamingCams[0]["name"])
+            
+            self.streamTable.putNumber(VisionServer.STREAM_SETTER_ACTIVE_CAM_NUM, self.activeCamera["index"])
+            self.streamTable.putString(VisionServer.STREAM_SETTER_ACTIVE_CAM_NAME, self.activeCamera["name"])
+
+            """  if (not(self.currentCamIndex == self.activeCamIndex)):
+            self.currentCamIndex = self.activeCamIndex
+            self.logger.info("switching camera to "+self.activeCam["name"])
+            self.switchCameras(self.activeCam["camera"].getSource())
+            pass
+            """
+            time.sleep(1)
+        
+        '''switchTime = time.time()+5
         cams = list(self.cameras.keys())
         print(cams)
         index=0
         while True:
+            time.sleep(1)
             if(time.time()>switchTime):
                 if(self.cameras[cams[index]]["type"]=="STREAM"):
                     print("setting camera to "+cams[index])
@@ -174,7 +291,7 @@ class VisionServer:
                     index=0
             
             time.sleep(0.01)
-            #cv2.waitKey(10)
+            #cv2.waitKey(10)'''
 
 def getHostNameAndIP(): 
     try: 

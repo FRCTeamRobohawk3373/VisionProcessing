@@ -4,7 +4,7 @@ import numpy as np
 ###############
 #   General   #
 ###############
-IS_TESTING = True
+IS_TESTING = False
 TEAM_NUMBER = 3373
 DEFAULT_RESOLUTION=(320,240)
 

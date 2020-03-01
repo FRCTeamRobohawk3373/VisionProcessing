@@ -1,10 +1,12 @@
-DIR=/home/pi/Documents/GitHub/VisionProcessing/Vision/bin/
+#!/bin/bash
+
+DIR='/home/pi/Documents/GitHub/VisionProcessing/Vision/bin/'
 
 SCRIPT=visionserver.py
 
 case "$1" in
     stop)
-	pkill -f $SCRIPT
+	sudo pkill -f $SCRIPT
 	;;
 
     start)
@@ -12,7 +14,7 @@ case "$1" in
 
         radio=$(route -n | awk '$1=="0.0.0.0"{print $2}')
         
-        python3 ./$SCRIPT
+        sudo -u pi python3 ./$SCRIPT &
 	;;
 
     restart)

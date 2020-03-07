@@ -93,7 +93,7 @@
                 ]
             ],
             "destinations": {
-                "processVideo": false,
+                "processVideo": true,
                 "streamVideo": false,
                 "switchIndex": -1
             },

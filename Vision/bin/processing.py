@@ -67,9 +67,12 @@ class ProcessingThread:
         newImage = False
         image = np.zeros((const.STREAM_RESOLUTION[1],const.STREAM_RESOLUTION[0],3),np.uint8)
         data = None
-        lastFrameTime = time.time()
+        #lastFrameTime = time.time()
         if(self.debug):
             freezeFrame=False
+
+        fpsStart = time.time()
+        frameNumber=0
 
         while(self.running):
             with self.imageLock:
@@ -175,7 +178,7 @@ class ProcessingThread:
                         cv2.rectangle(image, rect, (255, 0, 255))
                         cv2.drawMarker(image,(cx,cy),(255, 255, 255))
 
-                        print("Target #"+str(i)+":distance="+str(distance)+", robot Angle="+\
+                        self.processingLogger.debug("Target #"+str(i)+":distance="+str(distance)+", robot Angle="+\
                             str(robotAngle)+", targetAngle="+str(targetAngle))
 
                         cv2.putText(image,str(distance)+"in",(5,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,255))
@@ -183,9 +186,16 @@ class ProcessingThread:
 
                 
                 if(self.debug):
-                    #if(time.time()>lastFrameTime+1 and not freezeFrame):
-                    #print("Elapsed: "+str((time.time() - lastFrameTime)*1000)+"ms")
-                    #lastFrameTime = time.time()
+                    frameNumber+=1
+                    if (frameNumber % 150 == 0):
+                        fpsEnd = time.time()
+                        dt = fpsEnd - fpsStart
+                        if(150.0 / dt<=5):
+                            self.processingLogger.warning("processing dropped to {1:.2f} FPS and took {0:.3f} seconds for 150 frames".format(dt, 150.0 / dt))
+                        else:
+                            self.processingLogger.debug("150 frames in {0:.3f} seconds = {1:.2f} FPS".format(dt, 150.0 / dt))
+                        fpsStart=fpsEnd
+                        frameNumber=0
 
                     cv2.drawContours(image, output, -1, (0, 0, 255), 1)
 

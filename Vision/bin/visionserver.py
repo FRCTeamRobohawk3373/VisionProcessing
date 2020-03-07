@@ -24,6 +24,7 @@ class VisionServer:
     STREAM_READER_SELECTED_CAM_NAME = "selectedCamName"
     STREAM_SETTER_ACTIVE_CAM_NUM =  "activeCamIndex"
     STREAM_SETTER_ACTIVE_CAM_NAME = "activeCamName"
+    STREAM_SETTER_ERROR_CODE = "errorCode"
 
     #proccesing camera ntTable
     SUBTABLE_DATA_NAME = "processing"
@@ -118,7 +119,7 @@ class VisionServer:
                     visionThread.setCamera(newCamera)
                     visionThread.run()
                     camDict["processing"] = visionThread
-                    self.logger.debug("adding "+camDict+" to vision cameras")
+                    self.logger.debug("adding "+camDict["name"]+" to vision cameras")
                     self.visionCams.append(camDict)
 
     def setUpNetworkTables(self):
@@ -142,6 +143,8 @@ class VisionServer:
             self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, "")
             self.streamTable.putNumber(VisionServer.STREAM_SETTER_ACTIVE_CAM_NUM, -1)
             self.streamTable.putString(VisionServer.STREAM_SETTER_ACTIVE_CAM_NAME, "")
+
+        self.streamTable.putNumber(VisionServer.STREAM_SETTER_ERROR_CODE,0)
 
 
         self.processingTable = self.parentTable.getSubTable(VisionServer.SUBTABLE_DATA_NAME)
@@ -219,6 +222,7 @@ class VisionServer:
                 for item in self.streamingCams:
                     if(item["switchIndex"] == selectedIndex):
                         self.logger.info("switching to camera {0}({1}) with index {2}".format(item["id"], item["name"], item["switchIndex"]))
+                        self.streamTable.putNumber(VisionServer.STREAM_SETTER_ERROR_CODE,0)
                         found = True
                         self.activeCamera["index"] = selectedIndex
                         self.activeCamera["name"] = item["name"]
@@ -229,6 +233,7 @@ class VisionServer:
                     if(selectedIndex<len(self.streamingCams) and selectedIndex >= 0):
                         item = self.streamingCams[selectedIndex]
                         self.logger.info("switching to camera {0}({1}) with index {2}".format(item["id"], item["name"], item["switchIndex"]))
+                        self.streamTable.putNumber(VisionServer.STREAM_SETTER_ERROR_CODE,0)
                         found = True
                         self.activeCamera["index"] = selectedIndex
                         self.activeCamera["name"] = item["name"]
@@ -236,6 +241,7 @@ class VisionServer:
 
                 if(not(found)):
                     self.logger.info("unable to find camera with index {0}".format(selectedIndex))
+                    self.streamTable.putNumber(VisionServer.STREAM_SETTER_ERROR_CODE,1)
                 
                 self.streamTable.putNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM, self.activeCamera["index"])
                 self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, self.activeCamera["name"])
@@ -247,6 +253,7 @@ class VisionServer:
                 for item in self.streamingCams:
                     if(item["name"] == selectedName):
                         self.logger.info("switching to camera {0}({1}) with index {2}".format(item["id"], item["name"], item["switchIndex"]))
+                        self.streamTable.putNumber(VisionServer.STREAM_SETTER_ERROR_CODE,0)
                         found = True
                         self.activeCamera["index"] = item["switchIndex"]
                         self.activeCamera["name"] = item["name"]
@@ -255,16 +262,22 @@ class VisionServer:
 
                 if(not(found)):
                     self.logger.info("unable to find camera with name \"{0}\"".format(selectedName))
+                    self.streamTable.putNumber(VisionServer.STREAM_SETTER_ERROR_CODE,1)
                 
                 self.streamTable.putNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM, self.activeCamera["index"])
                 self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, self.activeCamera["name"])
-                    
+            
+            visionTargets = []
+            for vis in self.visionCams:
+                visionTargets.append(vis["processing"].getTargets())
+
+            self.processingTable.putStringArray(VisionServer.DATA_SETTER_TARGET_INFO,visionTargets)
 
             #self.streamTable.putNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM, self.streamingCams[0]["switchIndex"])
             #self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, self.streamingCams[0]["name"])
             
-            self.streamTable.putNumber(VisionServer.STREAM_SETTER_ACTIVE_CAM_NUM, self.activeCamera["index"])
-            self.streamTable.putString(VisionServer.STREAM_SETTER_ACTIVE_CAM_NAME, self.activeCamera["name"])
+            #self.streamTable.putNumber(VisionServer.STREAM_SETTER_ACTIVE_CAM_NUM, self.activeCamera["index"])
+            #self.streamTable.putString(VisionServer.STREAM_SETTER_ACTIVE_CAM_NAME, self.activeCamera["name"])
 
             """  if (not(self.currentCamIndex == self.activeCamIndex)):
             self.currentCamIndex = self.activeCamIndex
@@ -272,7 +285,7 @@ class VisionServer:
             self.switchCameras(self.activeCam["camera"].getSource())
             pass
             """
-            time.sleep(1)
+            time.sleep(0.1)
         
         '''switchTime = time.time()+5
         cams = list(self.cameras.keys())

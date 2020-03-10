@@ -2,7 +2,7 @@
 
 DIR='/home/pi/Documents/GitHub/VisionProcessing/Vision/bin/'
 
-SCRIPT=visionserver.py
+SCRIPT="visionserver.py"
 
 case "$1" in
     stop)

@@ -11,4 +11,4 @@
 # Description: LigerBots vision server
 ### END INIT INFO
 
-/home/pi/Documents/GitHub/VisionProcessing/Vision/bin "$1"
+/home/pi/Documents/GitHub/VisionProcessing/Vision/bin/startServer "$1"

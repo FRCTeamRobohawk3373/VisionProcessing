@@ -23,7 +23,7 @@ class ProcessingThread:
         self.camera=None
 
         self.debug=debug
-        self.finalTargets=[None]
+        self.finalTargets=[]
         self.cameraMatrix=None
         self.distortionCoefficients=None
 
@@ -66,7 +66,7 @@ class ProcessingThread:
     def process(self):
         newImage = False
         image = np.zeros((const.STREAM_RESOLUTION[1],const.STREAM_RESOLUTION[0],3),np.uint8)
-        data = None
+        data = []
         #lastFrameTime = time.time()
         if(self.debug):
             freezeFrame=False
@@ -218,14 +218,11 @@ class ProcessingThread:
         while dp_err < max_dp_error:
             res = cv2.approxPolyDP(contour, dp_err * peri, True)
             if len(res) <= nsides:
-                print(dp_err)
                 return res
             dp_err += step
         return None
 
     def computeValues(self, rvec, tvec):
-        print(tvec)
-        print(rvec)
         x=tvec[0][0]
         z=tvec[2][0]
 
@@ -234,8 +231,6 @@ class ProcessingThread:
         robotAngle = math.degrees(math.atan2(x,z))
 
         rot,_ = cv2.Rodrigues(rvec)
-
-        print(rot)
 
         rotInv = rot.transpose()
         pZeroWorld = np.matmul(rotInv, -tvec)

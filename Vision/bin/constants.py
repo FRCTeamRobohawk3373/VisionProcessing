@@ -20,16 +20,16 @@ BACKUP_FILE = "../etc/config.json.bak"
 #############
 #Log Levels: DEBUG,INFO,WARNING(default),ERROR,CRITICAL
 LOG_LEVEL = logging.DEBUG
-LOG_LEVEL_CONSOLE = logging.DEBUG
+LOG_LEVEL_CONSOLE = logging.INFO
 
 LOG_BASE_PATH = "../etc/log/"
 LOG_NAME="vision{0}.log"
-LOG_SEPERATE_FILES = False
+LOG_SEPERATE_FILES = True
 
 ###############
 #  Streaming  #
 ###############
-STREAM_PORT = 5801
+STREAM_PORT = 1181
 STREAM_RESOLUTION = (320,240)
 STREAM_FPS = 15
 STREAM_NAME = "stream"

@@ -127,7 +127,7 @@ class VisionServer:
         self.streamTable = self.parentTable.getSubTable(VisionServer.SUBTABLE_STREAM_NAME)
         cams = []
         for cam in self.streamingCams:
-            cams.append([str(cam["switchIndex"]), cam["name"]])
+            cams.append("{0},{1}".format(str(cam["switchIndex"]),cam["name"]))
 
         self.logger.info("Available streaming cameras: "+str(cams))
 
@@ -245,6 +245,8 @@ class VisionServer:
                 
                 self.streamTable.putNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM, self.activeCamera["index"])
                 self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, self.activeCamera["name"])
+                self.streamTable.putNumber(VisionServer.STREAM_SETTER_ACTIVE_CAM_NUM, self.activeCamera["index"])
+                self.streamTable.putString(VisionServer.STREAM_SETTER_ACTIVE_CAM_NAME, self.activeCamera["name"])
                     
 
             elif(not(selectedName == self.activeCamera["name"])):
@@ -266,10 +268,13 @@ class VisionServer:
                 
                 self.streamTable.putNumber(VisionServer.STREAM_READER_SELECTED_CAM_NUM, self.activeCamera["index"])
                 self.streamTable.putString(VisionServer.STREAM_READER_SELECTED_CAM_NAME, self.activeCamera["name"])
+                self.streamTable.putNumber(VisionServer.STREAM_SETTER_ACTIVE_CAM_NUM, self.activeCamera["index"])
+                self.streamTable.putString(VisionServer.STREAM_SETTER_ACTIVE_CAM_NAME, self.activeCamera["name"])
             
             visionTargets = []
             for vis in self.visionCams:
-                visionTargets.append(vis["processing"].getTargets())
+                for target in vis["processing"].getTargets():
+                    visionTargets.append(target)
 
             self.processingTable.putStringArray(VisionServer.DATA_SETTER_TARGET_INFO,visionTargets)
 

@@ -5,7 +5,7 @@
             "destinations": {
                 "processVideo": false,
                 "streamVideo": true,
-                "switchIndex": 2
+                "switchIndex": 1
             },
             "distortionCoefficients": [],
             "name": "driverCamera",
@@ -47,7 +47,7 @@
             "destinations": {
                 "processVideo": false,
                 "streamVideo": true,
-                "switchIndex": 1
+                "switchIndex": 2
             },
             "distortionCoefficients": [
                 0.06621377,

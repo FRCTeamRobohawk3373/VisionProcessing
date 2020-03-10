@@ -65,7 +65,7 @@ class USBCamera:
 
         self.sink = cscore.CvSink("sink_"+self.name)
         self.sink.setSource(self.camera)
-        self.cameraFrame = None
+        self.cameraFrame = np.zeros((self.height,self.width,3), np.uint8)
         self.frameTime=0
         self.stopped=False
         self.wasConnected = self.camera.isConnected()
@@ -142,13 +142,16 @@ class USBCamera:
                 threadLogger.info("Connection Restored")
                 self.wasConnected = True
 
-            self.frameTime, self.cameraFrame = self.sink.grabFrame(self.cameraFrame)
-
             if(self.flip):
-                self.cameraFrame = np.flipud(self.cameraFrame)
+                self.frameTime, frame = self.sink.grabFrame(self.cameraFrame)
+                self.cameraFrame = cv2.flip(frame,0)
+            else:
+                self.frameTime, self.cameraFrame = self.sink.grabFrame(self.cameraFrame)
 
             if(self.frameTime == 0):
                 threadLogger.warning("Error grabbing frame: " +self.sink.getError())
+                sleep(0.5)
+
             sleep(0.025)
             frameNumber+=1
             if (frameNumber % 150 == 0):

@@ -1,0 +1,9 @@
+#!/bin/sh
+if ! pgrep python3 >/dev/null;
+	then
+	echo "currently not running"
+	echo "starting /home/admin/Desktop/Vision/Main.py"
+	sudo -u admin python3 /home/admin/Desktop/Vision/Main.py &
+fi
+
+exit 0

@@ -1,0 +1,127 @@
+{
+    "cameras": {
+        "usb-046d_0825_2020FAE0-video-index0": {
+            "cameraMatrix": [],
+            "destinations": {
+                "processVideo": false,
+                "streamVideo": true,
+                "switchIndex": 1
+            },
+            "distortionCoefficients": [],
+            "name": "driverCamera",
+            "path": "/dev/v4l/by-id/usb-046d_0825_2020FAE0-video-index0",
+            "properties": {},
+            "settings": {}
+        },
+        "usb-046d_0825_6E3FEAE0-video-index0": {
+            "cameraMatrix": [],
+            "destinations": {
+                "processVideo": false,
+                "streamVideo": true,
+                "switchIndex": 4
+            },
+            "distortionCoefficients": [],
+            "name": "test2Id4",
+            "path": "/dev/v4l/by-id/usb-046d_0825_6E3FEAE0-video-index0",
+            "properties": {},
+            "settings": {}
+        },
+        "usb-046d_0825_88BA4B60-video-index0": {
+            "cameraMatrix": [
+                [
+                    980.79815218,
+                    0.0,
+                    629.144456
+                ],
+                [
+                    0.0,
+                    981.43793669,
+                    350.9971199
+                ],
+                [
+                    0.0,
+                    0.0,
+                    1.0
+                ]
+            ],
+            "destinations": {
+                "processVideo": false,
+                "streamVideo": true,
+                "switchIndex": 2
+            },
+            "distortionCoefficients": [
+                0.06621377,
+                -0.26423108,
+                -0.00032913,
+                0.0009213,
+                0.24902609
+            ],
+            "name": "shooterCamera",
+            "path": "/dev/v4l/by-id/usb-046d_0825_88BA4B60-video-index0",
+            "properties": {},
+            "settings": {}
+        },
+        "usb-046d_0825_C2082660-video-index0": {
+            "cameraMatrix": [],
+            "destinations": {
+                "processVideo": false,
+                "streamVideo": true,
+                "switchIndex": 3
+            },
+            "distortionCoefficients": [],
+            "name": "test1Id3-Bad",
+            "path": "/dev/v4l/by-id/usb-046d_0825_C2082660-video-index0",
+            "properties": {},
+            "settings": {}
+        },
+        "usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0": {
+            "cameraMatrix": [
+                [
+                    1222.66604,
+                    0.0,
+                    617.898658
+                ],
+                [
+                    0.0,
+                    1224.42924,
+                    328.161475
+                ],
+                [
+                    0.0,
+                    0.0,
+                    1.0
+                ]
+            ],
+            "destinations": {
+                "processVideo": true,
+                "streamVideo": false,
+                "switchIndex": -1
+            },
+            "distortionCoefficients": [
+                -0.646114994,
+                0.681283229,
+                0.00338390553,
+                0.000532681356,
+                -0.465817116
+            ],
+            "name": "Vision Camera",
+            "path": "/dev/v4l/by-id/usb-HD_Camera_Manufacturer_USB_2.0_Camera-video-index0",
+            "properties": {
+                "flip": false,
+                "fps": 30,
+                "height": 720,
+                "width": 1280
+            },
+            "settings": {
+                "contrast": 45,
+                "exposure_absolute": 10,
+                "exposure_auto": 1,
+                "exposure_auto_priority": 0,
+                "gain": 18,
+                "gamma": 85,
+                "white_balance_temperature": 3500,
+                "white_balance_temperature_auto": 0
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+#!/bin/bash
+v4l2-ctl -c exposure_auto_priority=0
+v4l2-ctl -c exposure_auto=1
+v4l2-ctl -c white_balance_temperature_auto=0
+
+
+v4l2-ctl -c exposure_absolute=10
+v4l2-ctl -c white_balance_temperature=3500
+v4l2-ctl -c contrast=45
+v4l2-ctl -c gamma=85
+v4l2-ctl -c gain=18
+
+
+
+

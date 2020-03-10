@@ -1,0 +1,8 @@
+contrast=45
+white_balance_temperature_auto=0
+gamma=85
+gain=18
+white_balance_temperature=3500
+exposure_auto=1
+exposure_absolute=10\
+(Others are default)

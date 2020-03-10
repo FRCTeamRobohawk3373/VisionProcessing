@@ -1,0 +1,28 @@
+#!/bin/bash
+
+DIR='/home/pi/Documents/GitHub/VisionProcessing/Vision/bin/'
+
+SCRIPT="visionserver.py"
+
+case "$1" in
+    stop)
+	sudo pkill -f $SCRIPT
+	;;
+
+    start)
+        cd $DIR
+
+        radio=$(route -n | awk '$1=="0.0.0.0"{print $2}')
+        
+        sudo -u pi python3 ./$SCRIPT &
+	;;
+
+    restart)
+	$0 stop
+	$0 start
+	;;
+
+    *)
+	echo "$0 (start|stop|restart)"
+	;;
+esac
